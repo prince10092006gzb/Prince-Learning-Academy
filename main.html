@@ -1,439 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prince Learning Academy - Student Portal</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh; 
-        }
-        
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-        
-        /* HEADER */
-        .header {
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            position: sticky; top: 20px; z-index: 100;
-            margin-bottom: 2rem;
-        }
-        .header-content { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.8rem; color: #667eea; font-weight: bold; }
-        .nav-links { display: flex; gap: 1rem; }
-        .nav-links a { 
-            color: #333; text-decoration: none; padding: 0.75rem 1.5rem; 
-            border-radius: 25px; font-weight: 500; transition: all 0.3s; 
-        }
-        .nav-links a:hover, .nav-links a.active { 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; 
-        }
-        .user-info { 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-            color: white; padding: 0.5rem 1.5rem; border-radius: 25px; font-weight: 500; 
-        }
-        .logout-btn { 
-            background: #ff4757; color: white; border: none; padding: 0.5rem 1rem; 
-            border-radius: 20px; cursor: pointer; margin-left: 1rem; 
-        }
-        
-        /* SECTIONS */
-        .section { display: none; background: rgba(255,255,255,0.95); padding: 3rem; border-radius: 25px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .section.active { display: block; }
-        
-        /* LOGIN */
-        .login-container { text-align: center; max-width: 500px; margin: 5rem auto; }
-        .login-form input { 
-            width: 100%; padding: 1.2rem; margin: 1rem 0; border: 2px solid #e1e5e9; 
-            border-radius: 12px; font-size: 1rem; transition: border-color 0.3s; 
-        }
-        .login-form input:focus { outline: none; border-color: #667eea; }
-        .login-btn { 
-            width: 100%; padding: 1.2rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-            color: white; border: none; border-radius: 12px; font-size: 1.2rem; font-weight: 600; 
-            cursor: pointer; transition: transform 0.3s; 
-        }
-        .login-btn:hover { transform: translateY(-2px); }
-        .error { background: #ff4757; color: white; padding: 1rem; border-radius: 10px; margin: 1rem 0; display: none; }
-        .students-count { background: #e3f2fd; padding: 1rem; border-radius: 12px; margin: 1rem 0; }
-        
-        /* DASHBOARD */
-        .dashboard-welcome { text-align: center; color: #333; margin-bottom: 3rem; }
-        .dashboard-welcome h1 { font-size: 2.5rem; color: #667eea; margin-bottom: 1rem; }
-        .nav-grid { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 2rem; margin-bottom: 3rem; 
-        }
-        .nav-card { 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; 
-            padding: 2.5rem; border-radius: 20px; text-decoration: none; text-align: center; 
-            transition: all 0.3s; cursor: pointer; 
-        }
-        .nav-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
-        .nav-icon { font-size: 4rem; display: block; margin-bottom: 1rem; }
-        
-        /* PROFILE */
-        .profile-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; }
-        .profile-card { text-align: center; padding: 3rem 2rem; }
-        .profile-avatar { font-size: 5rem; margin-bottom: 1.5rem; }
-        .profile-name { font-size: 2.5rem; color: #333; margin-bottom: 0.5rem; }
-        .profile-class { font-size: 1.4rem; color: #667eea; font-weight: 600; }
-        .detail-row { display: flex; justify-content: space-between; padding: 1.2rem 0; border-bottom: 1px solid #e8ecf4; }
-        .detail-label { color: #666; font-weight: 500; }
-        .detail-value { color: #333; font-weight: 600; font-size: 1.1rem; }
-        
-        /* RESULTS */
-        .results-header { text-align: center; color: #333; margin-bottom: 3rem; }
-        .summary-stats { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-            gap: 1.5rem; margin-bottom: 3rem; 
-        }
-        .stat-box { 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; 
-            padding: 2rem; border-radius: 20px; text-align: center; 
-        }
-        .stat-value { font-size: 2.5rem; font-weight: 700; }
-        .marks-table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
-        .marks-table th, .marks-table td { padding: 1.2rem; text-align: left; border-bottom: 1px solid #e8ecf4; }
-        .marks-table th { background: #f8f9ff; font-weight: 600; color: #333; }
-        .marks-table tr:hover { background: #f8f9ff; }
-        .grade-a { color: #2ed573; font-weight: 700; }
-        .grade-b { color: #ffa502; font-weight: 600; }
-        .grade-c { color: #ff6b6b; }
-        
-        @media (max-width: 768px) {
-            .profile-grid { grid-template-columns: 1fr; }
-            .summary-stats { grid-template-columns: 1fr; }
-            .nav-links { flex-wrap: wrap; }
-        }
-    </style>
+    <meta name="viewport" 
+          content="width=device-width, initial-scale=1.0">
+    <title>Navigation Bar</title>
+    <link rel="stylesheet" href=
+"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <!-- 🔒 COMPLETE DATABASES EMBEDDED [file:21][file:22][file:23] -->
-    <div class="students-db" id="studentsDB" style="display:none;">
-        const studentsDB = [
-            { id: "2025-0023", password: "CBSE-01", name: "Devansh", class: "K.G", board: "CBSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0024", password: "CBSE-02", name: "Rudransh", class: "K.G", board: "CBSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0025", password: "CBSE-B2", name: "Rachit", class: "2", board: "CBSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0026", password: "CBSE-C1", name: "Shristi", class: "3", board: "CBSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0027", password: "CBSE-D1", name: "Diksha", class: "4", board: "CBSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0028", password: "CBSE-G1", name: "Ruhansh", class: "7", board: "CBSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0029", password: "CBSE-H1", name: "Garvit", class: "8", board: "CBSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0001", password: "ICSE-B1", name: "Mahi", class: "2", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0002", password: "ICSE-B2", name: "Vanshika", class: "2", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0003", password: "ICSE-C1", name: "Kriyansh", class: "3", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0004", password: "ICSE-C2", name: "Nipurn", class: "3", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0005", password: "ICSE-E1", name: "Soumiya Verma", class: "5", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0006", password: "ICSE-E2", name: "Aastha", class: "5", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0007", password: "ICSE-F1", name: "Devansh", class: "6", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0008", password: "ICSE-F2", name: "Mayank", class: "6", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0009", password: "ICSE-H1", name: "Hanshika", class: "8", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0010", password: "ICSEH-2", name: "Yash", class: "8", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0011", password: "ICSE-H3", name: "Bhumika", class: "8", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0012", password: "ICSE-H4", name: "Radhika", class: "8", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0013", password: "ICSE-H5", name: "Pratham", class: "8", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0014", password: "ICSE-I1", name: "Aanvi", class: "9", board: "ICSE", course: "Computer Applications", status: "Active" },
-            { id: "2025-0015", password: "ICSE-I2", name: "Aaryan", class: "9", board: "ICSE", course: "English + Computer Applications", status: "Active" },
-            { id: "2025-0016", password: "ICSE-I3", name: "Dev Chaudhary", class: "9", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0017", password: "ICSE-I4", name: "Vansh Khatri", class: "9", board: "ICSE", course: "English+ Computer Applications", status: "Active" },
-            { id: "2025-0018", password: "ICSE-I5", name: "Vanshika Sharma", class: "9", board: "ICSE", course: "English+ Computer Applications", status: "Active" },
-            { id: "2025-0019", password: "ICSE-I6", name: "Vinnet Raj Singh", class: "9", board: "ICSE", course: "English+ Computer Applications", status: "Active" },
-            { id: "2025-0020", password: "ICSE-I7", name: "Angila Rohila", class: "9", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0021", password: "ICSE-I8", name: "Avyan Pal", class: "9", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0022", password: "ICSE-01", name: "Yashi", class: "K.G", board: "ICSE", course: "All Subjects", status: "Active" }
-        ];
-    </div>
+    <header class="header">
+        <a href="/">
+          <img src="https://media.geeksforgeeks.org/gfg-gg-logo.svg" 
+               alt="Brand logo"> 
+                  <span class="brand-logo-name">
+                  GFG School
+                  </span>
+          </a>
+        <nav class="navbar">
+            <ul class="navbar-lists" id="myTopnav">
+                <li>
+                      <i class="fas fa-home"></i>
+                          <a class="navbar-link home-link" href="#">
+                              Home</a>
+                  </li>
+                <li>
+                      <i class="fas fa-user"></i>
+                          <a class="navbar-link about-link" 
+                           href="#about-us-section">
+                              About Us
+                          </a>
+                </li>
+                <li>
+                      <i class="fas fa-envelope"></i>
+                          <a class="navbar-link contact-link" 
+                           href="#contact-form">
+                          Contact Us
+                          </a>
+                  </li>
+                <li>
+                      <i class="fas fa-bullhorn"></i>
+                          <a class="navbar-link service-link" 
+                           href="#notice-bord-sction">
+                          Notice Board
+                          </a>
+                  </li>
+                <li><i class="fas fa-map-marked-alt"></i>
+                      <a class="navbar-link contact-link"
+                       href="#campus-on-map">
+                      Our Campus
+                      </a>
+                  </li>
+            </ul>
+            <a href="javascript:void(0);" 
+               class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </nav>
+    </header>
 
-    <div class="container">
-        <!-- HEADER (Hidden on login) -->
-        <div id="header" class="header" style="display:none;">
-            <div class="header-content">
-                <div class="logo">👑 Prince Learning Academy</div>
-                <div>
-                    <div class="user-info" id="userInfo">Loading...</div>
-                    <button class="logout-btn" onclick="logout()">Logout</button>
-                </div>
-            </div>
-            <div class="nav-links">
-                <a href="#" onclick="showSection('dashboard')" class="active" data-section="dashboard">🏠 Dashboard</a>
-                <a href="#" onclick="showSection('profile')" data-section="profile">👤 Profile</a>
-                <a href="#" onclick="showSection('results')" data-section="results">📊 Results</a>
+
+    <main>
+        <div class="school-img-container">
+            <div class="img-container">
+                <img src=
+"https://coworkingers.com/wp-content/uploads/2023/08/IMG_20210718_095744_524-min.jpg"
+                     alt="school img" class="school-img">
+                <h1 class="img-title">
+                  Welcome to Geeksforgeeks School
+                  </h1>
             </div>
         </div>
 
-        <!-- LOGIN SECTION -->
-        <div id="login" class="section active login-container">
-            <div class="logo">👑 Prince Learning Academy</div>
-            <h2>Student Login</h2>
-            <p>Believe. Achieve. Succeed.</p>
-            <div class="students-count">
-                📊 Serving <span id="totalStudents">29</span> students across CBSE & ICSE
+        <section id="vision">
+            <h2 class="vision-heading">Our Vision</h2>
+            <p>At gfg, we envision a learning community where every 
+                student is inspired to reach their full potential. We
+                strive to cultivate a nurturing environment that fosters
+                  curiosity, creativity, and critical thinking skills.
+                Our aim is to empower students to become lifelong learners,
+                  compassionate leaders, and responsible global citizens. 
+                  Through innovative teaching methods, personalized support,
+                  and a diverse range of opportunities
+            </p>
+        </section>
+
+        <div class="main-notice-section" 
+             id="notice-bord-sction">
+            <div class="notice-container">
+                <div class="notice-bord">
+                    <h2 class="notice-bord-heading">
+                      Campus Notice Board
+                      </h2>
+                    <div>
+                        <ul>
+                            <li>
+                                <i>April 1, 2023:</i>
+                                      Inauguration ceremony for 
+                                      the new academic year.
+                                      <span class="new-text">New</span>
+                            </li>
+                            <li>
+                                <i>April 15, 2023:</i> 
+                                      Science fair showcasing 
+                                      innovative student projects. 
+                                      <span class="new-text">New</span>
+                            </li>
+                            <li>
+                                <i>April 30, 2023:</i> 
+                                      Cultural extravaganza featuring
+                                      dance, music, and drama performances. 
+                                      <span class="new-text">New</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Events Section -->
+                <div class="event-card">
+                    <h2 class="event-heading">Upcoming Events</h2>
+                    <div class="event-details">
+                        <div class="event">
+                            <h3>Event Name 1</h3>
+                            <p>Date: April 15, 2024</p>
+                            <p>Time: 9:00 AM - 12:00 PM</p>
+                            <p>Location: School Auditorium</p>
+                            <p>
+                              <strong>Description:</strong> 
+                              Quiz competition.
+                              </p>
+                        </div>
+                        <div class="event">
+                            <h3>Event Name 2</h3>
+                            <p>Date: April 20, 2024</p>
+                            <p>Time: 2:00 PM - 5:00 PM</p>
+                            <p>Location: Sports Ground</p>
+                            <p>
+                                  <strong>Description:</strong> 
+                                  Cricket tournament.
+                              </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <form class="login-form" id="loginForm">
-                <input type="text" id="studentId" placeholder="Student ID (e.g. 2025-0015)" required>
-                <input type="password" id="password" placeholder="Password" required>
-                <button type="submit" class="login-btn">🔐 Login Securely</button>
-            </form>
-            <div id="errorMsg" class="error"></div>
         </div>
 
-        <!-- DASHBOARD -->
-        <div id="dashboard" class="section">
-            <div class="dashboard-welcome">
-                <h1>Welcome Back!</h1>
-                <p>Your learning journey continues...</p>
-            </div>
-            <div class="nav-grid">
-                <div class="nav-card" onclick="showSection('profile')">
-                    <div class="nav-icon">👤</div>
-                    <h3>My Profile</h3>
-                    <p>View personal information and details</p>
-                </div>
-                <div class="nav-card" onclick="showSection('results')">
-                    <div class="nav-icon">📊</div>
-                    <h3>Exam Results</h3>
-                    <p>Check Sessional 1 marks and grades</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- PROFILE -->
-        <div id="profile" class="section">
-            <div class="profile-grid">
-                <div class="profile-card">
-                    <div class="profile-avatar" id="profileAvatar">👤</div>
-                    <h1 class="profile-name" id="profileName">Loading...</h1>
-                    <div class="profile-class" id="profileClass">Loading...</div>
-                </div>
-                <div style="padding: 3rem;">
-                    <h2 style="color: #333; margin-bottom: 2rem; font-size: 1.8rem;">Student Details</h2>
-                    <div class="detail-row">
-                        <span class="detail-label">Student ID:</span>
-                        <span class="detail-value" id="detailId">-</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Full Name:</span>
-                        <span class="detail-value" id="detailName">-</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Class:</span>
-                        <span class="detail-value" id="detailClass">-</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Board:</span>
-                        <span class="detail-value" id="detailBoard">-</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Course:</span>
-                        <span class="detail-value" id="detailCourse">-</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Status:</span>
-                        <span class="detail-value" id="detailStatus" style="color: #2ed573;">Active</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- RESULTS -->
-        <div id="results" class="section">
-            <div class="results-header">
-                <h1 id="resultsTitle">Sessional 1 Examination Results</h1>
-                <p style="font-size: 1.1rem; color: #666; margin-bottom: 1rem;">
-                    External: 40 Marks | Internal: 10 Marks | Total: 50 Marks per subject
+        <section id="about-us-section">
+            <div class="about-us-container">
+                <h2 class="aboutus-heading">About Us</h2>
+                <p>
+                    <strong class="subheading"> 
+                          Company Profile and Brand: 
+                      </strong>
+                    GeeksforGeeks is a leading platform that 
+                      provides computer science resources and 
+                      coding challenges for programmers and 
+                      technology enthusiasts, along with interview
+                      and exam preparations for upcoming aspirants.
+                    With a strong emphasis on enhancing coding 
+                      skills and knowledge, it has become a trusted
+                      destination for over 12 million plus registered 
+                      users worldwide.
                 </p>
             </div>
-            <div class="summary-stats" id="summaryStats"></div>
-            <table class="marks-table">
-                <thead>
-                    <tr>
-                        <th>Subject</th>
-                        <th>Internal (10)</th>
-                        <th>External (40)</th>
-                        <th>Total (50)</th>
-                        <th>Grade</th>
-                    </tr>
-                </thead>
-                <tbody id="marksBody"></tbody>
-            </table>
-        </div>
-    </div>
+        </section>
 
-    <script>
-        // 🔒 EXTRACT COMPLETE DATABASES [file:21][file:22][file:23]
-        const studentsDB = eval(document.getElementById('studentsDB').textContent.match(/const studentsDB = [(.*?)];/s)[1] + ';');
-        document.getElementById('totalStudents').textContent = studentsDB.length;
+        <section class="our-school-map" id="campus-on-map">
+            <h2 class="location-heading">
+                  Find Our Location On Map
+              </h2>
+            <iframe src=
+"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d47169.795533326396!2d77.38522794611738!3d28.51217402233223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce626851f7009%3A0x621185133cfd1ad1!2sGeeksforGeeks%20%7C%20Coding%20Classes!5e0!3m2!1sen!2sin!4v1712429105950!5m2!1sen!2sin"
+                    width="100%" height="450" 
+                    style="border:0;"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+        </section>
 
-        // MARKS DATA from aco.csv [file:23]
-        const marksData = {
-            "2025-0014": { subjects: { "English Lang 1": {internal: "-", external: "-", total: 0}, "English Lang 2": {internal: "-", external: "-", total: 0}, "English Lit": {internal: "-", external: "-", total: 0}, "Computer": {internal: "-", external: "-", total: 0} } },
-            "2025-0015": { subjects: { "English Lang 1": {internal: 7, external: 17, total: 24}, "English Lang 2": {internal: 8, external: 16, total: 24}, "English Lit": {internal: "-", external: "-", total: 0}, "Computer": {internal: "-", external: "-", total: 0} } },
-            "2025-0016": { subjects: { "English Lang 1": {internal: 7, external: 8, total: 15}, "English Lang 2": {internal: 7, external: 12, total: 19}, "English Lit": {internal: "-", external: "-", total: 0}, "Computer": {internal: "-", external: "-", total: 0} } },
-            "2025-0017": { subjects: { "English Lang 1": {internal: 8, external: 15, total: 23}, "English Lang 2": {internal: 9, external: 28, total: 37}, "English Lit": {internal: "-", external: "-", total: 0}, "Computer": {internal: "-", external: "-", total: 0} } },
-            "2025-0019": { subjects: { "English Lang 1": {internal: 6, external: 15, total: 21}, "English Lang 2": {internal: 8, external: 18, total: 26}, "English Lit": {internal: "-", external: "-", total: 0}, "Computer": {internal: "-", external: "-", total: 0} } },
-            "2025-0020": { subjects: { "English Lang 1": {internal: 6, external: "-", total: 6}, "English Lang 2": {internal: 8, external: "-", total: 8}, "English Lit": {internal: "-", external: "-", total: 0}, "Computer": {internal: "-", external: "-", total: 0} } },
-            "2025-0021": { subjects: { "English Lang 1": {internal: 6, external: 12, total: 18}, "English Lang 2": {internal: 6, external: 0, total: 6}, "English Lit": {internal: "-", external: "-", total: 0}, "Computer": {internal: "-", external: "-", total: 0} } },
-            "2025-0007": { subjects: { "Chemistry": {internal: "-", external: 21, total: 21}, "Eng Gr": {internal: "-", external: 0, total: 0}, "Biology": {internal: "-", external: "-", total: 0} } },
-            "2025-0008": { subjects: { "Chemistry": {internal: "-", external: 11, total: 11}, "Eng Gr": {internal: "-", external: 3, total: 3}, "Biology": {internal: "-", external: "-", total: 0} } },
-            "2025-0011": { subjects: { "Chemistry": {internal: "-", external: 21, total: 21}, "Eng Gr": {internal: "-", external: 21, total: 21}, "Biology": {internal: "-", external: "-", total: 0} } }
-        };
+        <section id="contact-form">
+            <h2 class="contact-form-heading">
+              Contact Us Form
+              </h2>
+            <div class="container">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="fullName">
+                          Full Name
+                          </label>
+                        <input type="text" id="fullName" 
+                               name="fullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email"
+                               name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="text" id="phone" 
+                               name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" 
+                                  required>
+                          </textarea>
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </section>
+    </main>
 
-        let currentStudent = null;
+    <footer>
+        <p>&copy; 2024 My School. All rights reserved.</p>
+    </footer>
 
-        // SECTION NAVIGATION
-        function showSection(sectionName) {
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-            document.getElementById(sectionName).classList.add('active');
-            document.querySelector(`[data-section="${sectionName}"]`).classList.add('active');
-            
-            if (sectionName === 'profile') loadProfile();
-            if (sectionName === 'results') loadResults();
-        }
+    <script src="index.js"></script>
 
-        // LOGIN
-        document.getElementById('loginForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const id = document.getElementById('studentId').value.trim();
-            const pw = document.getElementById('password').value;
-            
-            currentStudent = studentsDB.find(s => s.id === id && s.password === pw);
-            
-            if (currentStudent && currentStudent.status === 'Active') {
-                sessionStorage.setItem('studentData', JSON.stringify(currentStudent));
-                document.getElementById('login').classList.remove('active');
-                document.getElementById('header').style.display = 'block';
-                showSection('dashboard');
-                loadDashboard();
-            } else {
-                document.getElementById('errorMsg').textContent = '❌ Invalid Student ID or Password';
-                document.getElementById('errorMsg').style.display = 'block';
-            }
-        });
-
-        // LOAD DASHBOARD
-        function loadDashboard() {
-            if (!currentStudent) {
-                const saved = sessionStorage.getItem('studentData');
-                if (saved) currentStudent = JSON.parse(saved);
-            }
-            document.getElementById('userInfo').textContent = `${currentStudent.name} (${currentStudent.class} ${currentStudent.board})`;
-        }
-
-        // LOAD PROFILE
-        function loadProfile() {
-            if (!currentStudent) return;
-            document.getElementById('profileAvatar').textContent = getInitials(currentStudent.name);
-            document.getElementById('profileName').textContent = currentStudent.name;
-            document.getElementById('profileClass').textContent = `${currentStudent.class} - ${currentStudent.board}`;
-            document.getElementById('detailId').textContent = currentStudent.id;
-            document.getElementById('detailName').textContent = currentStudent.name;
-            document.getElementById('detailClass').textContent = currentStudent.class;
-            document.getElementById('detailBoard').textContent = currentStudent.board;
-            document.getElementById('detailCourse').textContent = currentStudent.course;
-            document.getElementById('detailStatus').textContent = currentStudent.status;
-        }
-
-        // LOAD RESULTS
-        function loadResults() {
-            if (!currentStudent) return;
-            
-            document.getElementById('resultsTitle').textContent = `${currentStudent.name}'s Sessional 1 Results`;
-            
-            const studentMarks = marksData[currentStudent.id] || { subjects: {} };
-            const subjects = studentMarks.subjects;
-            
-            let totalMarks = 0, maxMarks = 0, appearedCount = 0;
-            Object.values(subjects).forEach(s => {
-                if (s.total > 0) {
-                    totalMarks += s.total;
-                    maxMarks += 50;
-                    appearedCount++;
-                }
-            });
-            
-            const percentage = maxMarks > 0 ? ((totalMarks / maxMarks) * 100).toFixed(1) : 0;
-            const overallGrade = getGrade(percentage);
-            
-            document.getElementById('summaryStats').innerHTML = `
-                <div class="stat-box">
-                    <div class="stat-value">${percentage}%</div>
-                    <div>Overall Percentage</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-value">${totalMarks}/${maxMarks}</div>
-                    <div>Total Marks</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-value">${appearedCount}</div>
-                    <div>Subjects Appeared</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-value grade-${overallGrade.toLowerCase()}">${overallGrade}</div>
-                    <div>Overall Grade</div>
-                </div>
-            `;
-            
-            let tableRows = '';
-            Object.entries(subjects).forEach(([subject, marks]) => {
-                const subjPercentage = marks.total > 0 ? (marks.total / 50) * 100 : 0;
-                const subjGrade = getGrade(subjPercentage);
-                tableRows += `
-                    <tr>
-                        <td>${subject}</td>
-                        <td>${marks.internal || '-'}</td>
-                        <td>${marks.external || '-'}</td>
-                        <td>${marks.total || 0}</td>
-                        <td class="grade-${subjGrade.toLowerCase()}">${subjGrade}</td>
-                    </tr>
-                `;
-            });
-            
-            if (tableRows === '') {
-                tableRows = '<tr><td colspan="5" style="text-align:center;padding:3rem;color:#666;">No marks entered yet for Sessional 1</td></tr>';
-            }
-            
-            document.getElementById('marksBody').innerHTML = tableRows;
-        }
-
-        function getGrade(percentage) {
-            if (percentage >= 80) return 'A';
-            if (percentage >= 60) return 'B';
-            if (percentage >= 40) return 'C';
-            return 'D';
-        }
-
-        function getInitials(name) {
-            return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0,2);
-        }
-
-        function logout() {
-            sessionStorage.clear();
-            currentStudent = null;
-            document.getElementById('header').style.display = 'none';
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            document.getElementById('login').classList.add('active');
-            document.getElementById('loginForm').reset();
-            document.getElementById('errorMsg').style.display = 'none';
-        }
-
-        // CHECK IF ALREADY LOGGED IN
-        window.addEventListener('load', () => {
-            const saved = sessionStorage.getItem('studentData');
-            if (saved) {
-                currentStudent = JSON.parse(saved);
-                document.getElementById('login').classList.remove('active');
-                document.getElementById('header').style.display = 'block';
-                showSection('dashboard');
-                loadDashboard();
-            }
-        });
-    </script>
 </body>
+
 </html>
