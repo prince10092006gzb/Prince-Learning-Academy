@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Prince Learning Academy</title>
+</head>
+<body>
+    <!-- SAME DATABASE EMBEDDED -->
+    <div class="students-db" id="studentsDB">/* 29 STUDENTS */</div>
+    
+    <header>
+        <a href="main.html">← Back to Dashboard</a>
+    </header>
+    
+    <main id="profileContent">Loading...</main>
+
+    <script>
+        // Verify sessionStorage credentials against database
+        const studentId = sessionStorage.getItem('studentId');
+        const password = sessionStorage.getItem('studentPassword');
+        
+        if (!studentId || !password) {
+            window.location.href = 'main.html';
+        }
+        
+        const studentsDB = /* EXTRACT */;
+        const student = studentsDB.find(s => s.id === studentId && s.password === password);
+        
+        if (!student) {
+            window.location.href = 'main.html';
+        }
+        
+        // Display profile data
+        document.getElementById('profileContent').innerHTML = `
+            <h1>${student.name}</h1>
+            <p>ID: ${student.id}</p>
+            <p>Class: ${student.class} | Board: ${student.board}</p>
+        `;
+    </script>
+</body>
+</html>
