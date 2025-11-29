@@ -1,262 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Prince Learning Academy - Galactic Excellence 👑</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Dancing+Script:wght@400;600;700&family=Playfair+Display:wght@500;700&display=swap');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prince Learning Academy - Galactic Excellence 👑</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Dancing+Script:wght@400;600;700&family=Playfair+Display:wght@500;700&display=swap');
 
-*{margin:0;padding:0;box-sizing:border-box}
-:root{--primary-gold:#FFD700;--primary-red:#FF4757;--secondary-blue:#4FC3F7;--accent-purple:#8E44AD;--glass-bg:rgba(255,255,255,0.1);--glass-border:rgba(255,255,255,0.2)}
+  :root{--primary-gold:#FFD700;--primary-red:#FF4757;--secondary-blue:#4FC3F7;--accent-purple:#8E44AD}
 
-body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#0f0f23 0%,#1a1a3e 25%,#2d1b69 50%,#4a0e8c 75%,#8b008b 100%);background-size:400% 400%;animation:galaxyShift 20s ease infinite;color:#fff;overflow-x:hidden;position:relative}
-@keyframes galaxyShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+  html,body{width:100%;overflow-x:hidden}
+  body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#0f0f23 0%,#1a1a3e 25%,#2d1b69 50%,#4a0e8c 75%,#8b008b 100%);
+    background-size:400% 400%;
+    animation:galaxyShift 20s ease infinite;
+    color:#fff;
+    position:relative;
+    padding-top:88px; /* reserve space for fixed header to avoid overlap and movement */
+  }
+  @keyframes galaxyShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 
-.particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;overflow:hidden}
-.particle{position:absolute;background:radial-gradient(circle,var(--primary-gold) 0%,transparent 70%);border-radius:50%;animation:float 20s infinite linear;opacity:0.1}
-@keyframes float{0%{transform:translateY(100vh) rotate(0deg) scale(0.5);opacity:0}10%{opacity:0.3}90%{opacity:0.3}100%{transform:translateY(-100vh) rotate(360deg) scale(1.2);opacity:0}}
+  .particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;overflow:hidden}
+  .particle{position:absolute;background:radial-gradient(circle,var(--primary-gold) 0%,transparent 70%);border-radius:50%;animation:float 20s infinite linear;opacity:0.1}
+  @keyframes float{0%{transform:translateY(100vh) rotate(0deg) scale(0.5);opacity:0}10%{opacity:0.3}90%{opacity:0.3}100%{transform:translateY(-100vh) rotate(360deg) scale(1.2);opacity:0}}
 
-.navbar{position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:10000;background:var(--glass-bg);backdrop-filter:blur(40px);border:2px solid var(--glass-border);border-radius:50px;padding:12px 25px;display:flex;align-items:center;gap:25px;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
-.nav-logos{display:flex;align-items:center;gap:10px}
-.logo-main,.logo-icse{height:50px;width:50px;border-radius:50%;border:2px solid rgba(255,255,255,0.7);background:#fff;object-fit:cover}
-.logo-text{font-family:'Dancing Script',cursive;font-size:2.1rem;font-weight:800;background:linear-gradient(45deg,var(--primary-gold),#fff,var(--secondary-blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;white-space:nowrap}
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:80px 5% 100px;position:relative}
+  .hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 30% 20%,rgba(255,215,0,0.1) 0%,transparent 50%),radial-gradient(circle at 70% 80%,rgba(79,195,247,0.1) 0%,transparent 50%);animation:portalPulse 8s ease-in-out infinite}
+  @keyframes portalPulse{0%,100%{opacity:0.6;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}}
+  .hero-badge{position:relative;z-index:2;background:linear-gradient(45deg,var(--primary-gold),var(--secondary-blue));color:#1a1a3e;padding:15px 35px;border-radius:50px;font-size:1.1rem;font-weight:800;letter-spacing:3px;animation:slideInUp 1s ease-out;box-shadow:0 10px 40px rgba(255,215,0,0.4)}
+  @keyframes slideInUp{from{transform:translateY(50px);opacity:0}to{transform:translateY(0);opacity:1}}
+  .hero-title{font-family:'Dancing Script',cursive;font-size:clamp(4.5rem,12vw,9rem);background:linear-gradient(45deg,#fff,var(--primary-gold),var(--secondary-blue),#fff);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradientFlow 4s ease infinite,heroGlow 6s ease-in-out infinite alternate;margin:0;text-align:center;position:relative;z-index:2}
+  @keyframes gradientFlow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  @keyframes heroGlow{0%{filter:drop-shadow(0 0 40px var(--primary-gold))}100%{filter:drop-shadow(0 0 80px var(--secondary-blue))}}
+  .hero-subtitle{font-size:clamp(1.4rem,4vw,2.5rem);margin:30px 0 40px;max-width:900px;line-height:1.6;text-align:center;opacity:0.95}
+  .hero-motto{font-size:clamp(1.5rem,3vw,2.2rem);font-family:'Playfair Display',serif;background:rgba(255,255,255,0.1);backdrop-filter:blur(30px);padding:25px 50px;border-radius:40px;border:2px solid rgba(255,255,255,0.2);box-shadow:0 30px 80px rgba(0,0,0,0.4);animation:fadeIn 2s ease-out 0.5s both}
+  @keyframes fadeIn{from{opacity:0;transform:scale(0.9)}to{opacity:1;transform:scale(1)}}
 
-.nav-menu{display:flex;gap:20px;list-style:none;margin-left:auto;margin-right:10px}
-.nav-link{color:#fff;text-decoration:none;font-weight:600;font-size:1.05rem;padding:10px 20px;border-radius:25px;transition:all 0.4s cubic-bezier(0.25,0.8,0.25,1);position:relative;overflow:hidden}
-.nav-link::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);transition:left 0.6s}
-.nav-link:hover::before{left:100%}
-.nav-link:hover{color:var(--primary-gold);transform:translateY(-5px)scale(1.05);background:var(--glass-bg)}
+  .live-week{max-width:900px;margin:18px auto 0;background:linear-gradient(90deg,rgba(255,71,87,0.95),rgba(142,68,173,0.95));border-radius:999px;padding:8px 20px;display:flex;align-items:center;gap:12px;box-shadow:0 15px 60px rgba(0,0,0,0.6);font-size:0.95rem}
+  .live-week-label{font-weight:800;letter-spacing:1px;display:flex;align-items:center;gap:6px}
+  .live-week-text{font-weight:500;opacity:0.95}
 
-.portal-btn{background:linear-gradient(135deg,var(--primary-red),var(--accent-purple));color:#fff;padding:14px 32px;border:none;border-radius:30px;font-size:1.1rem;font-weight:800;cursor:pointer;transition:all 0.5s cubic-bezier(0.25,0.8,0.25,1);box-shadow:0 15px 50px rgba(255,71,87,0.4);position:relative;overflow:hidden;text-transform:uppercase;letter-spacing:2px;white-space:nowrap}
-.portal-btn::after{content:'🔐';position:absolute;right:18px;transition:transform 0.3s}
-.portal-btn:hover{transform:translateY(-10px)scale(1.05);box-shadow:0 25px 70px rgba(255,71,87,0.6)}
-.portal-btn:hover::after{transform:scale(1.2)}
+  .notice-board{max-width:900px;margin:16px auto 0;padding:18px;background:linear-gradient(135deg,#8b5a2b,#5a3a1a);border-radius:26px;box-shadow:0 25px 90px rgba(0,0,0,0.75);position:relative;border:3px solid #d2a679}
+  .notice-board::before,.notice-board::after{content:'';position:absolute;top:10px;width:26px;height:26px;border-radius:50%;background:radial-gradient(circle,#fbe9c4 0%,#cfa676 60%,#8b5a2b 100%);box-shadow:0 0 10px rgba(0,0,0,0.6)}
+  .notice-board::before{left:18px}
+  .notice-board::after{right:18px}
+  .notice-inner{background:#f5f4f0;border-radius:18px;padding:18px 22px;color:#2d1b69}
+  .notice-heading{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+  .notice-heading .title{font-weight:800;font-size:1.2rem;text-transform:uppercase;letter-spacing:2px}
+  .notice-list{list-style:none;font-size:0.98rem;font-weight:600}
+  .notice-list li{margin:5px 0;display:flex;align-items:flex-start;gap:8px}
+  .notice-list-date{font-weight:800;color:#b33a11;min-width:110px}
 
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:150px 5% 100px;position:relative}
-.hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 30% 20%,rgba(255,215,0,0.1) 0%,transparent 50%),radial-gradient(circle at 70% 80%,rgba(79,195,247,0.1) 0%,transparent 50%);animation:portalPulse 8s ease-in-out infinite}
-@keyframes portalPulse{0%,100%{opacity:0.6;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}}
-.hero-badge{position:relative;z-index:2;background:linear-gradient(45deg,var(--primary-gold),var(--secondary-blue));color:#1a1a3e;padding:15px 35px;border-radius:50px;font-size:1.1rem;font-weight:800;letter-spacing:3px;animation:slideInUp 1s ease-out;box-shadow:0 10px 40px rgba(255,215,0,0.4)}
-@keyframes slideInUp{from{transform:translateY(50px);opacity:0}to{transform:translateY(0);opacity:1}}
-.hero-title{font-family:'Dancing Script',cursive;font-size:clamp(4.5rem,12vw,9rem);background:linear-gradient(45deg,#fff,var(--primary-gold),var(--secondary-blue),#fff);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradientFlow 4s ease infinite,heroGlow 6s ease-in-out infinite alternate;margin:0;text-align:center;position:relative;z-index:2}
-@keyframes gradientFlow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-@keyframes heroGlow{0%{filter:drop-shadow(0 0 40px var(--primary-gold))}100%{filter:drop-shadow(0 0 80px var(--secondary-blue))}}
-.hero-subtitle{font-size:clamp(1.4rem,4vw,2.5rem);margin:30px 0 40px;max-width:900px;line-height:1.6;text-align:center;opacity:0.95}
-.hero-motto{font-size:clamp(1.5rem,3vw,2.2rem);font-family:'Playfair Display',serif;background:var(--glass-bg);backdrop-filter:blur(30px);padding:25px 50px;border-radius:40px;border:2px solid var(--glass-border);box-shadow:0 30px 80px rgba(0,0,0,0.4);animation:fadeIn 2s ease-out 0.5s both}
-@keyframes fadeIn{from{opacity:0;transform:scale(0.9)}to{opacity:1;transform:scale(1)}}
+  .hero-cta{display:flex;gap:30px;flex-wrap:wrap;justify-content:center;margin-top:28px;animation:slideInUp 1s ease-out 1s both}
+  .cta-btn{padding:20px 50px;border:none;border-radius:40px;font-size:1.3rem;font-weight:800;cursor:pointer;transition:all 0.5s cubic-bezier(0.25,0.8,0.25,1);position:relative;overflow:hidden;text-transform:uppercase;letter-spacing:1px}
+  .cta-primary{background:linear-gradient(135deg,var(--primary-red),var(--accent-purple));color:#fff;box-shadow:0 25px 70px rgba(255,71,87,0.5)}
+  .cta-secondary{background:rgba(255,255,255,0.1);backdrop-filter:blur(30px);color:#fff;border:3px solid rgba(255,255,255,0.2)}
+  .cta-btn:hover{transform:translateY(-15px)scale(1.05)}
+  .cta-primary:hover{box-shadow:0 35px 90px rgba(255,71,87,0.7)}
+  .cta-secondary:hover{background:rgba(255,255,255,0.2)}
 
-/* Live Today */
-.live-week{max-width:900px;margin:18px auto 0;background:linear-gradient(90deg,rgba(255,71,87,0.95),rgba(142,68,173,0.95));border-radius:999px;padding:8px 20px;display:flex;align-items:center;gap:12px;box-shadow:0 15px 60px rgba(0,0,0,0.6);font-size:0.95rem}
-.live-week-label{font-weight:800;letter-spacing:1px;display:flex;align-items:center;gap:6px}
-.live-week-text{font-weight:500;opacity:0.95}
+  .section{padding:140px 5%;position:relative}
+  .section-container{max-width:1400px;margin:0 auto}
+  .section-title{font-family:'Dancing Script',cursive;font-size:clamp(3rem,8vw,6rem);text-align:center;margin-bottom:80px;background:linear-gradient(45deg,var(--primary-gold),var(--secondary-blue),var(--primary-red));background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradientFlow 4s ease infinite}
 
-/* Wooden Notice Board */
-.notice-board{max-width:900px;margin:16px auto 0;padding:18px;background:linear-gradient(135deg,#8b5a2b,#5a3a1a);border-radius:26px;box-shadow:0 25px 90px rgba(0,0,0,0.75);position:relative;border:3px solid #d2a679}
-.notice-board::before,.notice-board::after{content:'';position:absolute;top:10px;width:26px;height:26px;border-radius:50%;background:radial-gradient(circle,#fbe9c4 0%,#cfa676 60%,#8b5a2b 100%);box-shadow:0 0 10px rgba(0,0,0,0.6)}
-.notice-board::before{left:18px}
-.notice-board::after{right:18px}
-.notice-inner{background:#f5f4f0;border-radius:18px;padding:18px 22px;color:#2d1b69}
-.notice-heading{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-.notice-heading .title{font-weight:800;font-size:1.2rem;text-transform:uppercase;letter-spacing:2px}
-.notice-list{list-style:none;font-size:0.98rem;font-weight:600}
-.notice-list li{margin:5px 0;display:flex;align-items:flex-start;gap:8px}
-.notice-list-date{font-weight:800;color:#b33a11;min-width:110px}
+  .programs-wrapper{perspective:1000px}
+  .programs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:40px}
+  .program-card{background:linear-gradient(145deg,rgba(255,255,255,0.1),rgba(255,255,255,0.05));backdrop-filter:blur(40px);padding:50px 40px;border-radius:30px;border:2px solid rgba(255,255,255,0.2);transition:all 0.6s cubic-bezier(0.25,0.8,0.25,1);transform-style:preserve-3d;position:relative}
+  .program-card:hover{transform:translateY(-30px)rotateX(10deg)rotateY(10deg)scale(1.05);box-shadow:0 50px 150px rgba(0,0,0,0.5)}
+  .program-icon{font-size:6rem;margin-bottom:30px;display:block;text-align:center;background:linear-gradient(45deg,var(--primary-gold),var(--secondary-blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 10px 30px rgba(255,215,0,0.3))}
+  .program-card h3{font-size:2.3rem;color:#fff;margin-bottom:20px;font-weight:800}
+  .program-card p{font-size:1.2rem;color:rgba(255,255,255,0.9);line-height:1.8}
 
-.hero-cta{display:flex;gap:30px;flex-wrap:wrap;justify-content:center;margin-top:28px;animation:slideInUp 1s ease-out 1s both}
-.cta-btn{padding:20px 50px;border:none;border-radius:40px;font-size:1.3rem;font-weight:800;cursor:pointer;transition:all 0.5s cubic-bezier(0.25,0.8,0.25,1);position:relative;overflow:hidden;text-transform:uppercase;letter-spacing:1px}
-.cta-primary{background:linear-gradient(135deg,var(--primary-red),var(--accent-purple));color:#fff;box-shadow:0 25px 70px rgba(255,71,87,0.5)}
-.cta-secondary{background:var(--glass-bg);backdrop-filter:blur(30px);color:#fff;border:3px solid var(--glass-border)}
-.cta-btn:hover{transform:translateY(-15px)scale(1.05)}
-.cta-primary:hover{box-shadow:0 35px 90px rgba(255,71,87,0.7)}
-.cta-secondary:hover{background:rgba(255,255,255,0.2)}
+  .icse-strip{position:absolute;top:-20px;right:30px;display:flex;align-items:center;gap:8px;background:rgba(0,0,0,0.45);padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.35);backdrop-filter:blur(18px);font-size:0.8rem;font-weight:700}
+  .icse-strip img{height:26px;width:26px;border-radius:50%;background:#fff;object-fit:cover}
 
-.section{padding:140px 5%;position:relative}
-.section-container{max-width:1400px;margin:0 auto}
-.section-title{font-family:'Dancing Script',cursive;font-size:clamp(3rem,8vw,6rem);text-align:center;margin-bottom:80px;background:linear-gradient(45deg,var(--primary-gold),var(--secondary-blue),var(--primary-red));background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradientFlow 4s ease infinite}
+  /* Life at Prince Learning Academy – original design kept */
+  .activities-section{padding:80px 5% 40px;position:relative}
+  .activities-wrapper{max-width:1200px;margin:0 auto;background:linear-gradient(135deg,rgba(15,15,35,0.9),rgba(26,26,62,0.95));border-radius:32px;border:2px solid rgba(255,255,255,0.25);box-shadow:0 30px 110px rgba(0,0,0,0.8);padding:30px 30px 40px}
+  .activities-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;gap:10px}
+  .activities-title{font-family:'Dancing Script',cursive;font-size:2.5rem;background:linear-gradient(45deg,var(--primary-gold),var(--secondary-blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .activities-subtitle{font-size:0.95rem;opacity:0.85;text-align:right}
+  .activities-slider{position:relative;overflow:hidden;margin-top:10px}
+  .activity-slide{display:none;align-items:center;gap:24px;min-height:120px}
+  .activity-icon{font-size:3rem}
+  .activity-content-title{font-size:1.6rem;font-weight:700;margin-bottom:6px}
+  .activity-content-text{font-size:1rem;opacity:0.9}
+  .activity-badge{font-size:0.85rem;opacity:0.8;margin-top:4px}
+  .activity-active{display:flex;animation:fadeSlide 0.7s ease-in-out}
+  @keyframes fadeSlide{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+  .activities-dots{text-align:center;margin-top:22px}
+  .activity-dot{height:10px;width:10px;margin:0 4px;background-color:rgba(255,255,255,0.3);border-radius:50%;display:inline-block;cursor:pointer;transition:background-color 0.4s,transform 0.4s}
+  .activity-dot.active{background-color:var(--primary-gold);transform:scale(1.3)}
 
-/* Programs – back to icon style */
-.programs-wrapper{perspective:1000px}
-.programs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:40px}
-.program-card{background:linear-gradient(145deg,var(--glass-bg),rgba(255,255,255,0.05));backdrop-filter:blur(40px);padding:50px 40px;border-radius:30px;border:2px solid var(--glass-border);transition:all 0.6s cubic-bezier(0.25,0.8,0.25,1);transform-style:preserve-3d;position:relative}
-.program-card:hover{transform:translateY(-30px)rotateX(10deg)rotateY(10deg)scale(1.05);box-shadow:0 50px 150px rgba(0,0,0,0.5)}
-.program-icon{font-size:6rem;margin-bottom:30px;display:block;text-align:center;background:linear-gradient(45deg,var(--primary-gold),var(--secondary-blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 10px 30px rgba(255,215,0,0.3))}
-.program-card h3{font-size:2.3rem;color:#fff;margin-bottom:20px;font-weight:800}
-.program-card p{font-size:1.2rem;color:rgba(255,255,255,0.9);line-height:1.8}
+  .testimonials-section{padding:80px 5% 40px;position:relative}
+  .testimonials-wrapper{max-width:1100px;margin:0 auto;background:linear-gradient(135deg,rgba(26,26,62,0.95),rgba(74,14,140,0.95));border-radius:32px;border:2px solid rgba(255,255,255,0.25);box-shadow:0 30px 110px rgba(0,0,0,0.85);padding:35px 30px 45px}
+  .testimonials-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;gap:10px}
+  .testimonials-title{font-family:'Dancing Script',cursive;font-size:2.5rem;background:linear-gradient(45deg,var(--primary-gold),#ffffff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .testimonials-subtitle{font-size:0.95rem;opacity:0.85;text-align:right}
+  .testimonial-slide{display:none;text-align:center;min-height:140px}
+  .testimonial-active{display:block;animation:fadeSlide 0.7s ease-in-out}
+  .testimonial-quote{font-size:1.1rem;max-width:800px;margin:0 auto 10px;line-height:1.6}
+  .testimonial-name{font-weight:700;margin-top:8px}
+  .testimonial-meta{font-size:0.9rem;opacity:0.8}
+  .testimonial-dots{text-align:center;margin-top:22px}
+  .testimonial-dot{height:10px;width:10px;margin:0 4px;background-color:rgba(255,255,255,0.3);border-radius:50%;display:inline-block;cursor:pointer;transition:background-color 0.4s,transform 0.4s}
+  .testimonial-dot.active{background-color:var(--primary-gold);transform:scale(1.3)}
 
-/* ICSE logo strip inside ICSE Excellence */
-.icse-strip{position:absolute;top:-20px;right:30px;display:flex;align-items:center;gap:8px;background:rgba(0,0,0,0.45);padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.35);backdrop-filter:blur(18px);font-size:0.8rem;font-weight:700}
-.icse-strip img{height:26px;width:26px;border-radius:50%;background:#fff;object-fit:cover}
+  .faculty-orbit{display:flex;justify-content:center;flex-wrap:wrap;gap:50px;margin-top:60px}
+  .faculty-card{background:linear-gradient(135deg,rgba(142,68,173,0.2),rgba(79,195,247,0.2));backdrop-filter:blur(40px);padding:50px 40px;border-radius:25px;width:350px;text-align:center;transition:all 0.6s cubic-bezier(0.25,0.8,0.25,1);border:3px solid rgba(255,255,255,0.2);position:relative;overflow:hidden}
+  .faculty-card::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(255,215,0,0.1) 0%,transparent 70%);transition:all 0.6s}
+  .faculty-card:hover::before{transform:rotate(180deg)}
+  .faculty-card:hover{transform:translateY(-25px)scale(1.1);box-shadow:0 40px 120px rgba(142,68,173,0.4)}
+  .faculty-avatar{font-size:7rem;margin-bottom:25px;background:linear-gradient(45deg,var(--primary-red),var(--primary-gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 15px 40px rgba(255,71,87,0.4))}
+  .faculty-card h4{font-size:2.2rem;color:var(--primary-red);margin-bottom:15px;font-weight:800;font-family:'Dancing Script',cursive}
+  .faculty-card p{font-size:1.3rem;color:#fff;font-weight:700}
 
-/* Activities slider */
-.activities-section{padding:80px 5% 40px;position:relative}
-.activities-wrapper{max-width:1200px;margin:0 auto;background:linear-gradient(135deg,rgba(15,15,35,0.9),rgba(26,26,62,0.95));border-radius:32px;border:2px solid rgba(255,255,255,0.25);box-shadow:0 30px 110px rgba(0,0,0,0.8);padding:30px 30px 40px}
-.activities-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;gap:10px}
-.activities-title{font-family:'Dancing Script',cursive;font-size:2.5rem;background:linear-gradient(45deg,var(--primary-gold),var(--secondary-blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.activities-subtitle{font-size:0.95rem;opacity:0.85;text-align:right}
-.activities-slider{position:relative;overflow:hidden;margin-top:10px}
-.activity-slide{display:none;align-items:center;gap:24px;min-height:120px}
-.activity-icon{font-size:3rem}
-.activity-content-title{font-size:1.6rem;font-weight:700;margin-bottom:6px}
-.activity-content-text{font-size:1rem;opacity:0.9}
-.activity-badge{font-size:0.85rem;opacity:0.8;margin-top:4px}
-.activity-active{display:flex;animation:fadeSlide 0.7s ease-in-out}
-@keyframes fadeSlide{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
-.activities-dots{text-align:center;margin-top:22px}
-.activity-dot{height:10px;width:10px;margin:0 4px;background-color:rgba(255,255,255,0.3);border-radius:50%;display:inline-block;cursor:pointer;transition:background-color 0.4s,transform 0.4s}
-.activity-dot.active{background-color:var(--primary-gold);transform:scale(1.3)}
+  .contact-portal{background:linear-gradient(135deg,#FF4757 0%,#8E44AD 50%,#4FC3F7 100%);padding:160px 5%;border-radius:50px;margin:60px 0;box-shadow:0 50px 150px rgba(255,71,87,0.3);position:relative;overflow:hidden}
+  .contact-portal::before{content:'';position:absolute;top:-2px;left:-2px;right:-2px;bottom:-2px;background:linear-gradient(45deg,var(--primary-gold),transparent,transparent,var(--primary-gold));border-radius:50px;z-index:0;animation:borderRotate 4s linear infinite}
+  @keyframes borderRotate{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+  .contact-content{position:relative;z-index:2;text-align:center}
+  .contact-details{font-size:1.5rem;margin-bottom:40px;line-height:1.8}
+  .contact-link{color:var(--primary-gold);font-weight:800;font-size:2rem;display:inline-flex;align-items:center;gap:15px;margin:25px 0;padding:15px 30px;background:rgba(255,255,255,0.1);backdrop-filter:blur(20px);border-radius:30px;border:2px solid rgba(255,255,255,0.2);text-decoration:none;transition:all 0.4s cubic-bezier(0.25,0.8,0.25,1)}
+  .contact-link:hover{transform:scale(1.15)translateY(-10px);box-shadow:0 25px 70px rgba(255,215,0,0.6);background:rgba(255,255,255,0.2)}
 
-/* Testimonials slider */
-.testimonials-section{padding:80px 5% 40px;position:relative}
-.testimonials-wrapper{max-width:1100px;margin:0 auto;background:linear-gradient(135deg,rgba(26,26,62,0.95),rgba(74,14,140,0.95));border-radius:32px;border:2px solid rgba(255,255,255,0.25);box-shadow:0 30px 110px rgba(0,0,0,0.85);padding:35px 30px 45px}
-.testimonials-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;gap:10px}
-.testimonials-title{font-family:'Dancing Script',cursive;font-size:2.5rem;background:linear-gradient(45deg,var(--primary-gold),#ffffff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.testimonials-subtitle{font-size:0.95rem;opacity:0.85;text-align:right}
-.testimonial-slide{display:none;text-align:center;min-height:140px}
-.testimonial-active{display:block;animation:fadeSlide 0.7s ease-in-out}
-.testimonial-quote{font-size:1.1rem;max-width:800px;margin:0 auto 10px;line-height:1.6}
-.testimonial-name{font-weight:700;margin-top:8px}
-.testimonial-meta{font-size:0.9rem;opacity:0.8}
-.testimonial-dots{text-align:center;margin-top:22px}
-.testimonial-dot{height:10px;width:10px;margin:0 4px;background-color:rgba(255,255,255,0.3);border-radius:50%;display:inline-block;cursor:pointer;transition:background-color 0.4s,transform 0.4s}
-.testimonial-dot.active{background-color:var(--primary-gold);transform:scale(1.3)}
+  .footer{background:linear-gradient(135deg,rgba(15,15,35,0.95),rgba(26,26,62,0.95));backdrop-filter:blur(40px);text-align:center;padding:40px 5% 20px;border-top:6px solid var(--primary-gold);position:relative}
+  .footer-content{font-size:1.1rem;font-weight:600;letter-spacing:1px;margin-bottom:8px}
+  .footer-clock{font-size:1rem;opacity:0.85}
 
-.faculty-orbit{display:flex;justify-content:center;flex-wrap:wrap;gap:50px;margin-top:60px}
-.faculty-card{background:linear-gradient(135deg,rgba(142,68,173,0.2),rgba(79,195,247,0.2));backdrop-filter:blur(40px);padding:50px 40px;border-radius:25px;width:350px;text-align:center;transition:all 0.6s cubic-bezier(0.25,0.8,0.25,1);border:3px solid var(--glass-border);position:relative;overflow:hidden}
-.faculty-card::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(255,215,0,0.1) 0%,transparent 70%);transition:all 0.6s}
-.faculty-card:hover::before{transform:rotate(180deg)}
-.faculty-card:hover{transform:translateY(-25px)scale(1.1);box-shadow:0 40px 120px rgba(142,68,173,0.4)}
-.faculty-avatar{font-size:7rem;margin-bottom:25px;background:linear-gradient(45deg,var(--primary-red),var(--primary-gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 15px 40px rgba(255,71,87,0.4))}
-.faculty-card h4{font-size:2.2rem;color:var(--primary-red);margin-bottom:15px;font-weight:800;font-family:'Dancing Script',cursive}
-.faculty-card p{font-size:1.3rem;color:#fff;font-weight:700}
+  .portal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);backdrop-filter:blur(20px);z-index:20000;display:none;justify-content:center;align-items:center;padding:20px}
+  .portal-container{max-width:1400px;max-height:95vh;width:95%;height:95%;overflow-y:auto;background:linear-gradient(145deg,rgba(255,255,255,0.15),rgba(255,255,255,0.05));backdrop-filter:blur(60px);border:3px solid rgba(255,255,255,0.3);border-radius:40px;padding:40px;box-shadow:0 50px 150px rgba(0,0,0,0.8);animation:portalSlideIn 0.6s cubic-bezier(0.25,0.8,0.25,1)}
+  @keyframes portalSlideIn{from{opacity:0;transform:scale(0.7)rotateX(20deg)}to{opacity:1;transform:scale(1)rotateX(0deg)}}
+  .portal-close{position:absolute;top:25px;right:35px;font-size:3rem;color:#fff;cursor:pointer;transition:all 0.4s;z-index:10;background:rgba(255,255,255,0.1);backdrop-filter:blur(30px);width:70px;height:70px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid rgba(255,255,255,0.2)}
+  .portal-close:hover{color:var(--primary-gold);transform:rotate(180deg)scale(1.1);box-shadow:0 10px 40px rgba(255,215,0,0.5)}
 
-.contact-portal{background:linear-gradient(135deg,#FF4757 0%,#8E44AD 50%,#4FC3F7 100%);padding:160px 5%;border-radius:50px;margin:60px 0;box-shadow:0 50px 150px rgba(255,71,87,0.3);position:relative;overflow:hidden}
-.contact-portal::before{content:'';position:absolute;top:-2px;left:-2px;right:-2px;bottom:-2px;background:linear-gradient(45deg,var(--primary-gold),transparent,transparent,var(--primary-gold));border-radius:50px;z-index:0;animation:borderRotate 4s linear infinite}
-@keyframes borderRotate{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
-.contact-content{position:relative;z-index:2;text-align:center}
-.contact-details{font-size:1.5rem;margin-bottom:40px;line-height:1.8}
-.contact-link{color:var(--primary-gold);font-weight:800;font-size:2rem;display:inline-flex;align-items:center;gap:15px;margin:25px 0;padding:15px 30px;background:var(--glass-bg);backdrop-filter:blur(20px);border-radius:30px;border:2px solid var(--glass-border);text-decoration:none;transition:all 0.4s cubic-bezier(0.25,0.8,0.25,1)}
-.contact-link:hover{transform:scale(1.15)translateY(-10px);box-shadow:0 25px 70px rgba(255,215,0,0.6);background:rgba(255,255,255,0.2)}
+  .portal-title{font-family:'Dancing Script',cursive;font-size:3.4rem;background:linear-gradient(45deg,#FFD700,#fff,var(--secondary-blue));background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradientFlow 3s ease infinite;text-align:center;margin-bottom:10px}
+  .portal-subtitle{font-size:1.2rem;text-align:center;opacity:0.9;margin-bottom:30px}
 
-.footer{background:linear-gradient(135deg,rgba(15,15,35,0.95),rgba(26,26,62,0.95));backdrop-filter:blur(40px);text-align:center;padding:40px 5% 20px;border-top:6px solid var(--primary-gold);position:relative}
-.footer-content{font-size:1.1rem;font-weight:600;letter-spacing:1px;margin-bottom:8px}
-.footer-clock{font-size:1rem;opacity:0.85}
+  .login-form{max-width:500px;margin:0 auto}
+  .quantum-input{width:100%;padding:18px 26px;border:3px solid rgba(255,255,255,0.3);border-radius:30px;font-size:1.2rem;background:rgba(255,255,255,0.12);backdrop-filter:blur(25px);color:#fff;margin-bottom:20px;transition:all 0.4s cubic-bezier(0.25,0.8,0.25,1);font-weight:600;letter-spacing:1px}
+  .quantum-input::placeholder{color:rgba(255,255,255,0.7)}
+  .quantum-input:focus{outline:none;border-color:var(--primary-gold);box-shadow:0 0 40px rgba(255,215,0,0.5);transform:scale(1.03);background:rgba(255,255,255,0.2)}
+  .portal-login-btn{width:100%;background:linear-gradient(135deg,var(--primary-gold),#FFED4E);color:#1a1a3e;padding:20px;border:none;border-radius:30px;font-size:1.3rem;font-weight:800;cursor:pointer;transition:all 0.5s cubic-bezier(0.25,0.8,0.25,1);box-shadow:0 25px 70px rgba(255,215,0,0.5);text-transform:uppercase;letter-spacing:2px;position:relative;overflow:hidden}
+  .portal-login-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent);transition:left 0.8s}
+  .portal-login-btn:hover::before{left:100%}
+  .portal-login-btn:hover{transform:translateY(-10px)scale(1.05);box-shadow:0 35px 90px rgba(255,215,0,0.7)}
 
-.portal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);backdrop-filter:blur(20px);z-index:20000;display:none;justify-content:center;align-items:center;padding:20px}
-.portal-container{max-width:1400px;max-height:95vh;width:95%;height:95%;overflow-y:auto;background:linear-gradient(145deg,rgba(255,255,255,0.15),rgba(255,255,255,0.05));backdrop-filter:blur(60px);border:3px solid rgba(255,255,255,0.3);border-radius:40px;padding:40px;box-shadow:0 50px 150px rgba(0,0,0,0.8);animation:portalSlideIn 0.6s cubic-bezier(0.25,0.8,0.25,1)}
-@keyframes portalSlideIn{from{opacity:0;transform:scale(0.7)rotateX(20deg)}to{opacity:1;transform:scale(1)rotateX(0deg)}}
-.portal-close{position:absolute;top:25px;right:35px;font-size:3rem;color:#fff;cursor:pointer;transition:all 0.4s;z-index:10;background:var(--glass-bg);backdrop-filter:blur(30px);width:70px;height:70px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid var(--glass-border)}
-.portal-close:hover{color:var(--primary-gold);transform:rotate(180deg)scale(1.1);box-shadow:0 10px 40px rgba(255,215,0,0.5)}
+  .dashboard{display:none;flex-direction:column;gap:25px}
+  .dashboard-cards{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;margin-bottom:10px}
+  .dashboard-card{flex:1 1 260px;max-width:320px;padding:25px;border-radius:25px;background:linear-gradient(135deg,rgba(255,255,255,0.15),rgba(255,255,255,0.05));border:2px solid rgba(255,255,255,0.2);cursor:pointer;transition:all 0.4s;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+  .dashboard-card:hover{transform:translateY(-8px)scale(1.03);box-shadow:0 20px 60px rgba(0,0,0,0.6)}
+  .dashboard-card span.icon{font-size:2.2rem}
+  .dashboard-card h3{font-size:1.4rem}
+  .dashboard-card p{font-size:0.95rem;opacity:0.9}
 
-.portal-title{font-family:'Dancing Script',cursive;font-size:3.4rem;background:linear-gradient(45deg,#FFD700,#fff,var(--secondary-blue));background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradientFlow 3s ease infinite;text-align:center;margin-bottom:10px}
-.portal-subtitle{font-size:1.2rem;text-align:center;opacity:0.9;margin-bottom:30px}
+  .fee-portal{display:none;flex-direction:column;margin-top:10px}
+  .student-profile{background:linear-gradient(135deg,rgba(255,215,0,0.2),rgba(79,195,247,0.2));padding:30px;border-radius:30px;margin-bottom:30px;border:3px solid rgba(255,215,0,0.4);text-align:center}
+  .student-name{font-family:'Dancing Script',cursive;font-size:3rem;color:var(--primary-gold);margin-bottom:15px}
+  .profile-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;font-size:1.1rem;margin-top:15px}
+  .profile-item{background:rgba(255,255,255,0.1);backdrop-filter:blur(20px);padding:15px;border-radius:18px;border:2px solid rgba(255,255,255,0.2)}
 
-.login-form{max-width:500px;margin:0 auto}
-.quantum-input{width:100%;padding:18px 26px;border:3px solid rgba(255,255,255,0.3);border-radius:30px;font-size:1.2rem;background:rgba(255,255,255,0.12);backdrop-filter:blur(25px);color:#fff;margin-bottom:20px;transition:all 0.4s cubic-bezier(0.25,0.8,0.25,1);font-weight:600;letter-spacing:1px}
-.quantum-input::placeholder{color:rgba(255,255,255,0.7)}
-.quantum-input:focus{outline:none;border-color:var(--primary-gold);box-shadow:0 0 40px rgba(255,215,0,0.5);transform:scale(1.03);background:rgba(255,255,255,0.2)}
-.portal-login-btn{width:100%;background:linear-gradient(135deg,var(--primary-gold),#FFED4E);color:#1a1a3e;padding:20px;border:none;border-radius:30px;font-size:1.3rem;font-weight:800;cursor:pointer;transition:all 0.5s cubic-bezier(0.25,0.8,0.25,1);box-shadow:0 25px 70px rgba(255,215,0,0.5);text-transform:uppercase;letter-spacing:2px;position:relative;overflow:hidden}
-.portal-login-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent);transition:left 0.8s}
-.portal-login-btn:hover::before{left:100%}
-.portal-login-btn:hover{transform:translateY(-10px)scale(1.05);box-shadow:0 35px 90px rgba(255,215,0,0.7)}
+  .fee-matrix-title{font-family:'Dancing Script',cursive;font-size:2.4rem;color:var(--primary-gold);text-align:center;margin:25px 0 15px}
+  .fee-table{width:100%;border-collapse:collapse;background:linear-gradient(145deg,rgba(255,255,255,0.15),rgba(255,255,255,0.05));border-radius:25px;overflow:hidden;box-shadow:0 30px 100px rgba(0,0,0,0.6);margin-bottom:25px}
+  .fee-table th{background:linear-gradient(135deg,var(--primary-red),var(--accent-purple));color:#fff;padding:18px 12px;font-weight:800;font-size:1rem;text-align:center}
+  .fee-table td{padding:18px 12px;text-align:center;font-weight:700;border-bottom:1px solid rgba(255,255,255,0.1);vertical-align:middle;font-size:0.95rem}
+  .fee-table tbody tr:nth-child(even){background:rgba(255,255,255,0.08)}
+  .status-badge{padding:8px 18px;border-radius:25px;font-weight:800;font-size:0.95rem;display:inline-block;margin:0 auto}
+  .status-paid{background:linear-gradient(135deg,#00C851,#00E676);color:#fff}
+  .status-due{background:linear-gradient(135deg,#FF9500,#FFD700);color:#2d1b69}
+  .status-available{background:linear-gradient(135deg,#4FC3F7,#81D4FA);color:#fff}
+  .pay-checkbox{transform:scale(1.7);accent-color:var(--primary-gold);cursor:pointer;margin-right:10px}
 
-.dashboard{display:none;flex-direction:column;gap:25px}
-.dashboard-cards{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;margin-bottom:10px}
-.dashboard-card{flex:1 1 260px;max-width:320px;padding:25px;border-radius:25px;background:linear-gradient(135deg,rgba(255,255,255,0.15),rgba(255,255,255,0.05));border:2px solid var(--glass-border);cursor:pointer;transition:all 0.4s;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
-.dashboard-card:hover{transform:translateY(-8px)scale(1.03);box-shadow:0 20px 60px rgba(0,0,0,0.6)}
-.dashboard-card span.icon{font-size:2.2rem}
-.dashboard-card h3{font-size:1.4rem}
-.dashboard-card p{font-size:0.95rem;opacity:0.9}
+  .payment-portal{background:linear-gradient(135deg,#00C851 0%,#4FC3F7 100%);padding:35px;border-radius:35px;text-align:center;margin:25px 0;box-shadow:0 40px 120px rgba(0,184,81,0.4);display:none;position:relative;overflow:hidden}
+  .payment-portal::before{content:'';position:absolute;top:-2px;left:-2px;right:-2px;bottom:-2px;background:linear-gradient(45deg,var(--primary-gold),transparent,transparent,var(--primary-gold));border-radius:35px;animation:borderRotate 3s linear infinite;z-index:0}
+  .payment-portal>*{position:relative;z-index:2}
+  .payment-title{font-family:'Dancing Script',cursive;font-size:2.6rem;color:#fff;margin-bottom:15px}
+  .total-amount{font-size:3.2rem;font-weight:900;background:linear-gradient(45deg,var(--primary-gold),#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:20px 0}
+  .upi-id{font-size:1.6rem;font-weight:900;color:var(--primary-gold);word-break:break-all;margin:18px 0;padding:18px;background:rgba(255,255,255,0.25);border-radius:22px;border:2px solid rgba(255,255,255,0.3)}
+  .payment-btn{background:linear-gradient(135deg,var(--primary-gold),#FFED4E);color:#1a1a3e;padding:18px 45px;border:none;border-radius:30px;font-size:1.3rem;font-weight:900;cursor:pointer;margin-top:20px;letter-spacing:2px;text-transform:uppercase;box-shadow:0 25px 70px rgba(255,215,0,0.6);transition:all 0.4s cubic-bezier(0.25,0.8,0.25,1);position:relative;overflow:hidden}
+  .payment-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.5),transparent);transition:left 0.8s}
+  .payment-btn:hover::before{left:100%}
+  .payment-btn:hover{transform:translateY(-12px)scale(1.03);box-shadow:0 40px 100px rgba(255,215,0,0.8)}
 
-.fee-portal{display:none;flex-direction:column;margin-top:10px}
-.student-profile{background:linear-gradient(135deg,rgba(255,215,0,0.2),rgba(79,195,247,0.2));padding:30px;border-radius:30px;margin-bottom:30px;border:3px solid rgba(255,215,0,0.4);text-align:center}
-.student-name{font-family:'Dancing Script',cursive;font-size:3rem;color:var(--primary-gold);margin-bottom:15px}
-.profile-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;font-size:1.1rem;margin-top:15px}
-.profile-item{background:var(--glass-bg);backdrop-filter:blur(20px);padding:15px;border-radius:18px;border:2px solid var(--glass-border)}
+  .results-section{display:none;margin-top:20px}
+  .report-card{background:linear-gradient(135deg,rgba(15,15,35,0.95),rgba(26,26,62,0.98));border-radius:28px;border:2px solid rgba(255,255,255,0.25);box-shadow:0 30px 120px rgba(0,0,0,0.8);overflow:hidden}
+  .report-header{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;background:linear-gradient(135deg,#1a1a3e,#2d1b69);border-bottom:1px solid rgba(255,255,255,0.2)}
+  .report-header-left{display:flex;align-items:center;gap:15px}
+  .report-logo{height:54px;width:54px;border-radius:50%;background:#fff;padding:3px;object-fit:cover}
+  .report-title{font-family:'Dancing Script',cursive;font-size:2rem}
+  .report-subtitle{font-size:0.95rem;opacity:0.8}
+  .report-header-right{text-align:right;font-size:0.9rem}
+  .report-header-right div{margin-bottom:3px}
+  .report-student-row{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 22px;background:rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.15);font-size:0.95rem}
+  .report-student-row span strong{opacity:0.9}
+  .report-summary{padding:14px 22px;display:flex;flex-wrap:wrap;gap:15px;align-items:center;border-bottom:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.03)}
+  .summary-chip{padding:8px 14px;border-radius:18px;background:rgba(255,255,255,0.08);font-size:0.9rem}
+  .summary-chip.highlight{background:linear-gradient(135deg,#00C851,#4FC3F7);color:#fff;font-weight:700}
 
-.fee-matrix-title{font-family:'Dancing Script',cursive;font-size:2.4rem;color:var(--primary-gold);text-align:center;margin:25px 0 15px}
-.fee-table{width:100%;border-collapse:collapse;background:linear-gradient(145deg,rgba(255,255,255,0.15),rgba(255,255,255,0.05));border-radius:25px;overflow:hidden;box-shadow:0 30px 100px rgba(0,0,0,0.6);margin-bottom:25px}
-.fee-table th{background:linear-gradient(135deg,var(--primary-red),var(--accent-purple));color:#fff;padding:18px 12px;font-weight:800;font-size:1rem;text-align:center}
-.fee-table td{padding:18px 12px;text-align:center;font-weight:700;border-bottom:1px solid rgba(255,255,255,0.1);vertical-align:middle;font-size:0.95rem}
-.fee-table tbody tr:nth-child(even){background:rgba(255,255,255,0.08)}
-.status-badge{padding:8px 18px;border-radius:25px;font-weight:800;font-size:0.95rem;display:inline-block;margin:0 auto}
-.status-paid{background:linear-gradient(135deg,#00C851,#00E676);color:#fff}
-.status-due{background:linear-gradient(135deg,#FF9500,#FFD700);color:#2d1b69}
-.status-available{background:linear-gradient(135deg,#4FC3F7,#81D4FA);color:#fff}
-.pay-checkbox{transform:scale(1.7);accent-color:var(--primary-gold);cursor:pointer;margin-right:10px}
+  .results-table{width:100%;border-collapse:collapse;background:transparent}
+  .results-table th,.results-table td{padding:12px 8px;text-align:center;font-size:0.9rem}
+  .results-table thead th{background:linear-gradient(135deg,#4FC3F7,#8E44AD);color:#fff;font-weight:800}
+  .results-table tbody tr:nth-child(even){background:rgba(255,255,255,0.05)}
+  .results-table tbody tr:nth-child(odd){background:rgba(255,255,255,0.02)}
+  .results-table td.subject-cell{text-align:left;padding-left:18px}
+  .results-table td.date-cell{font-size:0.8rem;opacity:0.8}
+  .report-footer{padding:10px 18px 14px;font-size:0.8rem;opacity:0.8;text-align:right;border-top:1px dashed rgba(255,255,255,0.25)}
 
-.payment-portal{background:linear-gradient(135deg,#00C851 0%,#4FC3F7 100%);padding:35px;border-radius:35px;text-align:center;margin:25px 0;box-shadow:0 40px 120px rgba(0,184,81,0.4);display:none;position:relative;overflow:hidden}
-.payment-portal::before{content:'';position:absolute;top:-2px;left:-2px;right:-2px;bottom:-2px;background:linear-gradient(45deg,var(--primary-gold),transparent,transparent,var(--primary-gold));border-radius:35px;animation:borderRotate 3s linear infinite;z-index:0}
-.payment-portal>*{position:relative;z-index:2}
-.payment-title{font-family:'Dancing Script',cursive;font-size:2.6rem;color:#fff;margin-bottom:15px}
-.total-amount{font-size:3.2rem;font-weight:900;background:linear-gradient(45deg,var(--primary-gold),#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:20px 0}
-.upi-id{font-size:1.6rem;font-weight:900;color:var(--primary-gold);word-break:break-all;margin:18px 0;padding:18px;background:rgba(255,255,255,0.25);border-radius:22px;border:2px solid rgba(255,255,255,0.3)}
-.payment-btn{background:linear-gradient(135deg,var(--primary-gold),#FFED4E);color:#1a1a3e;padding:18px 45px;border:none;border-radius:30px;font-size:1.3rem;font-weight:900;cursor:pointer;margin-top:20px;letter-spacing:2px;text-transform:uppercase;box-shadow:0 25px 70px rgba(255,215,0,0.6);transition:all 0.4s cubic-bezier(0.25,0.8,0.25,1);position:relative;overflow:hidden}
-.payment-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.5),transparent);transition:left 0.8s}
-.payment-btn:hover::before{left:100%}
-.payment-btn:hover{transform:translateY(-12px)scale(1.03);box-shadow:0 40px 100px rgba(255,215,0,0.8)}
-
-.results-section{display:none;margin-top:20px}
-.report-card{background:linear-gradient(135deg,rgba(15,15,35,0.95),rgba(26,26,62,0.98));border-radius:28px;border:2px solid rgba(255,255,255,0.25);box-shadow:0 30px 120px rgba(0,0,0,0.8);overflow:hidden}
-.report-header{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;background:linear-gradient(135deg,#1a1a3e,#2d1b69);border-bottom:1px solid rgba(255,255,255,0.2)}
-.report-header-left{display:flex;align-items:center;gap:15px}
-.report-logo{height:54px;width:54px;border-radius:50%;background:#fff;padding:3px;object-fit:cover}
-.report-title{font-family:'Dancing Script',cursive;font-size:2rem}
-.report-subtitle{font-size:0.95rem;opacity:0.8}
-.report-header-right{text-align:right;font-size:0.9rem}
-.report-header-right div{margin-bottom:3px}
-.report-student-row{display:flex;flex-wrap:wrap;gap:12px 24px;padding:15px 22px;background:rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.15);font-size:0.95rem}
-.report-student-row span strong{opacity:0.9}
-.report-summary{padding:14px 22px;display:flex;flex-wrap:wrap;gap:15px;align-items:center;border-bottom:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.03)}
-.summary-chip{padding:8px 14px;border-radius:18px;background:rgba(255,255,255,0.08);font-size:0.9rem}
-.summary-chip.highlight{background:linear-gradient(135deg,#00C851,#4FC3F7);color:#fff;font-weight:700}
-
-.results-table{width:100%;border-collapse:collapse;background:transparent}
-.results-table th,.results-table td{padding:12px 8px;text-align:center;font-size:0.9rem}
-.results-table thead th{background:linear-gradient(135deg,#4FC3F7,#8E44AD);color:#fff;font-weight:800}
-.results-table tbody tr:nth-child(even){background:rgba(255,255,255,0.05)}
-.results-table tbody tr:nth-child(odd){background:rgba(255,255,255,0.02)}
-.results-table td.subject-cell{text-align:left;padding-left:18px}
-.results-table td.date-cell{font-size:0.8rem;opacity:0.8}
-.report-footer{padding:10px 18px 14px;font-size:0.8rem;opacity:0.8;text-align:right;border-top:1px dashed rgba(255,255,255,0.25)}
-
-@media (max-width:900px){
- .navbar{padding:10px 18px;gap:12px}
- .logo-main,.logo-icse{height:38px;width:38px}
- .logo-text{font-size:1.5rem}
- .nav-menu{display:none}
- .portal-btn{font-size:0.9rem;padding:10px 22px}
- .portal-btn::after{display:none}
-}
-@media (max-width:768px){
- .hero-cta{flex-direction:column;align-items:center;gap:20px}
- .faculty-orbit{flex-direction:column;align-items:center}
- .section{padding:100px 5%}
- .portal-container{padding:20px;height:98vh;width:98vw;border-radius:20px}
- .fee-table th,.fee-table td,.results-table th,.results-table td{padding:12px 6px;font-size:0.8rem}
- .profile-grid{grid-template-columns:1fr}
- .activities-wrapper,.testimonials-wrapper{padding:24px 18px}
-}
-</style>
+  @media (max-width:900px){
+    body{padding-top:76px}
+  }
+  @media (max-width:768px){
+    .portal-container{padding:20px;height:98vh;width:98vw;border-radius:20px}
+  }
+  </style>
 </head>
 <body>
-<div class="particles" id="particles"></div>
+<div id="particles" class="particles"></div>
 
-<nav class="navbar">
-  <div class="nav-logos">
-    <img src="logo.jpg" alt="Prince Learning Academy Logo" class="logo-main">
-    <img src="1739784548_whatsapp-image-2025-02-06-at-10-08-17-jpeg-7.jpg" alt="ICSE Board Logo" class="logo-icse">
-  </div>
-  <div class="logo-text">Prince Academy</div>
-  <ul class="nav-menu">
-    <li><a href="#home" class="nav-link">Home</a></li>
-    <li><a href="#programs" class="nav-link">Programs</a></li>
-    <li><a href="#activities" class="nav-link">Activities</a></li>
-    <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
-    <li><a href="#faculty" class="nav-link">Faculty</a></li>
-    <li><a href="#contact" class="nav-link">Contact</a></li>
-  </ul>
-  <button class="portal-btn" id="portalBtn">Student Portal</button>
-</nav>
+<!-- Stable Tailwind header -->
+<header class="fixed top-5 left-1/2 -translate-x-1/2 z-[10000] w-[95%] max-w-4xl">
+  <nav class="flex items-center gap-4 px-4 py-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-2xl shadow-2xl">
+    <div class="flex items-center gap-2">
+      <img src="logo.jpg" alt="Prince Learning Academy Logo" class="h-10 w-10 rounded-full border border-white/70 bg-white object-cover">
+      <img src="1739784548_whatsapp-image-2025-02-06-at-10-08-17-jpeg-7.jpg" alt="ICSE Board Logo" class="h-10 w-10 rounded-full border border-white/70 bg-white object-cover">
+    </div>
+    <div class="font-[800] text-lg md:text-2xl bg-gradient-to-r from-yellow-300 via-white to-sky-300 bg-clip-text text-transparent font-['Dancing_Script'] whitespace-nowrap">
+      Prince Academy
+    </div>
+    <ul class="flex gap-2 ml-auto mr-2 text-sm md:text-base">
+      <li><a href="#home" class="px-3 py-1 rounded-full hover:bg-white/15 transition-colors">Home</a></li>
+      <li><a href="#activities" class="px-3 py-1 rounded-full hover:bg-white/15 transition-colors">Activities</a></li>
+      <li><a href="#contact" class="px-3 py-1 rounded-full hover:bg-white/15 transition-colors">Contact</a></li>
+    </ul>
+    <button id="portalBtn"
+      class="relative inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-[#FF4757] to-[#8E44AD] px-4 md:px-6 py-2 text-xs md:text-sm font-extrabold uppercase tracking-widest shadow-[0_12px_40px_rgba(255,71,87,0.6)] hover:-translate-y-1 hover:scale-[1.03] transition-all">
+      <span>Student Portal</span>
+      <span class="text-base md:text-lg">🔐</span>
+    </button>
+  </nav>
+</header>
 
 <section id="home" class="hero">
   <div class="hero-badge">WORLD-CLASS EDUCATION EXCELLENCE</div>
@@ -502,11 +485,11 @@ body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#0f0f23 
 <section id="contact" class="contact-portal">
   <div class="section-container">
     <div class="contact-content">
-      <h2 class="section-title" style="margin-bottom:40px">Quantum Connect Portal</h2>
+      <h2 class="section-title mb-10">Quantum Connect Portal</h2>
       <div class="contact-details">
         <div>📞 <a href="tel:+917310680106" class="contact-link">+91 73106 80106</a></div>
         <div>✉️ <a href="mailto:princelearningacademygzb@gmail.com" class="contact-link">princelearningacademygzb@gmail.com</a></div>
-        <div style="font-size:1.3rem;margin-top:40px;padding:30px;background:var(--glass-bg);backdrop-filter:blur(30px);border-radius:30px;border:2px solid var(--glass-border)">
+        <div style="font-size:1.3rem;margin-top:40px;padding:30px;background:rgba(255,255,255,0.1);backdrop-filter:blur(30px);border-radius:30px;border:2px solid rgba(255,255,255,0.2)">
           🏛️ House No. 282, Sector-12<br>Near Saint Teresa's Convent School<br>Sarvodaya Nagar, Ghaziabad (GZB)
         </div>
       </div>
@@ -521,7 +504,7 @@ body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#0f0f23 
   <div class="footer-clock" id="footerClock"></div>
 </footer>
 
-<!-- Portal -->
+<!-- Portal overlay (same as before) -->
 <div id="studentPortalOverlay" class="portal-overlay">
   <div class="portal-container">
     <div id="loginScreen">
@@ -618,7 +601,7 @@ body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#0f0f23 
           </table>
 
           <div class="report-footer">
-            All unit test marks are for internal academic monitoring only.[file:56]
+            All unit test marks are for internal academic monitoring only.[attached_file:205]
           </div>
         </div>
       </div>
@@ -649,7 +632,7 @@ const studentDatabase={
  "2025-0019":{pass:"ICSE-I6",name:"Vinnet Raj Singh",cls:"9",brd:"ICSE",course:"English Computer Applications",fee:1350,bal:100,nov:"PAID",dec:"DUE"},
  "2025-0020":{pass:"ICSE-I7",name:"Angila Rohila",cls:"9",brd:"ICSE",course:"All Subjects",fee:2000,bal:0,nov:"PAID",dec:"DUE"},
  "2025-0021":{pass:"ICSE-I8",name:"Avyan Pal",cls:"9",brd:"ICSE",course:"All Subjects",fee:2000,bal:0,nov:"PAID",dec:"DUE"},
- "2025-0022":{pass:"ICSE-01",name:"Yashi",cls:"K.G",brd:"ICSE",course:"All Subjects",fee:0,bal:0,nov:"PAID",dec:"DUE"},
+ "2025-0022":{pass:"ICSE-01",name:"Yashi",cls:"K.G",brd:"ICSE",course:"All Subjects",fee:500,bal:0,nov:"PAID",dec:"DUE"},
  "2025-0023":{pass:"CBSE-01",name:"Devansh",cls:"K.G",brd:"CBSE",course:"All Subjects",fee:0,bal:0,nov:"PAID",dec:"DUE"},
  "2025-0024":{pass:"CBSE-02",name:"Rudransh",cls:"K.G",brd:"CBSE",course:"All Subjects",fee:0,bal:0,nov:"PAID",dec:"DUE"},
  "2025-0025":{pass:"CBSE-B2",name:"Rachit",cls:"2",brd:"CBSE",course:"All Subjects",fee:800,bal:0,nov:"PAID",dec:"DUE"},
@@ -675,8 +658,6 @@ const resultDatabase={
  "2025-0021":{name:"Avyan Pal",ca:{t1:"4/30",t2:"40 /40",viva:"0 /40"},engLang:{t1:"12 /20"},sci:{t1:"9/10"}}
 };
 
-let currentStudent=null,currentStudentId='',selectedPayments=[];
-
 const liveEventsByDate={
  "11-30":"Monthly PTM",
  "12-06":"Dance Competition & Speech Competition",
@@ -684,6 +665,8 @@ const liveEventsByDate={
  "12-20":"Class Decoration & Christmas Tree Decoration",
  "12-25":"Christmas & New Year Party"
 };
+
+let currentStudent=null,currentStudentId='',selectedPayments=[];
 
 function initParticles(){
  const particles=document.getElementById('particles');
@@ -1009,10 +992,10 @@ window.addEventListener('load',()=>{
  });
 
  window.addEventListener('scroll',()=>{
-  const navbar=document.querySelector('.navbar');
+  const navbar=document.querySelector('header nav');
   const s=Math.min(window.scrollY/100,1);
-  navbar.style.background=`rgba(255,255,255,${0.1+s*0.2})`;
-  navbar.style.backdropFilter=`blur(${20+s*20}px)`;
+  navbar.style.background=`rgba(15,15,35,${0.3+0.2*s})`;
+  navbar.style.backdropFilter=`blur(${24+s*8}px)`;
  });
 });
 </script>
