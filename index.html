@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prince Learning Academy - Believe. Achieve. Succeed.</title>
+    <title>Prince Learning Academy - Student Login</title>
     <style>
         * {
             margin: 0;
@@ -13,357 +13,264 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header */
-        header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .login-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 1rem;
             font-weight: bold;
         }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
+        .login-form {
+            margin: 2rem 0;
         }
 
-        .nav-links a {
-            color: white;
-            text-decoration: none;
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
             font-weight: 500;
-            transition: opacity 0.3s;
         }
 
-        .nav-links a:hover {
-            opacity: 0.8;
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
         }
 
-        /* Hero Section */
-        .hero {
+        input[type="text"]:focus, input[type="password"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 1rem;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 150px 0 100px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-
-        .hero .tagline {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            opacity: 0.95;
-        }
-
-        .hero .motto {
+            border: none;
+            border-radius: 10px;
             font-size: 1.1rem;
-            font-style: italic;
-            opacity: 0.9;
-        }
-
-        /* Sections */
-        section {
-            padding: 80px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            color: #333;
-            margin-bottom: 3rem;
             font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
         }
 
-        /* About */
-        .about {
-            background: #f8f9ff;
+        .login-btn:hover {
+            transform: translateY(-2px);
         }
 
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
+        .login-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
         }
 
-        .about-text p {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            color: #555;
-        }
-
-        /* Programs */
-        .programs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .program-card {
+        .dashboard {
+            display: none;
             background: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
         }
 
-        .program-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-
-        .program-card h3 {
-            color: #667eea;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Commitment */
-        .commitment {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        .logout-btn {
+            background: #ff4757;
             color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            float: right;
+            margin-bottom: 2rem;
         }
 
-        .commitment-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+        .student-info {
+            text-align: center;
+            margin-bottom: 2rem;
         }
 
-        .commitment-item h4 {
-            font-size: 1.3rem;
+        .student-info h2 {
+            color: #667eea;
             margin-bottom: 1rem;
         }
 
-        /* Faculty */
-        .faculty {
-            text-align: center;
-        }
-
-        .faculty-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .faculty-member {
-            background: white;
+        .student-details {
+            background: #f8f9ff;
             padding: 2rem;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-top: 1rem;
         }
 
-        /* Contact */
-        .contact {
-            background: #333;
-            color: white;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-        }
-
-        .contact-info h3 {
-            color: #667eea;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-info p {
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
             margin-bottom: 1rem;
-            font-size: 1.1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e1e5e9;
         }
 
-        /* Footer */
-        footer {
-            background: #222;
-            color: #ccc;
-            text-align: center;
-            padding: 2rem 0;
+        .error {
+            background: #ff4757;
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            display: none;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
+        .success {
+            background: #2ed573;
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin: 1rem 0;
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <header>
-        <nav class="container">
-            <div class="logo">👑 Prince Learning Academy</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#programs">Programs</a></li>
-                <li><a href="#faculty">Faculty</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!-- Login Form -->
+    <div id="loginSection" class="login-container">
+        <div class="logo">👑 Prince Learning Academy</div>
+        <h2>Student Login</h2>
+        <p>Believe. Achieve. Succeed.</p>
+        
+        <form id="loginForm" class="login-form">
+            <div class="form-group">
+                <label for="studentId">Student ID</label>
+                <input type="text" id="studentId" placeholder="Enter your Student ID" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+        <div id="errorMsg" class="error"></div>
+    </div>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <h1>Prince Learning Academy</h1>
-            <p class="tagline">Believe. Achieve. Succeed.</p>
-            <p class="motto">"To be the King, First be a Prince."</p>
+    <!-- Dashboard -->
+    <div id="dashboard" class="dashboard">
+        <button id="logoutBtn" class="logout-btn">Logout</button>
+        <div class="student-info">
+            <h2 id="studentName">Welcome, Student!</h2>
+            <p>Your secure dashboard</p>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">About Us</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Prince Learning Academy is a dedicated educational center committed to providing quality education and fostering success for students across various academic stages.</p>
-                    <p>With a team of passionate educators, we offer tailored programs for multiple curricula, ensuring every student receives the guidance they need to excel.</p>
-                </div>
-                <div style="text-align: center;">
-                    <div style="font-size: 4rem; margin-bottom: 1rem;">🎓</div>
-                </div>
+        <div id="studentDetails" class="student-details">
+            <div class="detail-row">
+                <span>Student ID:</span>
+                <span id="dashStudentId">-</span>
+            </div>
+            <div class="detail-row">
+                <span>Class:</span>
+                <span id="dashClass">-</span>
+            </div>
+            <div class="detail-row">
+                <span>Board:</span>
+                <span id="dashBoard">-</span>
+            </div>
+            <div class="detail-row">
+                <span>Phone:</span>
+                <span id="dashPhone">-</span>
+            </div>
+            <div class="detail-row">
+                <span>Status:</span>
+                <span id="dashStatus">-</span>
             </div>
         </div>
-    </section>
+        <div id="successMsg" class="success" style="display: none;">Login successful!</div>
+    </div>
 
-    <!-- Programs Section -->
-    <section id="programs" class="programs">
-        <div class="container">
-            <h2 class="section-title">Our Academic Programs</h2>
-            <div class="programs-grid">
-                <div class="program-card">
-                    <h3>🧒 Junior Division</h3>
-                    <p><strong>(K.G. to 8th)</strong><br>
-                    Complete academic support in all subjects for students under ICSE, CBSE, and other boards.</p>
-                </div>
-                <div class="program-card">
-                    <h3>📚 ICSE Board</h3>
-                    <p><strong>(Classes 9th & 10th)</strong><br>
-                    Specialized coaching in English and Computer Science.</p>
-                </div>
-                <div class="program-card">
-                    <h3>📖 CBSE Board</h3>
-                    <p><strong>(Classes 9th & 10th)</strong><br>
-                    Expert instruction in English, Mathematics, Science, and Social Studies (SST).</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <script>
+        // STUDENT DATABASE (Replace with your actual Google Sheet data)
+        const studentsDB = [
+            { id: "PLA001", name: "Rahul Sharma", class: "9th", board: "ICSE", phone: "9876543210", password: "1234", status: "Active" },
+            { id: "PLA002", name: "Priya Singh", class: "10th", board: "CBSE", phone: "9876543211", password: "1234", status: "Active" },
+            { id: "PLA003", name: "Aman Gupta", class: "8th", board: "ICSE", phone: "9876543212", password: "1234", status: "Active" },
+            { id: "PLA004", name: "Neha Verma", class: "9th", board: "CBSE", phone: "9876543213", password: "1234", status: "Active" },
+            { id: "PLA005", name: "Rohit Kumar", class: "10th", board: "ICSE", phone: "9876543214", password: "1234", status: "Suspended" }
+        ];
 
-    <!-- Commitment Section -->
-    <section class="commitment">
-        <div class="container">
-            <h2 class="section-title" style="color: white;">Our Commitment</h2>
-            <div class="commitment-grid">
-                <div class="commitment-item">
-                    <h4>⭐ Quality Education</h4>
-                    <p>High-standard instruction across all subjects with proven teaching methodologies.</p>
-                </div>
-                <div class="commitment-item">
-                    <h4>💡 Easy Explanations</h4>
-                    <p>Complex topics broken down into simple, understandable concepts.</p>
-                </div>
-                <div class="commitment-item">
-                    <h4>👨‍🏫 1:1 Mentorship</h4>
-                    <p>Personalized guidance matching individual learning styles and needs.</p>
-                </div>
-                <div class="commitment-item">
-                    <h4>📊 Mock Tests</h4>
-                    <p>Regular assessments to track progress and exam preparation.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        // Login functionality
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const studentId = document.getElementById('studentId').value.trim();
+            const password = document.getElementById('password').value;
+            
+            // Find student in database
+            const student = studentsDB.find(s => s.id === studentId && s.password === password);
+            
+            if (student) {
+                if (student.status !== 'Active') {
+                    showError('Account is not active. Contact administration.');
+                    return;
+                }
+                
+                // Hide login, show dashboard
+                document.getElementById('loginSection').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+                
+                // Populate dashboard
+                document.getElementById('studentName').textContent = `Welcome, ${student.name}!`;
+                document.getElementById('dashStudentId').textContent = student.id;
+                document.getElementById('dashClass').textContent = student.class;
+                document.getElementById('dashBoard').textContent = student.board;
+                document.getElementById('dashPhone').textContent = student.phone;
+                document.getElementById('dashStatus').textContent = student.status;
+                
+                document.getElementById('successMsg').style.display = 'block';
+                setTimeout(() => {
+                    document.getElementById('successMsg').style.display = 'none';
+                }, 3000);
+                
+            } else {
+                showError('Invalid Student ID or Password');
+            }
+        });
 
-    <!-- Faculty Section -->
-    <section id="faculty" class="faculty">
-        <div class="container">
-            <h2 class="section-title">Our Expert Faculty</h2>
-            <div class="faculty-grid">
-                <div class="faculty-member">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">👨‍🎓</div>
-                    <h3>Prince Chaudhary Sir</h3>
-                </div>
-                <div class="faculty-member">
-                    <div style="font-size: 3rem; margin-bottom: 1rem;">👩‍🏫</div>
-                    <h3>Tanishaa Mam</h3>
-                </div>
-            </div>
-        </div>
-    </section>
+        // Logout functionality
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('loginSection').style.display = 'block';
+            document.getElementById('loginForm').reset();
+            document.getElementById('errorMsg').style.display = 'none';
+        });
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title" style="color: white;">Contact Us</h2>
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h3>📞 Get In Touch</h3>
-                    <p><strong>Phone:</strong><br>+91 73106 80106</p>
-                    <p><strong>Email:</strong><br>princelearningacademygzb@gmail.com</p>
-                </div>
-                <div class="contact-info">
-                    <h3>📍 Visit Us</h3>
-                    <p><strong>Address:</strong><br>House Number: 282, Sector-12,<br>
-                    Near Saint Teresa's Convent School,<br>Sarvodaya Nagar, Ghaziabad (GZB).</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Prince Learning Academy. All rights reserved. | Believe. Achieve. Succeed.</p>
-        </div>
-    </footer>
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMsg');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            setTimeout(() => {
+                errorDiv.style.display = 'none';
+            }, 3000);
+        }
+    </script>
 </body>
 </html>
