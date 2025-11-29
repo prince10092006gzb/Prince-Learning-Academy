@@ -1,519 +1,403 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Prince Learning Academy - Festive Fee Portal</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prince Learning Academy - Magical Christmas Fee Portal 🎄</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600;700&display=swap');
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@700&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            max-width: 1000px; margin: 0 auto; 
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
             min-height: 100vh;
-            background: #3a1c0b;
-            background-image: radial-gradient(circle at 15% 15%, rgba(255, 180, 70, 0.2), transparent 50%),
-                              radial-gradient(circle at 85% 75%, rgba(255, 120, 50, 0.2), transparent 50%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            box-sizing: border-box;
             overflow-x: hidden;
-            color: #4f2a17;
-        }
-
-        .container {
             position: relative;
-            background: #fffaf2;
+        }
+        
+        @keyframes gradientBG {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        /* Enhanced Snowfall */
+        .snowflake {
+            position: absolute;
+            color: #fff;
+            font-size: 1.2em;
+            animation: snowfall linear infinite;
+            pointer-events: none;
+        }
+        @keyframes snowfall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+        
+        /* Christmas Lights */
+        .lights {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .light { 
+            position: absolute;
+            width: 20px; height: 20px; 
+            border-radius: 50%;
+            animation: blink 2s infinite;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
+        }
+        
+        .header { 
+            text-align: center; 
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(20px);
+            color: white; 
+            padding: 40px; 
+            border-radius: 0 0 40px 40px;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            border-bottom: 5px solid #ff4757;
+        }
+        
+        .christmas-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5em;
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleGlow 2s ease-in-out infinite alternate;
+            text-shadow: 0 0 30px rgba(255,255,255,0.5);
+        }
+        @keyframes titleGlow {
+            from { filter: drop-shadow(0 0 20px #ff6b6b); }
+            to { filter: drop-shadow(0 0 30px #48dbfb); }
+        }
+        
+        .santa-hat { font-size: 4em; margin: 10px 0; animation: bounce 2s infinite; }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        .live-clock {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+            backdrop-filter: blur(20px);
             border-radius: 25px;
-            box-shadow: 0 10px 40px rgba(255, 193, 7, 0.5), 0 0 120px rgba(255, 107, 0, 0.4);
-            padding: 40px;
-            box-sizing: border-box;
-            z-index: 2;
-            border: 4px solid #ffc107;
-        }
-
-        #login-section {
-            max-width: 450px;
-        }
-
-        #fee-status-section {
-            max-width: 800px;
-            display: none;
-        }
-
-        h1 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 3.2rem;
-            color: #d87c00;
-            text-align: center;
-            margin-bottom: 10px;
-            text-shadow: 0px 0px 15px #ffeb3b, 0px 0px 5px #ffffff;
-        }
-
-        h2 {
-            font-weight: 600;
-            color: #a15800;
-            text-align: center;
-            margin-bottom: 25px;
-            letter-spacing: 1px;
-        }
-
-        h3 {
-            text-transform: uppercase;
-            font-weight: 600;
-            color: #a15800;
-            letter-spacing: 1.5px;
-            font-size: 1rem;
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #ffdd8c;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #8c5a1c;
-            font-weight: 600;
-        }
-
-        input[type="text"], input[type="password"] {
-            width: 100%;
-            padding: 14px;
-            border-radius: 10px;
-            border: 2px solid #fbc02d;
-            font-size: 16px;
-            box-sizing: border-box;
-            background: #fffdf9;
-            color: #6d4c41;
-            font-family: 'Poppins', sans-serif;
-            transition: all 0.3s ease;
-        }
-
-        input[type="text"]:focus, input[type="password"]:focus {
-            border-color: #ffa000;
-            outline: none;
-            box-shadow: 0 0 12px rgba(255, 179, 0, 0.6);
-        }
-        
-        #login-button {
-            width: 100%;
-            padding: 15px;
-            margin-top: 15px;
-            background: linear-gradient(45deg, #ffb300, #f57c00);
-            border: none;
-            border-radius: 10px;
-            color: white;
-            font-size: 1.1rem;
-            cursor: pointer;
+            padding: 20px 40px;
+            margin: 15px auto;
+            font-size: 1.8em;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 5px 15px rgba(245, 124, 0, 0.4);
-            transition: all 0.3s ease;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            border: 3px solid #ff4757;
+            max-width: 350px;
+            animation: clockPulse 2s infinite;
         }
-
-        #login-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 179, 0, 0.6);
-        }
-
-        footer {
-            margin-top: 30px;
-            text-align: center;
-            font-size: 12px;
-            color: #a1887f;
-            font-weight: 500;
+        @keyframes clockPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
         
-        .director-name {
-            font-weight: 700;
-            color: #795548;
-            margin-top: 10px;
-        }
-
-        .diwali-greeting {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.2rem;
-            text-align: center;
-            margin: 15px 0;
-            color: #f57c00;
-            text-shadow: 0 0 15px #ffca28;
-        }
-
-        .festival-wishes {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .festival-wishes p {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.1rem;
-            color: #a15800;
-            margin: 8px 0;
-            font-weight: 600;
-        }
-
-        .student-info {
-            background: #fffdf9;
-            border-left: 6px solid #ffb300;
-            padding: 20px 25px;
-            margin-bottom: 30px;
-            border-radius: 15px;
-        }
-
-        .student-info h3 { text-align: left; border: none; }
-        .student-info p { font-size: 1.1em; color: #6d4c41; }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            box-shadow: 0 5px 20px rgba(181, 105, 0, 0.2);
-            border-radius: 15px;
+        .container { padding: 40px 20px; position: relative; z-index: 10; }
+        .login-form, .fee-section { 
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(30px);
+            padding: 50px; 
+            border-radius: 30px; 
+            box-shadow: 0 30px 70px rgba(0,0,0,0.3);
+            margin: 40px 0; 
+            border: 2px solid rgba(255,255,255,0.4);
+            position: relative;
             overflow: hidden;
         }
-
-        th {
-            background: linear-gradient(to right, #ffca28, #ffb300);
-            color: #6d4c41;
+        .login-form::before, .fee-section::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,107,107,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        .form-group { margin-bottom: 25px; }
+        input[type="text"], input[type="password"] { 
+            width: 100%; padding: 22px; 
+            border: 3px solid #e1e8ed; 
+            border-radius: 20px; 
+            font-size: 18px;
+            transition: all 0.4s ease;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.05);
+        }
+        input:focus { 
+            outline: none; 
+            border-color: #ff4757; 
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(255,71,87,0.4);
+        }
+        
+        button { 
+            background: linear-gradient(45deg, #ff4757, #ff6b7a);
+            color: white; 
+            padding: 22px 50px; 
+            border: none; 
+            border-radius: 20px; 
+            cursor: pointer; 
+            font-size: 20px; 
             font-weight: 700;
+            width: 100%;
+            transition: all 0.4s ease;
+            box-shadow: 0 15px 40px rgba(255,71,87,0.4);
+            position: relative;
+            overflow: hidden;
         }
-
-        th, td { padding: 14px; text-align: left; border-bottom: 1px solid #ffecb3; }
-        tr:last-child td { border-bottom: none; }
-        tr:nth-child(even) { background-color: #fffaf0; }
-
-        .status-paid { color: #388e3c; font-weight: 600; }
-        .status-due { color: #d32f2f; font-weight: 600; }
-        .status-payable { color: #f57c00; font-weight: 600; }
-
-        .action-checkbox { text-align: center; vertical-align: middle; }
-        input[type="checkbox"] { transform: scale(1.2); cursor: pointer; }
-
-        .coupon-section {
-            margin: 20px 0;
-            text-align: right;
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
         }
-
-        #coupon-code-input {
-            width: 150px;
-            padding: 8px 12px;
-            border-radius: 8px 0 0 8px;
-            border: 2px solid #ffdd8c;
-            border-right: none;
+        button:hover::before { left: 100%; }
+        button:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(255,71,87,0.6); }
+        
+        .logout-btn { 
+            background: linear-gradient(45deg, #2ed573, #1e90ff);
+            width: auto;
+            padding: 15px 40px;
+            margin-bottom: 25px;
+            font-size: 16px;
         }
-
-        #apply-coupon-btn {
-            padding: 8px 15px;
-            border-radius: 0 8px 8px 0;
-            border: 2px solid #ffdd8c;
-            background: #ffc107;
-            color: #6d4c41;
+        
+        .student-details {
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0, #fdcb6e);
+            padding: 35px;
+            border-radius: 25px;
+            margin-bottom: 35px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(255,193,7,0.4);
+            border: 3px solid rgba(255,255,255,0.6);
+        }
+        .student-details h2 { 
+            color: #c44569; 
+            font-size: 2.5em; 
+            margin-bottom: 20px;
+            font-family: 'Dancing Script', cursive;
+        }
+        .detail-row { 
+            font-size: 1.4em; 
+            margin: 12px 0; 
+            color: #2d3436; 
             font-weight: 600;
+        }
+        
+        .fee-table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 25px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+        th { 
+            background: linear-gradient(45deg, #ff4757, #ff6b7a);
+            color: white; 
+            padding: 22px; 
+            text-align: center;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        td { 
+            padding: 22px; 
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            font-weight: 500;
+        }
+        .month-due { 
+            background: linear-gradient(135deg, #fdcb6e, #e17055); 
+            color: white; 
+            font-weight: 700; 
+            border-radius: 15px;
+            padding: 8px 15px;
+        }
+        .month-paid { 
+            background: linear-gradient(135deg, #00b894, #00cec9); 
+            color: white; 
+            font-weight: 700; 
+            border-radius: 15px;
+            padding: 8px 15px;
+        }
+        .month-advance { 
+            background: linear-gradient(135deg, #3742fa, #2f3542); 
+            color: white; 
+            font-weight: 700; 
+            border-radius: 15px;
+            padding: 8px 15px;
+        }
+        .checkbox-col { 
+            text-align: center; 
+            font-size: 2em;
+        }
+        .month-checkbox {
+            transform: scale(1.5);
+            accent-color: #ff4757;
             cursor: pointer;
         }
         
-        #coupon-message {
-            text-align: right;
-            margin-top: 5px;
-            font-weight: 600;
-            font-size: 0.9em;
-        }
-        
-        .coupon-success { color: #388e3c; }
-        .coupon-error { color: #d32f2f; }
-
-        .total-due {
-            text-align: right;
-            font-size: 1.5em;
-            font-weight: 700;
-            margin: 25px 0;
-            color: #d32f2f;
-        }
-
-        .pay-now-btn {
-            display: block;
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(45deg, #43a047, #2e7d32);
+        .pay-section {
+            background: linear-gradient(135deg, #00b894, #00cec9, #55a3ff);
+            padding: 35px;
+            border-radius: 25px;
+            text-align: center;
+            margin-top: 35px;
             color: white;
-            text-align: center;
-            border-radius: 10px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            text-decoration: none;
-            box-shadow: 0 5px 15px rgba(67, 160, 71, 0.4);
-            transition: all 0.3s ease;
+            box-shadow: 0 20px 50px rgba(0,184,148,0.4);
+        }
+        .upi-id { 
+            font-size: 2em; 
+            font-weight: 800; 
+            color: #ffeaa7;
+            word-break: break-all;
+            margin: 15px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .total-amount {
+            font-size: 3em;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 20px 0;
         }
         
-        .pay-now-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(46, 125, 50, 0.5);
-        }
-
-        .notice {
-            margin-top: 30px;
-            padding: 15px;
-            background: #fff8e1;
-            border-left: 5px solid #ffb300;
-            border-radius: 10px;
-            font-size: 1em;
-            color: #8d6e63;
-        }
-
-        #error-message {
-            color: #d32f2f;
-            text-align: center;
-            font-weight: 600;
-            margin-top: 15px;
-            height: 20px;
-        }
-        
-        header .tagline {
-            font-style: italic; 
-            color: #8d6e63; 
-            text-align: center; 
-            font-size: 1.1em;
-            margin-top: -15px;
+        .hidden { display: none; }
+        @media (max-width: 768px) {
+            .christmas-title { font-size: 2.5em; }
+            .container { padding: 20px 15px; }
+            .live-clock { font-size: 1.3em; padding: 15px 25px; }
+            .student-details h2 { font-size: 2em; }
         }
     </style>
 </head>
 <body>
-    <!-- Login Section -->
-    <div class="container" id="login-section">
-        <h1>Prince Learning Academy</h1>
-        <div class="festival-wishes">
-            <p class="diwali-greeting">✨ Wishing You a Happy Diwali! ✨</p>
-        </div>
-        <h2>Student Login</h2>
-        <h3>Fee Credentials</h3>
-        <form id="loginForm">
-            <label for="uniqueId">Unique ID</label>
-            <input type="text" id="uniqueId" name="uniqueId" required>
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
-            <button type="submit" id="login-button">Login</button>
-        </form>
-        <div id="error-message"></div>
-        <footer>
-            Reserved to Prince Learning Academy with latest record up to 21 October, 2025.
-            <div class="director-name">Mr. Prince Chaudhary (Director)</div>
-        </footer>
+    <!-- Christmas Lights -->
+    <div class="lights" id="christmasLights"></div>
+    
+    <!-- Enhanced Snowfall -->
+    <div id="snowflakes"></div>
+
+    <div class="header">
+        <div class="santa-hat">🎅🎄</div>
+        <h1 class="christmas-title">Prince Learning Academy</h1>
+        <p style="font-size: 1.5em; margin-bottom: 20px;">✨ Magical Christmas Fee Portal ✨</p>
+        <div id="liveClock" class="live-clock"></div>
     </div>
 
-    <!-- Fee Status Section -->
-    <div class="container" id="fee-status-section">
-        <header>
-            <h1>Prince Learning Academy</h1>
-            <p class="tagline">"To Be The King 👑 ! First Be A Prince 😉"</p>
-            <div class="festival-wishes">
-                <p>🪔 Happy Diwali! May the light of diyas guide you to success. 🪔</p>
-                <p> अन्नकूट की हार्दिक शुभकामनाएं! Happy Govardhan Puja! 🙏</p>
-                <p>👧👦 Wishing you a joyous Bhai-Dooj filled with love and happiness! 👦👧</p>
+    <div class="container">
+        <div id="loginSection" class="login-form">
+            <h2 style="font-size: 2.5em; color: #ff4757; margin-bottom: 30px;">🎁 Student Login Portal</h2>
+            <div class="form-group">
+                <input type="text" id="idInput" placeholder="Enter your Student ID (e.g., 2025-0001)" required>
             </div>
-        </header>
-
-        <div class="student-info">
-            <h3>Student Details</h3>
-            <p><strong>Name of Student:</strong> <span id="student-name"></span></p>
-            <p><strong>Unique ID:</strong> <span id="student-id"></span></p>
-            <p><strong>Class:</strong> <span id="student-class"></span></p>
+            <div class="form-group">
+                <input type="password" id="passwordInput" placeholder="Enter your Password" required>
+            </div>
+            <button onclick="login()">
+                <span>🚀 Access Fee Records</span>
+            </button>
+            <p style="text-align: center; margin-top: 20px; color: #636e72; font-size: 1.1em;">
+                Contact admin@princelearning.in for login credentials 🎅
+            </p>
         </div>
 
-        <h3>Monthly Fee Details</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Month</th>
-                    <th>Status</th>
-                    <th class="action-checkbox">Select to Pay</th>
-                </tr>
-            </thead>
-            <tbody id="fee-table-body"></tbody>
-        </table>
+        <div id="feeSection" class="fee-section hidden">
+            <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+            
+            <div id="studentDetails" class="student-details">
+                <h2 id="studentName">🎄 Student Profile 🎄</h2>
+                <div class="detail-row"><strong>🆔 Student ID:</strong> <span id="studentId"></span></div>
+                <div class="detail-row"><strong>📚 Class:</strong> <span id="studentClass"></span></div>
+                <div class="detail-row"><strong>🏫 Board:</strong> <span id="studentBoard"></span></div>
+                <div class="detail-row"><strong>📖 Course:</strong> <span id="studentCourse"></span></div>
+                <div class="detail-row"><strong>💰 Monthly Fee:</strong> <span id="studentMonthlyFee"></span></div>
+                <div class="detail-row"><strong>📊 Previous Balance:</strong> <span id="studentPrevBalance"></span></div>
+            </div>
 
-        <div class="coupon-section">
-            <input type="text" id="coupon-code-input" placeholder="Coupon Code">
-            <button id="apply-coupon-btn">Apply</button>
+            <h3 style="text-align: center; color: #ff4757; font-size: 2em; margin-bottom: 25px;">💳 Fee Payment Records</h3>
+            <table class="fee-table">
+                <thead>
+                    <tr>
+                        <th>📅 Month</th>
+                        <th>💵 Amount</th>
+                        <th>✅ Status</th>
+                        <th>🎯 Pay?</th>
+                    </tr>
+                </thead>
+                <tbody id="feeTableBody"></tbody>
+            </table>
+
+            <div id="paySection" class="pay-section hidden">
+                <h3 style="font-size: 2.2em; margin-bottom: 20px;">🎉 Ready to Pay? Ho Ho Ho!</h3>
+                <div>Selected Amount: <span id="totalAmount" class="total-amount">₹0</span></div>
+                <div class="upi-id">7310680106@fam</div>
+                <p style="margin: 15px 0; font-size: 1.2em;">Pay via Google Pay, PhonePe, Paytm or any UPI app</p>
+                <button onclick="initiatePayment()" style="background: linear-gradient(45deg, #ffd700, #ffed4e); color: #2d3436; font-weight: 900; font-size: 22px; margin-top: 25px;">
+                    🚀 Pay Now via UPI ✨
+                </button>
+            </div>
         </div>
-        <div id="coupon-message"></div>
-        
-        <div class="total-due">
-            Total Payable: ₹<span id="total-due-amount">0.00</span>
-        </div>
-
-        <a href="#" id="pay-now-link" class="pay-now-btn">PAY NOW</a>
-
-        <div class="notice">
-            <strong>Important Notice:</strong> After payment, kindly send a screenshot to <strong>7310680106</strong>. Your fee status will be updated within 48 hours.
-        </div>
-
-        <footer>
-             Reserved to Prince Learning Academy with latest record up to 21 October, 2025.
-             <div class="director-name">Mr. Prince Chaudhary (Director)</div>
-        </footer>
     </div>
 
     <script>
-        const studentDatabase = {
-            "1": {"password": "A1", "name": "Devansh", "class": "K.G", "fee_per_month": 500, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
-            "2": {"password": "A2", "name": "Diksha", "class": "4", "fee_per_month": 600, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
-            "3": {"password": "A3", "name": "Gauri", "class": "4", "fee_per_month": 1500, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
-            "4": {"password": "A4", "name": "Kriyansh", "class": "3", "fee_per_month": 1500, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "Due", "October Due Amount": 500}},
-            "5": {"password": "A5", "name": "Mahi", "class": "2", "fee_per_month": 800, "fees": {"July": "PAID", "August": "Due", "September": "Due", "October": "Due", "October Due Amount": null}},
-            "6": {"password": "A6", "name": "Nipun", "class": "3", "fee_per_month": 1500, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
-            "7": {"password": "A7", "name": "Rachit", "class": "2", "fee_per_month": 800, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
-            "9": {"password": "A9", "name": "Rudransh", "class": "K.G", "fee_per_month": 3000, "fees": {"July": "PAID", "August": "PAID", "September": "Due", "October": "Due", "October Due Amount": null}},
-            "10": {"password": "B1", "name": "Bhumika", "class": "8", "fee_per_month": 1500, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
-            "12": {"password": "B3", "name": "Devansh", "class": "6", "fee_per_month": 1500, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
-            "13": {"password": "B4", "name": "Mayank", "class": "6", "fee_per_month": 1500, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
-            "14": {"password": "B6", "name": "Radhika", "class": "8", "fee_per_month": 3000, "fees": {"July": "PAID", "August": "PAID", "September": "Due", "October": "Due", "October Due Amount": null}},
-            "16": {"password": "C1", "name": "Aanvi", "class": "9", "fee_per_month": 600, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
-            "17": {"password": "C2", "name": "Aaryan", "class": "9", "fee_per_month": 1350, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "Due", "October Due Amount": 727}},
-            "18": {"password": "C3", "name": "Dev", "class": "9", "fee_per_month": 1350, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
-            "19": {"password": "C4", "name": "Vansh", "class": "9", "fee_per_month": 1350, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "Due", "October Due Amount": 50}},
-            "20": {"password": "C5", "name": "Vanshika", "class": "9", "fee_per_month": 600, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
-            "21": {"password": "C6", "name": "Vinnet", "class": "9", "fee_per_month": 1350, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
-            "22": {"password": "D1", "name": "Aaditya Vats", "class": "10", "fee_per_month": 800, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
-            "28": {"password": "A10", "name": "Shristi", "class": "3", "fee_per_month": 3000, "fees": {"July": "PAID", "August": "PAID", "September": "Due", "October": "Due", "October Due Amount": null}},
-            "29": {"password": "A11", "name": "Vanshika", "class": "2", "fee_per_month": 800, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
-            "30": {"password": "A12", "name": "Yashi", "class": "K.G", "fee_per_month": 500, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
-            "31": {"password": "C7", "name": "Angila", "class": "9", "fee_per_month": 2000, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
-            "32": {"password": "A13", "name": "Soumiya Verma", "class": "5", "fee_per_month": 1000, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}}
-        };
-
-        const couponCodes = {
-            "DIWALI5": 0.05,
-            "PLA10": 0.10
-        };
-
-        let currentDiscount = 0;
-
-        const loginSection = document.getElementById('login-section');
-        const feeStatusSection = document.getElementById('fee-status-section');
-        const errorMessage = document.getElementById('error-message');
-
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const uniqueId = document.getElementById('uniqueId').value.trim();
-            const password = document.getElementById('password').value.trim();
-            const student = studentDatabase[uniqueId];
-
-            if (student && student.password === password) {
-                errorMessage.textContent = '';
-                displayFeeStatus(uniqueId, student);
-            } else {
-                errorMessage.textContent = 'Invalid credentials. Please try again.';
-            }
-        });
-
-        document.getElementById('apply-coupon-btn').addEventListener('click', function() {
-            const couponInput = document.getElementById('coupon-code-input');
-            const couponMessage = document.getElementById('coupon-message');
-            const code = couponInput.value.toUpperCase();
-
-            if (couponCodes[code]) {
-                currentDiscount = couponCodes[code];
-                couponMessage.textContent = `Success! ${currentDiscount * 100}% discount applied.`;
-                couponMessage.className = 'coupon-success';
-            } else {
-                currentDiscount = 0;
-                couponMessage.textContent = 'Invalid coupon code.';
-                couponMessage.className = 'coupon-error';
-            }
-            calculateTotalDue();
-        });
-        
-        function displayFeeStatus(id, student) {
-            loginSection.style.display = 'none';
-            feeStatusSection.style.display = 'block';
-
-            document.getElementById('student-name').textContent = student.name;
-            document.getElementById('student-id').textContent = id;
-            document.getElementById('student-class').textContent = student.class;
-
-            const tbody = document.getElementById('fee-table-body');
-            tbody.innerHTML = '';
-            
-            const months = ["July", "August", "September", "October", "November", "December", "January", "February"];
-            const compulsoryMonths = ["July", "August", "September", "October"];
-            
-            months.forEach(month => {
-                const status = student.fees[month];
-                const feePerMonth = student.fee_per_month;
-                let dueAmount = 0;
-                let displayStatus = "Paid";
-                let statusClass = "status-paid";
-                let isCompulsoryDue = false;
-
-                if (status === 'PAID') {
-                    dueAmount = 0;
-                } else if (status === 'Due' && compulsoryMonths.includes(month)) {
-                    isCompulsoryDue = true;
-                    dueAmount = (month === 'October' && student.fees['October Due Amount']) ? student.fees['October Due Amount'] : feePerMonth;
-                    displayStatus = `Due (₹${dueAmount.toFixed(2)})`;
-                    statusClass = "status-due";
-                } else {
-                    dueAmount = feePerMonth;
-                    displayStatus = `Payable (₹${dueAmount.toFixed(2)})`;
-                    statusClass = "status-payable";
-                }
-
-                const tr = document.createElement('tr');
-                let checkboxHTML = '';
-
-                if (status === 'PAID') {
-                    checkboxHTML = `<input type="checkbox" disabled>`;
-                } else if (isCompulsoryDue) {
-                    checkboxHTML = `<input type="checkbox" class="fee-checkbox" data-amount="${dueAmount}" checked disabled>`;
-                } else {
-                    checkboxHTML = `<input type="checkbox" class="fee-checkbox" data-amount="${dueAmount}">`;
-                }
-                
-                tr.innerHTML = `
-                    <td>${month}</td>
-                    <td class="${statusClass}">${displayStatus}</td>
-                    <td class="action-checkbox">${checkboxHTML}</td>
-                `;
-                tbody.appendChild(tr);
-            });
-
-            tbody.querySelectorAll('.fee-checkbox:not([disabled])').forEach(chk => {
-                chk.addEventListener('change', calculateTotalDue);
-            });
-            
-            calculateTotalDue();
-        }
-
-        function calculateTotalDue() {
-            let subtotal = 0;
-            document.querySelectorAll('.fee-checkbox:checked').forEach(chk => {
-                subtotal += parseFloat(chk.dataset.amount);
-            });
-
-            const finalTotal = subtotal * (1 - currentDiscount);
-            
-            document.getElementById('total-due-amount').textContent = finalTotal.toFixed(2);
-            updatePayNowLink(finalTotal);
-        }
-
-        function updatePayNowLink(amount) {
-            const payNowLink = document.getElementById('pay-now-link');
-            const payNowButton = document.querySelector('.pay-now-btn');
-            
-            if (amount > 0) {
-                const upiId = '7310680106@fam';
-                const studentName = document.getElementById('student-name').textContent.trim();
-                const url = `upi://pay?pa=${upiId}&pn=Prince%20Learning%20Academy&am=${amount.toFixed(2)}&cu=INR&tn=Fee%20for%20${encodeURIComponent(studentName)}`;
-                payNowLink.href = url;
-                payNowButton.style.display = 'block';
-            } else {
-                payNowButton.style.display = 'none';
-            }
-        }
-    </script>
-</body>
-</html>
+        // Updated database from NEW Sheets-Document-4.pdf [attached_file:27]
+        const feeData = {
+            "2025-0001": { password: "ICSE-B1", name: "Mahi", class: "2", board: "ICSE", course: "All Subjects", monthlyFee: 500, prevBalance: 0, november: "DUE", december: "DUE", january: "", february: "" },
+            "2025-0002": { password: "ICSE-B2", name: "Vanshika", class: "2", board: "ICSE", course: "All Subjects", monthlyFee: 800, prevBalance: 0, november: "PAID", december: "DUE", january: "", february: "" },
+            "2025-0003": { password: "ICSE-C1", name: "Kriyansh", class: "3", board: "ICSE", course: "All Subjects", monthlyFee: 1500, prevBalance: 0, november: "PAID", december: "DUE", january: "", february: "" },
+            "2025-0004": { password: "ICSE-C2", name: "Nipurn", class: "3", board: "ICSE", course: "All Subjects", monthlyFee: 0, prevBalance: 0, november: "PAID", december: "DUE", january: "", february: "" },
+            "2025-0005": { password: "ICSE-E1", name: "Soumiya Verma", class: "5", board: "ICSE", course: "All Subjects", monthlyFee: 1000, prevBalance: 0, november: "PAID", december: "DUE", january: "", february: "" },
+            "2025-0006": { password: "ICSE-E2", name: "Aastha", class: "5", board: "ICSE", course: "All Subjects", monthlyFee: 500, prevBalance: 0, november: "PAID", december: "DUE", january: "", february: "" },
+            "2025-0007": { password: "ICSE-F1", name: "Devansh", class: "6", board: "ICSE", course: "All Subjects", monthlyFee: 1500, prevBalance: 0, november: "PAID", december: "DUE", january: "", february: "" },
+            "2025-0008": { password: "ICSE-F2", name: "Mayank", class: "6", board: "ICSE", course: "All Subjects", monthlyFee: 1500, prevBalance: 0, november: "PAID", december: "DUE", january: "", february: "" },
+            "2025-0009": { password: "ICSE-H1", name: "Hanshika", class: "8", board: "ICSE", course: "All Subjects", monthlyFee: 2200, prevBalance: 0, november: "PAID", december: "DUE", january: "", february: "" },
+            "2025-0010": { password: "ICSEH-2", name: "Yash", class: "8", board: "ICSE", course: "All Subjects", monthlyFee: 2200, prevBalance: 0, november: "PAID", december: "DUE", january: "", february: "" },
+            "2025-0011": { password: "ICSE-H3", name: "Bhumika", class: "8", board: "ICSE", course: "All Subjects", monthlyFee: 3000, prevBalance: 0, november: "PAID", december: "DUE", january: "", february: "" },
+            "2025-0012": { password: "ICSE-H4", name: "Radhika", class: "8", board: "ICSE", course: "All Subjects", monthlyFee: 3000, prevBalance: 3600, november: "DUE", december: "DUE", january: "", february: "" },
+            "2025-0013": { password: "ICSE-H5", name: "Pratham", class: "8", board: "ICSE", course: "All Subjects", monthlyFee: 2200, prevBalance: 733, november: "PAID", december: "DUE", january: "", february: "" },
+            "2025-0014": { password: "ICSE-I1", name: "Aanvi", class: "9", board: "ICSE", course: "Computer Applications", monthlyFee: 600, prevBalance: 0, november: "PAID", december: "DUE", january: "", february: "" },
+            "2025-0015": { password: "ICSE-I2", name: "Aaryan", class: "9", board: "ICSE", course: "English Computer Applications", monthlyFee: 1300, prevBalance: 100, november: "PAID", december: "DUE", january: "", february: "" },
+            "2025-0016": { password: "ICSE-I3", name: "Dev Chaudhary", class: "9", board: "ICSE", course: "All Subjects", monthlyFee: 0, prevBalance: 0, november: "PAID", december: "DUE", january: "", february: "" },
+            "2025-0017": { password: "ICSE-I4", name: "Vansh Khatri", class: "9", board: "ICSE", course: "English Computer Applications", monthlyFee: 1350, prevBalance: 0, november: "PAID", december: "DUE", january: "", february: "" },
+            "2025-0018": { password: "ICSE-I5", name: "Vanshika Sharma", class: "9", board: "ICSE", course: "English Computer Applications", monthlyFee: 500, prevBalance: 0, november: "PAID", december: "DUE", january: "", february: "" },
+            "2025-0019": { password: "ICSE-I6", name: "Vinnet Raj Singh", class: "9", board: "ICSE", course: "English Computer Applications", monthlyFee: 1350, prevBalance: 100, november: "PAID", december: "DUE", january: "", february: "" },
+            "2025-0020": { password: "ICSE-I7", name: "Angila Rohila", class: "9", board: "ICSE", course: "All Subjects", monthlyFee: 2000, prevBalance: 0, november: "PAID", december: "DUE", january: "", february: "" },
+            "2025-0021": { password: "ICSE-I8", name: "Avyan Pal", class: "9", board: "ICSE", course: "All Subjects", monthlyFee: 2000, prevBalance: 0, november: "PAID", december: "DUE", january: "", february: "" },
+            "2025-0022": { password: "ICSE-01", name: "Yashi", class: "K.G", board: "ICSE", course: "All Subjects", monthlyFee: 0, prevBalance: 0, november: "PAID", december: "DUE", january: "", february: "" },
+            "2025-0023": { password: "CBSE-01", name: "Devansh", class: "K.G", board: "CBSE", course: "All Subjects", monthlyFee: 0, prevBalance: 0, november: "PAID", december: "DUE", january: "", february: "" },
+            "2025-0024": { password: "CBSE-02", name: "Rudransh", class: "K.G", board: "CBSE", course: "All Subjects", monthlyFee: 0, prevBalance: 0, november: "PAID", december: "DUE", january: "", february: "" },
+            "2025-0025": { password: "CBSE-B2", name: "Rachit", class: "2", board: "CBSE", course: "All Subjects", monthlyFee: 800, prevBalance: 0, november: "PAID", december: "DUE", january: "", february: "" },
+            "2025-0026": { password: "CBSE-C1", name: "Shristi", class: "3", board: "CBSE", course: "All Subjects", monthlyFee: 0, prevBalance: 0, november: "PAID", december: "DUE", january: "", february: "" },
+            "2025-0027": { password: "CBSE-D1", name: "Diksha", class: "4", board: "CBSE", course: "All Subjects", monthlyFee: 1100, prevBalance: 0, november: "PAID", december: "DUE", january: "", february: "" },
+            "2025-0028": { password: "CBSE-G1", name: "Ruhansh", class: "7", board: "CBSE", course: "All Subjects", monthlyFee: 1500, prevBalance: 0, november: "PAID", december: "DUE", january: "", february: "" },
+            "2025-0029": { password: "CBSE-H1", name: "Garvit", class: "8", board: "CBSE", course: 
