@@ -3,55 +3,366 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prince Learning Academy</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Prince Learning Academy - Believe. Achieve. Succeed.</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero .tagline {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.95;
+        }
+
+        .hero .motto {
+            font-size: 1.1rem;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 3rem;
+            font-weight: 600;
+        }
+
+        /* About */
+        .about {
+            background: #f8f9ff;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        /* Programs */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .program-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .program-card h3 {
+            color: #667eea;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Commitment */
+        .commitment {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .commitment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .commitment-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Faculty */
+        .faculty {
+            text-align: center;
+        }
+
+        .faculty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .faculty-member {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Contact */
+        .contact {
+            background: #333;
+            color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .contact-info h3 {
+            color: #667eea;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #222;
+            color: #ccc;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Navigation -->
     <header>
-        <div class="container">
-            <h1 class="logo">Prince Learning Academy</h1>
-            <nav>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
+        <nav class="container">
+            <div class="logo">👑 Prince Learning Academy</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#programs">Programs</a></li>
+                <li><a href="#faculty">Faculty</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main>
-        <section id="home">
-            <div class="container">
-                <h2>Welcome to Prince Learning Academy</h2>
-                <p>Empowering students to achieve their full potential through quality education and dedicated mentorship.</p>
-                <a href="#contact" class="cta-button">Enroll Now</a>
-            </div>
-        </section>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Prince Learning Academy</h1>
+            <p class="tagline">Believe. Achieve. Succeed.</p>
+            <p class="motto">"To be the King, First be a Prince."</p>
+        </div>
+    </section>
 
-        <section id="about">
-            <div class="container">
-                <h2>About Us</h2>
-                <p>Prince Learning Academy is dedicated to providing a nurturing and stimulating environment for our students. Our experienced faculty and comprehensive curriculum ensure that every student receives personalized attention to excel academically.</p>
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Prince Learning Academy is a dedicated educational center committed to providing quality education and fostering success for students across various academic stages.</p>
+                    <p>With a team of passionate educators, we offer tailored programs for multiple curricula, ensuring every student receives the guidance they need to excel.</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">🎓</div>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="contact">
-            <div class="container">
-                <h2>Contact Us</h2>
-                <p>Have questions? Reach out to us!</p>
-                <address>
-                    <p><strong>Email:</strong> info@princelearningacademy.edu</p>
-                    <p><strong>Phone:</strong> (123) 456-7890</p>
-                    <p><strong>Address:</strong> 123 Education Lane, Learning City</p>
-                </address>
+    <!-- Programs Section -->
+    <section id="programs" class="programs">
+        <div class="container">
+            <h2 class="section-title">Our Academic Programs</h2>
+            <div class="programs-grid">
+                <div class="program-card">
+                    <h3>🧒 Junior Division</h3>
+                    <p><strong>(K.G. to 8th)</strong><br>
+                    Complete academic support in all subjects for students under ICSE, CBSE, and other boards.</p>
+                </div>
+                <div class="program-card">
+                    <h3>📚 ICSE Board</h3>
+                    <p><strong>(Classes 9th & 10th)</strong><br>
+                    Specialized coaching in English and Computer Science.</p>
+                </div>
+                <div class="program-card">
+                    <h3>📖 CBSE Board</h3>
+                    <p><strong>(Classes 9th & 10th)</strong><br>
+                    Expert instruction in English, Mathematics, Science, and Social Studies (SST).</p>
+                </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
+    <!-- Commitment Section -->
+    <section class="commitment">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Our Commitment</h2>
+            <div class="commitment-grid">
+                <div class="commitment-item">
+                    <h4>⭐ Quality Education</h4>
+                    <p>High-standard instruction across all subjects with proven teaching methodologies.</p>
+                </div>
+                <div class="commitment-item">
+                    <h4>💡 Easy Explanations</h4>
+                    <p>Complex topics broken down into simple, understandable concepts.</p>
+                </div>
+                <div class="commitment-item">
+                    <h4>👨‍🏫 1:1 Mentorship</h4>
+                    <p>Personalized guidance matching individual learning styles and needs.</p>
+                </div>
+                <div class="commitment-item">
+                    <h4>📊 Mock Tests</h4>
+                    <p>Regular assessments to track progress and exam preparation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Faculty Section -->
+    <section id="faculty" class="faculty">
+        <div class="container">
+            <h2 class="section-title">Our Expert Faculty</h2>
+            <div class="faculty-grid">
+                <div class="faculty-member">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">👨‍🎓</div>
+                    <h3>Prince Chaudhary Sir</h3>
+                </div>
+                <div class="faculty-member">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">👩‍🏫</div>
+                    <h3>Tanishaa Mam</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Contact Us</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>📞 Get In Touch</h3>
+                    <p><strong>Phone:</strong><br>+91 73106 80106</p>
+                    <p><strong>Email:</strong><br>princelearningacademygzb@gmail.com</p>
+                </div>
+                <div class="contact-info">
+                    <h3>📍 Visit Us</h3>
+                    <p><strong>Address:</strong><br>House Number: 282, Sector-12,<br>
+                    Near Saint Teresa's Convent School,<br>Sarvodaya Nagar, Ghaziabad (GZB).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 Prince Learning Academy. All Rights Reserved.</p>
+            <p>&copy; 2025 Prince Learning Academy. All rights reserved. | Believe. Achieve. Succeed.</p>
         </div>
     </footer>
 </body>
