@@ -400,4 +400,148 @@
             "2025-0026": { password: "CBSE-C1", name: "Shristi", class: "3", board: "CBSE", course: "All Subjects", monthlyFee: 0, prevBalance: 0, november: "PAID", december: "DUE", january: "", february: "" },
             "2025-0027": { password: "CBSE-D1", name: "Diksha", class: "4", board: "CBSE", course: "All Subjects", monthlyFee: 1100, prevBalance: 0, november: "PAID", december: "DUE", january: "", february: "" },
             "2025-0028": { password: "CBSE-G1", name: "Ruhansh", class: "7", board: "CBSE", course: "All Subjects", monthlyFee: 1500, prevBalance: 0, november: "PAID", december: "DUE", january: "", february: "" },
-            "2025-0029": { password: "CBSE-H1", name: "Garvit", class: "8", board: "CBSE", course: 
+            "2025-0029": { password: "CBSE-H1", name: "Garvit", class: "8", board: "CBSE", course: "All Subjects", monthlyFee: 1000, prevBalance: 0, november: "PAID", december: "DUE", january: "", february: "" }
+        };
+
+        let currentStudent = null;
+        let selectedMonths = [];
+
+        // Enhanced Live Clock with IST
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleString('en-IN', { 
+                timeZone: 'Asia/Kolkata',
+                hour12: true,
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            document.getElementById('liveClock').textContent = `🎄 ${timeString} 🎄`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Enhanced Snowfall + Christmas Lights
+        function createSnowflakes() {
+            const snowflakes = document.getElementById('snowflakes');
+            for (let i = 0; i < 150; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.innerHTML = ['❄️','⭐','🎅','🎄'][Math.floor(Math.random()*4)];
+                snowflake.style.left = Math.random() * 100 + '%';
+                snowflake.style.animationDuration = (Math.random() * 4 + 3) + 's';
+                snowflake.style.animationDelay = Math.random() * 3 + 's';
+                snowflake.style.fontSize = (Math.random() * 0.5 + 0.8) + 'em';
+                snowflakes.appendChild(snowflake);
+            }
+        }
+
+        function createChristmasLights() {
+            const lights = document.getElementById('christmasLights');
+            const colors = ['#ff4757', '#ffa502', '#2ed573', '#3742fa', '#ff6b7a', '#feca57'];
+            for (let i = 0; i < 50; i++) {
+                const light = document.createElement('div');
+                light.className = 'light';
+                light.style.background = colors[i % colors.length];
+                light.style.left = Math.random() * 100 + '%';
+                light.style.top = Math.random() * 100 + '%';
+                light.style.animationDelay = Math.random() * 2 + 's';
+                lights.appendChild(light);
+            }
+        }
+
+        createSnowflakes();
+        createChristmasLights();
+
+        function login() {
+            const id = document.getElementById('idInput').value.trim();
+            const password = document.getElementById('passwordInput').value.trim();
+            currentStudent = feeData[id];
+            
+            if (currentStudent && currentStudent.password === password) {
+                document.getElementById('loginSection').classList.add('hidden');
+                document.getElementById('feeSection').classList.remove('hidden');
+                displayStudentDetails();
+                displayFeeRecords();
+            } else {
+                alert('❌ Invalid ID or Password! Please try again 🎅');
+            }
+        }
+
+        function displayStudentDetails() {
+            const id = Object.keys(feeData).find(key => feeData[key] === currentStudent);
+            document.getElementById('studentName').textContent = currentStudent.name;
+            document.getElementById('studentId').textContent = id;
+            document.getElementById('studentClass').textContent = currentStudent.class;
+            document.getElementById('studentBoard').textContent = currentStudent.board;
+            document.getElementById('studentCourse').textContent = currentStudent.course;
+            document.getElementById('studentMonthlyFee').textContent = `₹${currentStudent.monthlyFee}`;
+            document.getElementById('studentPrevBalance').textContent = `₹${currentStudent.prevBalance}`;
+        }
+
+        function displayFeeRecords() {
+            const tbody = document.getElementById('feeTableBody');
+            tbody.innerHTML = '';
+            
+            const months = [
+                { name: 'November', status: currentStudent.november },
+                { name: 'December', status: currentStudent.december },
+                { name: 'January (Advance)', status: currentStudent.january || '' },
+                { name: 'February (Advance)', status: currentStudent.february || '' }
+            ];
+            
+            months.forEach((month) => {
+                const payable = (month.status === 'DUE' || month.status === '');
+                const row = tbody.insertRow();
+                row.innerHTML = `
+                    <td style="font-size: 1.1em; font-weight: 600;">${month.name}</td>
+                    <td style="color: #2d3436; font-size: 1.2em;">₹${currentStudent.monthlyFee}</td>
+                    <td class="month-${month.status === 'PAID' ? 'paid' : (payable ? 'due' : 'advance')}">${month.status || 'Pay Advance'}</td>
+                    <td class="checkbox-col">
+                        ${payable ? `<input type="checkbox" class="month-checkbox" data-month="${month.name}" data-amount="${currentStudent.monthlyFee}" onchange="updatePayment()">` : '✨'}
+                    </td>
+                `;
+            });
+        }
+
+        function updatePayment() {
+            selectedMonths = [];
+            let total = 0;
+            document.querySelectorAll('.month-checkbox:checked').forEach(checkbox => {
+                const amount = parseInt(checkbox.dataset.amount);
+                total += amount;
+                selectedMonths.push(checkbox.dataset.month);
+            });
+            document.getElementById('totalAmount').textContent = `₹${total}`;
+            document.getElementById('paySection').classList.toggle('hidden', total === 0);
+        }
+
+        function initiatePayment() {
+            if (selectedMonths.length === 0) {
+                alert('Please select months to pay first! 🎁');
+                return;
+            }
+            
+            const amount = document.getElementById('totalAmount').textContent.replace('₹', '');
+            const monthsText = selectedMonths.join(', ');
+            const upiUrl = `upi://pay?pa=7310680106@fam&am=${amount}&cu=INR&tn=Prince%20Learning%20Academy%20Christmas%20Fees%20-${monthsText}`;
+            
+            window.open(upiUrl, '_blank');
+        }
+
+        function logout() {
+            document.getElementById('loginSection').classList.remove('hidden');
+            document.getElementById('feeSection').classList.add('hidden');
+            document.getElementById('idInput').value = '';
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('paySection').classList.add('hidden');
+            currentStudent = null;
+            selectedMonths = [];
+        }
+    </script>
+</body>
+</html>
