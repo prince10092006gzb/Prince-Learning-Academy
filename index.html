@@ -1,439 +1,519 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prince Learning Academy - Student Portal</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prince Learning Academy - Festive Fee Portal</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh; 
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600;700&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            background: #3a1c0b;
+            background-image: radial-gradient(circle at 15% 15%, rgba(255, 180, 70, 0.2), transparent 50%),
+                              radial-gradient(circle at 85% 75%, rgba(255, 120, 50, 0.2), transparent 50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-x: hidden;
+            color: #4f2a17;
+        }
+
+        .container {
+            position: relative;
+            background: #fffaf2;
+            width: 100%;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(255, 193, 7, 0.5), 0 0 120px rgba(255, 107, 0, 0.4);
+            padding: 40px;
+            box-sizing: border-box;
+            z-index: 2;
+            border: 4px solid #ffc107;
+        }
+
+        #login-section {
+            max-width: 450px;
+        }
+
+        #fee-status-section {
+            max-width: 800px;
+            display: none;
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.2rem;
+            color: #d87c00;
+            text-align: center;
+            margin-bottom: 10px;
+            text-shadow: 0px 0px 15px #ffeb3b, 0px 0px 5px #ffffff;
+        }
+
+        h2 {
+            font-weight: 600;
+            color: #a15800;
+            text-align: center;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        h3 {
+            text-transform: uppercase;
+            font-weight: 600;
+            color: #a15800;
+            letter-spacing: 1.5px;
+            font-size: 1rem;
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ffdd8c;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #8c5a1c;
+            font-weight: 600;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 14px;
+            border-radius: 10px;
+            border: 2px solid #fbc02d;
+            font-size: 16px;
+            box-sizing: border-box;
+            background: #fffdf9;
+            color: #6d4c41;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus, input[type="password"]:focus {
+            border-color: #ffa000;
+            outline: none;
+            box-shadow: 0 0 12px rgba(255, 179, 0, 0.6);
         }
         
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        #login-button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 15px;
+            background: linear-gradient(45deg, #ffb300, #f57c00);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.1rem;
+            cursor: pointer;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(245, 124, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        #login-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 179, 0, 0.6);
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 12px;
+            color: #a1887f;
+            font-weight: 500;
+        }
         
-        /* HEADER */
-        .header {
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            position: sticky; top: 20px; z-index: 100;
-            margin-bottom: 2rem;
+        .director-name {
+            font-weight: 700;
+            color: #795548;
+            margin-top: 10px;
         }
-        .header-content { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.8rem; color: #667eea; font-weight: bold; }
-        .nav-links { display: flex; gap: 1rem; }
-        .nav-links a { 
-            color: #333; text-decoration: none; padding: 0.75rem 1.5rem; 
-            border-radius: 25px; font-weight: 500; transition: all 0.3s; 
+
+        .diwali-greeting {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+            text-align: center;
+            margin: 15px 0;
+            color: #f57c00;
+            text-shadow: 0 0 15px #ffca28;
         }
-        .nav-links a:hover, .nav-links a.active { 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; 
+
+        .festival-wishes {
+            text-align: center;
+            margin: 20px 0;
         }
-        .user-info { 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-            color: white; padding: 0.5rem 1.5rem; border-radius: 25px; font-weight: 500; 
+
+        .festival-wishes p {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.1rem;
+            color: #a15800;
+            margin: 8px 0;
+            font-weight: 600;
         }
-        .logout-btn { 
-            background: #ff4757; color: white; border: none; padding: 0.5rem 1rem; 
-            border-radius: 20px; cursor: pointer; margin-left: 1rem; 
+
+        .student-info {
+            background: #fffdf9;
+            border-left: 6px solid #ffb300;
+            padding: 20px 25px;
+            margin-bottom: 30px;
+            border-radius: 15px;
+        }
+
+        .student-info h3 { text-align: left; border: none; }
+        .student-info p { font-size: 1.1em; color: #6d4c41; }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 5px 20px rgba(181, 105, 0, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        th {
+            background: linear-gradient(to right, #ffca28, #ffb300);
+            color: #6d4c41;
+            font-weight: 700;
+        }
+
+        th, td { padding: 14px; text-align: left; border-bottom: 1px solid #ffecb3; }
+        tr:last-child td { border-bottom: none; }
+        tr:nth-child(even) { background-color: #fffaf0; }
+
+        .status-paid { color: #388e3c; font-weight: 600; }
+        .status-due { color: #d32f2f; font-weight: 600; }
+        .status-payable { color: #f57c00; font-weight: 600; }
+
+        .action-checkbox { text-align: center; vertical-align: middle; }
+        input[type="checkbox"] { transform: scale(1.2); cursor: pointer; }
+
+        .coupon-section {
+            margin: 20px 0;
+            text-align: right;
+        }
+
+        #coupon-code-input {
+            width: 150px;
+            padding: 8px 12px;
+            border-radius: 8px 0 0 8px;
+            border: 2px solid #ffdd8c;
+            border-right: none;
+        }
+
+        #apply-coupon-btn {
+            padding: 8px 15px;
+            border-radius: 0 8px 8px 0;
+            border: 2px solid #ffdd8c;
+            background: #ffc107;
+            color: #6d4c41;
+            font-weight: 600;
+            cursor: pointer;
         }
         
-        /* SECTIONS */
-        .section { display: none; background: rgba(255,255,255,0.95); padding: 3rem; border-radius: 25px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .section.active { display: block; }
+        #coupon-message {
+            text-align: right;
+            margin-top: 5px;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
         
-        /* LOGIN */
-        .login-container { text-align: center; max-width: 500px; margin: 5rem auto; }
-        .login-form input { 
-            width: 100%; padding: 1.2rem; margin: 1rem 0; border: 2px solid #e1e5e9; 
-            border-radius: 12px; font-size: 1rem; transition: border-color 0.3s; 
+        .coupon-success { color: #388e3c; }
+        .coupon-error { color: #d32f2f; }
+
+        .total-due {
+            text-align: right;
+            font-size: 1.5em;
+            font-weight: 700;
+            margin: 25px 0;
+            color: #d32f2f;
         }
-        .login-form input:focus { outline: none; border-color: #667eea; }
-        .login-btn { 
-            width: 100%; padding: 1.2rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-            color: white; border: none; border-radius: 12px; font-size: 1.2rem; font-weight: 600; 
-            cursor: pointer; transition: transform 0.3s; 
+
+        .pay-now-btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(45deg, #43a047, #2e7d32);
+            color: white;
+            text-align: center;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(67, 160, 71, 0.4);
+            transition: all 0.3s ease;
         }
-        .login-btn:hover { transform: translateY(-2px); }
-        .error { background: #ff4757; color: white; padding: 1rem; border-radius: 10px; margin: 1rem 0; display: none; }
-        .students-count { background: #e3f2fd; padding: 1rem; border-radius: 12px; margin: 1rem 0; }
         
-        /* DASHBOARD */
-        .dashboard-welcome { text-align: center; color: #333; margin-bottom: 3rem; }
-        .dashboard-welcome h1 { font-size: 2.5rem; color: #667eea; margin-bottom: 1rem; }
-        .nav-grid { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 2rem; margin-bottom: 3rem; 
+        .pay-now-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(46, 125, 50, 0.5);
         }
-        .nav-card { 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; 
-            padding: 2.5rem; border-radius: 20px; text-decoration: none; text-align: center; 
-            transition: all 0.3s; cursor: pointer; 
+
+        .notice {
+            margin-top: 30px;
+            padding: 15px;
+            background: #fff8e1;
+            border-left: 5px solid #ffb300;
+            border-radius: 10px;
+            font-size: 1em;
+            color: #8d6e63;
         }
-        .nav-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
-        .nav-icon { font-size: 4rem; display: block; margin-bottom: 1rem; }
+
+        #error-message {
+            color: #d32f2f;
+            text-align: center;
+            font-weight: 600;
+            margin-top: 15px;
+            height: 20px;
+        }
         
-        /* PROFILE */
-        .profile-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; }
-        .profile-card { text-align: center; padding: 3rem 2rem; }
-        .profile-avatar { font-size: 5rem; margin-bottom: 1.5rem; }
-        .profile-name { font-size: 2.5rem; color: #333; margin-bottom: 0.5rem; }
-        .profile-class { font-size: 1.4rem; color: #667eea; font-weight: 600; }
-        .detail-row { display: flex; justify-content: space-between; padding: 1.2rem 0; border-bottom: 1px solid #e8ecf4; }
-        .detail-label { color: #666; font-weight: 500; }
-        .detail-value { color: #333; font-weight: 600; font-size: 1.1rem; }
-        
-        /* RESULTS */
-        .results-header { text-align: center; color: #333; margin-bottom: 3rem; }
-        .summary-stats { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-            gap: 1.5rem; margin-bottom: 3rem; 
-        }
-        .stat-box { 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; 
-            padding: 2rem; border-radius: 20px; text-align: center; 
-        }
-        .stat-value { font-size: 2.5rem; font-weight: 700; }
-        .marks-table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
-        .marks-table th, .marks-table td { padding: 1.2rem; text-align: left; border-bottom: 1px solid #e8ecf4; }
-        .marks-table th { background: #f8f9ff; font-weight: 600; color: #333; }
-        .marks-table tr:hover { background: #f8f9ff; }
-        .grade-a { color: #2ed573; font-weight: 700; }
-        .grade-b { color: #ffa502; font-weight: 600; }
-        .grade-c { color: #ff6b6b; }
-        
-        @media (max-width: 768px) {
-            .profile-grid { grid-template-columns: 1fr; }
-            .summary-stats { grid-template-columns: 1fr; }
-            .nav-links { flex-wrap: wrap; }
+        header .tagline {
+            font-style: italic; 
+            color: #8d6e63; 
+            text-align: center; 
+            font-size: 1.1em;
+            margin-top: -15px;
         }
     </style>
 </head>
 <body>
-    <!-- 🔒 COMPLETE DATABASES EMBEDDED [file:21][file:22][file:23] -->
-    <div class="students-db" id="studentsDB" style="display:none;">
-        const studentsDB = [
-            { id: "2025-0023", password: "CBSE-01", name: "Devansh", class: "K.G", board: "CBSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0024", password: "CBSE-02", name: "Rudransh", class: "K.G", board: "CBSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0025", password: "CBSE-B2", name: "Rachit", class: "2", board: "CBSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0026", password: "CBSE-C1", name: "Shristi", class: "3", board: "CBSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0027", password: "CBSE-D1", name: "Diksha", class: "4", board: "CBSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0028", password: "CBSE-G1", name: "Ruhansh", class: "7", board: "CBSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0029", password: "CBSE-H1", name: "Garvit", class: "8", board: "CBSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0001", password: "ICSE-B1", name: "Mahi", class: "2", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0002", password: "ICSE-B2", name: "Vanshika", class: "2", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0003", password: "ICSE-C1", name: "Kriyansh", class: "3", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0004", password: "ICSE-C2", name: "Nipurn", class: "3", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0005", password: "ICSE-E1", name: "Soumiya Verma", class: "5", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0006", password: "ICSE-E2", name: "Aastha", class: "5", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0007", password: "ICSE-F1", name: "Devansh", class: "6", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0008", password: "ICSE-F2", name: "Mayank", class: "6", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0009", password: "ICSE-H1", name: "Hanshika", class: "8", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0010", password: "ICSEH-2", name: "Yash", class: "8", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0011", password: "ICSE-H3", name: "Bhumika", class: "8", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0012", password: "ICSE-H4", name: "Radhika", class: "8", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0013", password: "ICSE-H5", name: "Pratham", class: "8", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0014", password: "ICSE-I1", name: "Aanvi", class: "9", board: "ICSE", course: "Computer Applications", status: "Active" },
-            { id: "2025-0015", password: "ICSE-I2", name: "Aaryan", class: "9", board: "ICSE", course: "English + Computer Applications", status: "Active" },
-            { id: "2025-0016", password: "ICSE-I3", name: "Dev Chaudhary", class: "9", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0017", password: "ICSE-I4", name: "Vansh Khatri", class: "9", board: "ICSE", course: "English+ Computer Applications", status: "Active" },
-            { id: "2025-0018", password: "ICSE-I5", name: "Vanshika Sharma", class: "9", board: "ICSE", course: "English+ Computer Applications", status: "Active" },
-            { id: "2025-0019", password: "ICSE-I6", name: "Vinnet Raj Singh", class: "9", board: "ICSE", course: "English+ Computer Applications", status: "Active" },
-            { id: "2025-0020", password: "ICSE-I7", name: "Angila Rohila", class: "9", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0021", password: "ICSE-I8", name: "Avyan Pal", class: "9", board: "ICSE", course: "All Subjects", status: "Active" },
-            { id: "2025-0022", password: "ICSE-01", name: "Yashi", class: "K.G", board: "ICSE", course: "All Subjects", status: "Active" }
-        ];
+    <!-- Login Section -->
+    <div class="container" id="login-section">
+        <h1>Prince Learning Academy</h1>
+        <div class="festival-wishes">
+            <p class="diwali-greeting">✨ Wishing You a Happy Diwali! ✨</p>
+        </div>
+        <h2>Student Login</h2>
+        <h3>Fee Credentials</h3>
+        <form id="loginForm">
+            <label for="uniqueId">Unique ID</label>
+            <input type="text" id="uniqueId" name="uniqueId" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit" id="login-button">Login</button>
+        </form>
+        <div id="error-message"></div>
+        <footer>
+            Reserved to Prince Learning Academy with latest record up to 21 October, 2025.
+            <div class="director-name">Mr. Prince Chaudhary (Director)</div>
+        </footer>
     </div>
 
-    <div class="container">
-        <!-- HEADER (Hidden on login) -->
-        <div id="header" class="header" style="display:none;">
-            <div class="header-content">
-                <div class="logo">👑 Prince Learning Academy</div>
-                <div>
-                    <div class="user-info" id="userInfo">Loading...</div>
-                    <button class="logout-btn" onclick="logout()">Logout</button>
-                </div>
+    <!-- Fee Status Section -->
+    <div class="container" id="fee-status-section">
+        <header>
+            <h1>Prince Learning Academy</h1>
+            <p class="tagline">"To Be The King 👑 ! First Be A Prince 😉"</p>
+            <div class="festival-wishes">
+                <p>🪔 Happy Diwali! May the light of diyas guide you to success. 🪔</p>
+                <p> अन्नकूट की हार्दिक शुभकामनाएं! Happy Govardhan Puja! 🙏</p>
+                <p>👧👦 Wishing you a joyous Bhai-Dooj filled with love and happiness! 👦👧</p>
             </div>
-            <div class="nav-links">
-                <a href="#" onclick="showSection('dashboard')" class="active" data-section="dashboard">🏠 Dashboard</a>
-                <a href="#" onclick="showSection('profile')" data-section="profile">👤 Profile</a>
-                <a href="#" onclick="showSection('results')" data-section="results">📊 Results</a>
-            </div>
+        </header>
+
+        <div class="student-info">
+            <h3>Student Details</h3>
+            <p><strong>Name of Student:</strong> <span id="student-name"></span></p>
+            <p><strong>Unique ID:</strong> <span id="student-id"></span></p>
+            <p><strong>Class:</strong> <span id="student-class"></span></p>
         </div>
 
-        <!-- LOGIN SECTION -->
-        <div id="login" class="section active login-container">
-            <div class="logo">👑 Prince Learning Academy</div>
-            <h2>Student Login</h2>
-            <p>Believe. Achieve. Succeed.</p>
-            <div class="students-count">
-                📊 Serving <span id="totalStudents">29</span> students across CBSE & ICSE
-            </div>
-            <form class="login-form" id="loginForm">
-                <input type="text" id="studentId" placeholder="Student ID (e.g. 2025-0015)" required>
-                <input type="password" id="password" placeholder="Password" required>
-                <button type="submit" class="login-btn">🔐 Login Securely</button>
-            </form>
-            <div id="errorMsg" class="error"></div>
+        <h3>Monthly Fee Details</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Month</th>
+                    <th>Status</th>
+                    <th class="action-checkbox">Select to Pay</th>
+                </tr>
+            </thead>
+            <tbody id="fee-table-body"></tbody>
+        </table>
+
+        <div class="coupon-section">
+            <input type="text" id="coupon-code-input" placeholder="Coupon Code">
+            <button id="apply-coupon-btn">Apply</button>
+        </div>
+        <div id="coupon-message"></div>
+        
+        <div class="total-due">
+            Total Payable: ₹<span id="total-due-amount">0.00</span>
         </div>
 
-        <!-- DASHBOARD -->
-        <div id="dashboard" class="section">
-            <div class="dashboard-welcome">
-                <h1>Welcome Back!</h1>
-                <p>Your learning journey continues...</p>
-            </div>
-            <div class="nav-grid">
-                <div class="nav-card" onclick="showSection('profile')">
-                    <div class="nav-icon">👤</div>
-                    <h3>My Profile</h3>
-                    <p>View personal information and details</p>
-                </div>
-                <div class="nav-card" onclick="showSection('results')">
-                    <div class="nav-icon">📊</div>
-                    <h3>Exam Results</h3>
-                    <p>Check Sessional 1 marks and grades</p>
-                </div>
-            </div>
+        <a href="#" id="pay-now-link" class="pay-now-btn">PAY NOW</a>
+
+        <div class="notice">
+            <strong>Important Notice:</strong> After payment, kindly send a screenshot to <strong>7310680106</strong>. Your fee status will be updated within 48 hours.
         </div>
 
-        <!-- PROFILE -->
-        <div id="profile" class="section">
-            <div class="profile-grid">
-                <div class="profile-card">
-                    <div class="profile-avatar" id="profileAvatar">👤</div>
-                    <h1 class="profile-name" id="profileName">Loading...</h1>
-                    <div class="profile-class" id="profileClass">Loading...</div>
-                </div>
-                <div style="padding: 3rem;">
-                    <h2 style="color: #333; margin-bottom: 2rem; font-size: 1.8rem;">Student Details</h2>
-                    <div class="detail-row">
-                        <span class="detail-label">Student ID:</span>
-                        <span class="detail-value" id="detailId">-</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Full Name:</span>
-                        <span class="detail-value" id="detailName">-</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Class:</span>
-                        <span class="detail-value" id="detailClass">-</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Board:</span>
-                        <span class="detail-value" id="detailBoard">-</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Course:</span>
-                        <span class="detail-value" id="detailCourse">-</span>
-                    </div>
-                    <div class="detail-row">
-                        <span class="detail-label">Status:</span>
-                        <span class="detail-value" id="detailStatus" style="color: #2ed573;">Active</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- RESULTS -->
-        <div id="results" class="section">
-            <div class="results-header">
-                <h1 id="resultsTitle">Sessional 1 Examination Results</h1>
-                <p style="font-size: 1.1rem; color: #666; margin-bottom: 1rem;">
-                    External: 40 Marks | Internal: 10 Marks | Total: 50 Marks per subject
-                </p>
-            </div>
-            <div class="summary-stats" id="summaryStats"></div>
-            <table class="marks-table">
-                <thead>
-                    <tr>
-                        <th>Subject</th>
-                        <th>Internal (10)</th>
-                        <th>External (40)</th>
-                        <th>Total (50)</th>
-                        <th>Grade</th>
-                    </tr>
-                </thead>
-                <tbody id="marksBody"></tbody>
-            </table>
-        </div>
+        <footer>
+             Reserved to Prince Learning Academy with latest record up to 21 October, 2025.
+             <div class="director-name">Mr. Prince Chaudhary (Director)</div>
+        </footer>
     </div>
 
     <script>
-        // 🔒 EXTRACT COMPLETE DATABASES [file:21][file:22][file:23]
-        const studentsDB = eval(document.getElementById('studentsDB').textContent.match(/const studentsDB = [(.*?)];/s)[1] + ';');
-        document.getElementById('totalStudents').textContent = studentsDB.length;
-
-        // MARKS DATA from aco.csv [file:23]
-        const marksData = {
-            "2025-0014": { subjects: { "English Lang 1": {internal: "-", external: "-", total: 0}, "English Lang 2": {internal: "-", external: "-", total: 0}, "English Lit": {internal: "-", external: "-", total: 0}, "Computer": {internal: "-", external: "-", total: 0} } },
-            "2025-0015": { subjects: { "English Lang 1": {internal: 7, external: 17, total: 24}, "English Lang 2": {internal: 8, external: 16, total: 24}, "English Lit": {internal: "-", external: "-", total: 0}, "Computer": {internal: "-", external: "-", total: 0} } },
-            "2025-0016": { subjects: { "English Lang 1": {internal: 7, external: 8, total: 15}, "English Lang 2": {internal: 7, external: 12, total: 19}, "English Lit": {internal: "-", external: "-", total: 0}, "Computer": {internal: "-", external: "-", total: 0} } },
-            "2025-0017": { subjects: { "English Lang 1": {internal: 8, external: 15, total: 23}, "English Lang 2": {internal: 9, external: 28, total: 37}, "English Lit": {internal: "-", external: "-", total: 0}, "Computer": {internal: "-", external: "-", total: 0} } },
-            "2025-0019": { subjects: { "English Lang 1": {internal: 6, external: 15, total: 21}, "English Lang 2": {internal: 8, external: 18, total: 26}, "English Lit": {internal: "-", external: "-", total: 0}, "Computer": {internal: "-", external: "-", total: 0} } },
-            "2025-0020": { subjects: { "English Lang 1": {internal: 6, external: "-", total: 6}, "English Lang 2": {internal: 8, external: "-", total: 8}, "English Lit": {internal: "-", external: "-", total: 0}, "Computer": {internal: "-", external: "-", total: 0} } },
-            "2025-0021": { subjects: { "English Lang 1": {internal: 6, external: 12, total: 18}, "English Lang 2": {internal: 6, external: 0, total: 6}, "English Lit": {internal: "-", external: "-", total: 0}, "Computer": {internal: "-", external: "-", total: 0} } },
-            "2025-0007": { subjects: { "Chemistry": {internal: "-", external: 21, total: 21}, "Eng Gr": {internal: "-", external: 0, total: 0}, "Biology": {internal: "-", external: "-", total: 0} } },
-            "2025-0008": { subjects: { "Chemistry": {internal: "-", external: 11, total: 11}, "Eng Gr": {internal: "-", external: 3, total: 3}, "Biology": {internal: "-", external: "-", total: 0} } },
-            "2025-0011": { subjects: { "Chemistry": {internal: "-", external: 21, total: 21}, "Eng Gr": {internal: "-", external: 21, total: 21}, "Biology": {internal: "-", external: "-", total: 0} } }
+        const studentDatabase = {
+            "1": {"password": "A1", "name": "Devansh", "class": "K.G", "fee_per_month": 500, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
+            "2": {"password": "A2", "name": "Diksha", "class": "4", "fee_per_month": 600, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
+            "3": {"password": "A3", "name": "Gauri", "class": "4", "fee_per_month": 1500, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
+            "4": {"password": "A4", "name": "Kriyansh", "class": "3", "fee_per_month": 1500, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "Due", "October Due Amount": 500}},
+            "5": {"password": "A5", "name": "Mahi", "class": "2", "fee_per_month": 800, "fees": {"July": "PAID", "August": "Due", "September": "Due", "October": "Due", "October Due Amount": null}},
+            "6": {"password": "A6", "name": "Nipun", "class": "3", "fee_per_month": 1500, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
+            "7": {"password": "A7", "name": "Rachit", "class": "2", "fee_per_month": 800, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
+            "9": {"password": "A9", "name": "Rudransh", "class": "K.G", "fee_per_month": 3000, "fees": {"July": "PAID", "August": "PAID", "September": "Due", "October": "Due", "October Due Amount": null}},
+            "10": {"password": "B1", "name": "Bhumika", "class": "8", "fee_per_month": 1500, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
+            "12": {"password": "B3", "name": "Devansh", "class": "6", "fee_per_month": 1500, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
+            "13": {"password": "B4", "name": "Mayank", "class": "6", "fee_per_month": 1500, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
+            "14": {"password": "B6", "name": "Radhika", "class": "8", "fee_per_month": 3000, "fees": {"July": "PAID", "August": "PAID", "September": "Due", "October": "Due", "October Due Amount": null}},
+            "16": {"password": "C1", "name": "Aanvi", "class": "9", "fee_per_month": 600, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
+            "17": {"password": "C2", "name": "Aaryan", "class": "9", "fee_per_month": 1350, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "Due", "October Due Amount": 727}},
+            "18": {"password": "C3", "name": "Dev", "class": "9", "fee_per_month": 1350, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
+            "19": {"password": "C4", "name": "Vansh", "class": "9", "fee_per_month": 1350, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "Due", "October Due Amount": 50}},
+            "20": {"password": "C5", "name": "Vanshika", "class": "9", "fee_per_month": 600, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
+            "21": {"password": "C6", "name": "Vinnet", "class": "9", "fee_per_month": 1350, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
+            "22": {"password": "D1", "name": "Aaditya Vats", "class": "10", "fee_per_month": 800, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
+            "28": {"password": "A10", "name": "Shristi", "class": "3", "fee_per_month": 3000, "fees": {"July": "PAID", "August": "PAID", "September": "Due", "October": "Due", "October Due Amount": null}},
+            "29": {"password": "A11", "name": "Vanshika", "class": "2", "fee_per_month": 800, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
+            "30": {"password": "A12", "name": "Yashi", "class": "K.G", "fee_per_month": 500, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
+            "31": {"password": "C7", "name": "Angila", "class": "9", "fee_per_month": 2000, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}},
+            "32": {"password": "A13", "name": "Soumiya Verma", "class": "5", "fee_per_month": 1000, "fees": {"July": "PAID", "August": "PAID", "September": "PAID", "October": "PAID", "October Due Amount": null}}
         };
 
-        let currentStudent = null;
+        const couponCodes = {
+            "DIWALI5": 0.05,
+            "PLA10": 0.10
+        };
 
-        // SECTION NAVIGATION
-        function showSection(sectionName) {
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-            document.getElementById(sectionName).classList.add('active');
-            document.querySelector(`[data-section="${sectionName}"]`).classList.add('active');
-            
-            if (sectionName === 'profile') loadProfile();
-            if (sectionName === 'results') loadResults();
-        }
+        let currentDiscount = 0;
 
-        // LOGIN
-        document.getElementById('loginForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const id = document.getElementById('studentId').value.trim();
-            const pw = document.getElementById('password').value;
-            
-            currentStudent = studentsDB.find(s => s.id === id && s.password === pw);
-            
-            if (currentStudent && currentStudent.status === 'Active') {
-                sessionStorage.setItem('studentData', JSON.stringify(currentStudent));
-                document.getElementById('login').classList.remove('active');
-                document.getElementById('header').style.display = 'block';
-                showSection('dashboard');
-                loadDashboard();
+        const loginSection = document.getElementById('login-section');
+        const feeStatusSection = document.getElementById('fee-status-section');
+        const errorMessage = document.getElementById('error-message');
+
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const uniqueId = document.getElementById('uniqueId').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const student = studentDatabase[uniqueId];
+
+            if (student && student.password === password) {
+                errorMessage.textContent = '';
+                displayFeeStatus(uniqueId, student);
             } else {
-                document.getElementById('errorMsg').textContent = '❌ Invalid Student ID or Password';
-                document.getElementById('errorMsg').style.display = 'block';
+                errorMessage.textContent = 'Invalid credentials. Please try again.';
             }
         });
 
-        // LOAD DASHBOARD
-        function loadDashboard() {
-            if (!currentStudent) {
-                const saved = sessionStorage.getItem('studentData');
-                if (saved) currentStudent = JSON.parse(saved);
+        document.getElementById('apply-coupon-btn').addEventListener('click', function() {
+            const couponInput = document.getElementById('coupon-code-input');
+            const couponMessage = document.getElementById('coupon-message');
+            const code = couponInput.value.toUpperCase();
+
+            if (couponCodes[code]) {
+                currentDiscount = couponCodes[code];
+                couponMessage.textContent = `Success! ${currentDiscount * 100}% discount applied.`;
+                couponMessage.className = 'coupon-success';
+            } else {
+                currentDiscount = 0;
+                couponMessage.textContent = 'Invalid coupon code.';
+                couponMessage.className = 'coupon-error';
             }
-            document.getElementById('userInfo').textContent = `${currentStudent.name} (${currentStudent.class} ${currentStudent.board})`;
-        }
+            calculateTotalDue();
+        });
+        
+        function displayFeeStatus(id, student) {
+            loginSection.style.display = 'none';
+            feeStatusSection.style.display = 'block';
 
-        // LOAD PROFILE
-        function loadProfile() {
-            if (!currentStudent) return;
-            document.getElementById('profileAvatar').textContent = getInitials(currentStudent.name);
-            document.getElementById('profileName').textContent = currentStudent.name;
-            document.getElementById('profileClass').textContent = `${currentStudent.class} - ${currentStudent.board}`;
-            document.getElementById('detailId').textContent = currentStudent.id;
-            document.getElementById('detailName').textContent = currentStudent.name;
-            document.getElementById('detailClass').textContent = currentStudent.class;
-            document.getElementById('detailBoard').textContent = currentStudent.board;
-            document.getElementById('detailCourse').textContent = currentStudent.course;
-            document.getElementById('detailStatus').textContent = currentStudent.status;
-        }
+            document.getElementById('student-name').textContent = student.name;
+            document.getElementById('student-id').textContent = id;
+            document.getElementById('student-class').textContent = student.class;
 
-        // LOAD RESULTS
-        function loadResults() {
-            if (!currentStudent) return;
+            const tbody = document.getElementById('fee-table-body');
+            tbody.innerHTML = '';
             
-            document.getElementById('resultsTitle').textContent = `${currentStudent.name}'s Sessional 1 Results`;
+            const months = ["July", "August", "September", "October", "November", "December", "January", "February"];
+            const compulsoryMonths = ["July", "August", "September", "October"];
             
-            const studentMarks = marksData[currentStudent.id] || { subjects: {} };
-            const subjects = studentMarks.subjects;
-            
-            let totalMarks = 0, maxMarks = 0, appearedCount = 0;
-            Object.values(subjects).forEach(s => {
-                if (s.total > 0) {
-                    totalMarks += s.total;
-                    maxMarks += 50;
-                    appearedCount++;
+            months.forEach(month => {
+                const status = student.fees[month];
+                const feePerMonth = student.fee_per_month;
+                let dueAmount = 0;
+                let displayStatus = "Paid";
+                let statusClass = "status-paid";
+                let isCompulsoryDue = false;
+
+                if (status === 'PAID') {
+                    dueAmount = 0;
+                } else if (status === 'Due' && compulsoryMonths.includes(month)) {
+                    isCompulsoryDue = true;
+                    dueAmount = (month === 'October' && student.fees['October Due Amount']) ? student.fees['October Due Amount'] : feePerMonth;
+                    displayStatus = `Due (₹${dueAmount.toFixed(2)})`;
+                    statusClass = "status-due";
+                } else {
+                    dueAmount = feePerMonth;
+                    displayStatus = `Payable (₹${dueAmount.toFixed(2)})`;
+                    statusClass = "status-payable";
                 }
-            });
-            
-            const percentage = maxMarks > 0 ? ((totalMarks / maxMarks) * 100).toFixed(1) : 0;
-            const overallGrade = getGrade(percentage);
-            
-            document.getElementById('summaryStats').innerHTML = `
-                <div class="stat-box">
-                    <div class="stat-value">${percentage}%</div>
-                    <div>Overall Percentage</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-value">${totalMarks}/${maxMarks}</div>
-                    <div>Total Marks</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-value">${appearedCount}</div>
-                    <div>Subjects Appeared</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-value grade-${overallGrade.toLowerCase()}">${overallGrade}</div>
-                    <div>Overall Grade</div>
-                </div>
-            `;
-            
-            let tableRows = '';
-            Object.entries(subjects).forEach(([subject, marks]) => {
-                const subjPercentage = marks.total > 0 ? (marks.total / 50) * 100 : 0;
-                const subjGrade = getGrade(subjPercentage);
-                tableRows += `
-                    <tr>
-                        <td>${subject}</td>
-                        <td>${marks.internal || '-'}</td>
-                        <td>${marks.external || '-'}</td>
-                        <td>${marks.total || 0}</td>
-                        <td class="grade-${subjGrade.toLowerCase()}">${subjGrade}</td>
-                    </tr>
+
+                const tr = document.createElement('tr');
+                let checkboxHTML = '';
+
+                if (status === 'PAID') {
+                    checkboxHTML = `<input type="checkbox" disabled>`;
+                } else if (isCompulsoryDue) {
+                    checkboxHTML = `<input type="checkbox" class="fee-checkbox" data-amount="${dueAmount}" checked disabled>`;
+                } else {
+                    checkboxHTML = `<input type="checkbox" class="fee-checkbox" data-amount="${dueAmount}">`;
+                }
+                
+                tr.innerHTML = `
+                    <td>${month}</td>
+                    <td class="${statusClass}">${displayStatus}</td>
+                    <td class="action-checkbox">${checkboxHTML}</td>
                 `;
+                tbody.appendChild(tr);
+            });
+
+            tbody.querySelectorAll('.fee-checkbox:not([disabled])').forEach(chk => {
+                chk.addEventListener('change', calculateTotalDue);
             });
             
-            if (tableRows === '') {
-                tableRows = '<tr><td colspan="5" style="text-align:center;padding:3rem;color:#666;">No marks entered yet for Sessional 1</td></tr>';
-            }
+            calculateTotalDue();
+        }
+
+        function calculateTotalDue() {
+            let subtotal = 0;
+            document.querySelectorAll('.fee-checkbox:checked').forEach(chk => {
+                subtotal += parseFloat(chk.dataset.amount);
+            });
+
+            const finalTotal = subtotal * (1 - currentDiscount);
             
-            document.getElementById('marksBody').innerHTML = tableRows;
+            document.getElementById('total-due-amount').textContent = finalTotal.toFixed(2);
+            updatePayNowLink(finalTotal);
         }
 
-        function getGrade(percentage) {
-            if (percentage >= 80) return 'A';
-            if (percentage >= 60) return 'B';
-            if (percentage >= 40) return 'C';
-            return 'D';
-        }
-
-        function getInitials(name) {
-            return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0,2);
-        }
-
-        function logout() {
-            sessionStorage.clear();
-            currentStudent = null;
-            document.getElementById('header').style.display = 'none';
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-            document.getElementById('login').classList.add('active');
-            document.getElementById('loginForm').reset();
-            document.getElementById('errorMsg').style.display = 'none';
-        }
-
-        // CHECK IF ALREADY LOGGED IN
-        window.addEventListener('load', () => {
-            const saved = sessionStorage.getItem('studentData');
-            if (saved) {
-                currentStudent = JSON.parse(saved);
-                document.getElementById('login').classList.remove('active');
-                document.getElementById('header').style.display = 'block';
-                showSection('dashboard');
-                loadDashboard();
+        function updatePayNowLink(amount) {
+            const payNowLink = document.getElementById('pay-now-link');
+            const payNowButton = document.querySelector('.pay-now-btn');
+            
+            if (amount > 0) {
+                const upiId = '7310680106@fam';
+                const studentName = document.getElementById('student-name').textContent.trim();
+                const url = `upi://pay?pa=${upiId}&pn=Prince%20Learning%20Academy&am=${amount.toFixed(2)}&cu=INR&tn=Fee%20for%20${encodeURIComponent(studentName)}`;
+                payNowLink.href = url;
+                payNowButton.style.display = 'block';
+            } else {
+                payNowButton.style.display = 'none';
             }
-        });
+        }
     </script>
 </body>
 </html>
