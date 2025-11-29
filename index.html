@@ -13,12 +13,10 @@
         body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#0f0f23 0%,#1a1a3e 25%,#2d1b69 50%,#4a0e8c 75%,#8b008b 100%);background-size:400% 400%;animation:galaxyShift 20s ease infinite;color:#fff;overflow-x:hidden;position:relative}
         @keyframes galaxyShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
         
-        /* Particles */
         .particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;overflow:hidden}
         .particle{position:absolute;background:radial-gradient(circle, var(--primary-gold) 0%, transparent 70%);border-radius:50%;animation:float 20s infinite linear;opacity:0.1}
         @keyframes float{0%{transform:translateY(100vh) rotate(0deg) scale(0.5);opacity:0}10%{opacity:0.3}90%{opacity:0.3}100%{transform:translateY(-100vh) rotate(360deg) scale(1.2);opacity:0}}
         
-        /* Navigation */
         .navbar{position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:10000;background:var(--glass-bg);backdrop-filter:blur(40px);border:2px solid var(--glass-border);border-radius:50px;padding:15px 30px;display:flex;align-items:center;gap:30px;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
         .logo{font-family:'Dancing Script',cursive;font-size:2.5rem;background:linear-gradient(45deg,var(--primary-gold),#fff,var(--secondary-blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:800;animation:pulse-glow 3s ease-in-out infinite alternate}
         @keyframes pulse-glow{0%{filter:drop-shadow(0 0 10px var(--primary-gold))}100%{filter:drop-shadow(0 0 25px var(--secondary-blue))}}
@@ -33,7 +31,6 @@
         .portal-btn:hover{transform:translateY(-10px) scale(1.05);box-shadow:0 25px 70px rgba(255,71,87,0.6)}
         .portal-btn:hover::after{transform:scale(1.2)}
         
-        /* Hero */
         .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:150px 5% 100px;position:relative}
         .hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 30% 20%,rgba(255,215,0,0.1) 0%,transparent 50%),radial-gradient(circle at 70% 80%,rgba(79,195,247,0.1) 0%,transparent 50%);animation:portalPulse 8s ease-in-out infinite}
         @keyframes portalPulse{0%,100%{opacity:0.6;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}}
@@ -53,7 +50,6 @@
         .cta-primary:hover{box-shadow:0 35px 90px rgba(255,71,87,0.7)}
         .cta-secondary:hover{background:rgba(255,255,255,0.2)}
         
-        /* Sections */
         .section{padding:140px 5%;position:relative}
         .section-container{max-width:1400px;margin:0 auto}
         .section-title{font-family:'Dancing Script',cursive;font-size:clamp(3rem,8vw,6rem);text-align:center;margin-bottom:80px;background:linear-gradient(45deg,var(--primary-gold),var(--secondary-blue),var(--primary-red));background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradientFlow 4s ease infinite}
@@ -86,13 +82,57 @@
         .footer{background:linear-gradient(135deg,rgba(15,15,35,0.95),rgba(26,26,62,0.95));backdrop-filter:blur(40px);text-align:center;padding:60px 5%;border-top:6px solid var(--primary-gold)}
         .footer-content{font-size:1.4rem;font-weight:800;letter-spacing:2px}
         
+        /* PERFECT STUDENT PORTAL OVERLAY */
+        .portal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);backdrop-filter:blur(20px);z-index:20000;display:flex;justify-content:center;align-items:center;padding:20px}
+        .portal-container{max-width:1400px;max-height:95vh;width:95%;height:95%;overflow-y:auto;background:linear-gradient(145deg,rgba(255,255,255,0.15),rgba(255,255,255,0.05));backdrop-filter:blur(60px);border:3px solid rgba(255,255,255,0.3);border-radius:40px;padding:40px;box-shadow:0 50px 150px rgba(0,0,0,0.8);animation:portalSlideIn 0.6s cubic-bezier(0.25,0.8,0.25,1)}
+        @keyframes portalSlideIn{from{opacity:0;transform:scale(0.7) rotateX(20deg)}to{opacity:1;transform:scale(1) rotateX(0deg)}}
+        .portal-close{position:absolute;top:25px;right:35px;font-size:3rem;color:#fff;cursor:pointer;transition:all 0.4s;z-index:10;background:var(--glass-bg);backdrop-filter:blur(30px);width:70px;height:70px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid var(--glass-border)}
+        .portal-close:hover{color:var(--primary-gold);transform:rotate(180deg) scale(1.1);box-shadow:0 10px 40px rgba(255,215,0,0.5)}
+        
+        .portal-title{font-family:'Dancing Script',cursive;font-size:4rem;background:linear-gradient(45deg,#FFD700,#fff,var(--secondary-blue));background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradientFlow 3s ease infinite;text-align:center;margin-bottom:30px;position:relative}
+        .portal-subtitle{font-size:1.4rem;text-align:center;opacity:0.9;margin-bottom:40px}
+        
+        /* Login Form */
+        .login-form{max-width:500px;margin:0 auto}
+        .quantum-input{width:100%;padding:22px 30px;border:3px solid rgba(255,255,255,0.3);border-radius:30px;font-size:1.4rem;background:rgba(255,255,255,0.12);backdrop-filter:blur(25px);color:#fff;margin-bottom:25px;transition:all 0.4s cubic-bezier(0.25,0.8,0.25,1);font-weight:600;letter-spacing:1px}
+        .quantum-input::placeholder{color:rgba(255,255,255,0.7)}
+        .quantum-input:focus{outline:none;border-color:var(--primary-gold);box-shadow:0 0 50px rgba(255,215,0,0.5);transform:scale(1.03);background:rgba(255,255,255,0.2)}
+        .portal-login-btn{width:100%;background:linear-gradient(135deg,var(--primary-gold),#FFED4E);color:#1a1a3e;padding:22px;border:none;border-radius:30px;font-size:1.6rem;font-weight:800;cursor:pointer;transition:all 0.5s cubic-bezier(0.25,0.8,0.25,1);box-shadow:0 25px 70px rgba(255,215,0,0.5);text-transform:uppercase;letter-spacing:2px;position:relative;overflow:hidden}
+        .portal-login-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent);transition:left 0.8s}
+        .portal-login-btn:hover::before{left:100%}
+        .portal-login-btn:hover{transform:translateY(-12px) scale(1.05);box-shadow:0 35px 90px rgba(255,215,0,0.7)}
+        
+        /* Fee Portal Styles */
+        .fee-portal{display:none;flex-direction:column}
+        .student-profile{background:linear-gradient(135deg,rgba(255,215,0,0.2),rgba(79,195,247,0.2));padding:40px;border-radius:30px;margin-bottom:40px;border:3px solid rgba(255,215,0,0.4);text-align:center}
+        .student-name{font-family:'Dancing Script',cursive;font-size:3.5rem;color:var(--primary-gold);margin-bottom:25px}
+        .profile-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;font-size:1.3rem;margin-top:20px}
+        .profile-item{background:var(--glass-bg);backdrop-filter:blur(20px);padding:20px;border-radius:20px;border:2px solid var(--glass-border)}
+        
+        .fee-matrix-title{font-family:'Dancing Script',cursive;font-size:2.8rem;color:var(--primary-gold);text-align:center;margin:50px 0 30px}
+        .fee-table{width:100%;border-collapse:collapse;background:linear-gradient(145deg,rgba(255,255,255,0.15),rgba(255,255,255,0.05));border-radius:25px;overflow:hidden;box-shadow:0 30px 100px rgba(0,0,0,0.6);margin-bottom:40px}
+        .fee-table th{background:linear-gradient(135deg,var(--primary-red),var(--accent-purple));color:#fff;padding:25px 20px;font-weight:800;font-size:1.2rem;text-align:center}
+        .fee-table td{padding:25px 20px;text-align:center;font-weight:700;border-bottom:1px solid rgba(255,255,255,0.1);vertical-align:middle}
+        .fee-table tbody tr:nth-child(even){background:rgba(255,255,255,0.08)}
+        .status-badge{padding:12px 25px;border-radius:30px;font-weight:800;font-size:1.1rem;display:inline-block;margin:0 auto}
+        .status-paid{background:linear-gradient(135deg,#00C851,#00E676);color:#fff}
+        .status-due{background:linear-gradient(135deg,#FF9500,#FFD700);color:#2d1b69}
+        .status-available{background:linear-gradient(135deg,#4FC3F7,#81D4FA);color:#fff}
+        .pay-checkbox{transform:scale(2.5);accent-color:var(--primary-gold);cursor:pointer;margin-right:15px}
+        
+        .payment-portal{background:linear-gradient(135deg,#00C851 0%,#4FC3F7 100%);padding:50px;border-radius:40px;text-align:center;margin:40px 0;box-shadow:0 40px 120px rgba(0,184,81,0.4);display:none;position:relative;overflow:hidden}
+        .payment-portal::before{content:'';position:absolute;top:-2px;left:-2px;right:-2px;bottom:-2px;background:linear-gradient(45deg,var(--primary-gold),transparent,transparent,var(--primary-gold));border-radius:40px;animation:borderRotate 3s linear infinite;z-index:0}
+        .payment-portal>*{position:relative;z-index:2}
+        .payment-title{font-family:'Dancing Script',cursive;font-size:3rem;color:#fff;margin-bottom:20px}
+        .total-amount{font-size:5rem;font-weight:900;background:linear-gradient(45deg,var(--primary-gold),#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:30px 0}
+        .upi-id{font-size:2.2rem;font-weight:900;color:var(--primary-gold);word-break:break-all;margin:25px 0;padding:25px;background:rgba(255,255,255,0.25);border-radius:25px;border:2px solid rgba(255,255,255,0.3)}
+        .payment-btn{background:linear-gradient(135deg,var(--primary-gold),#FFED4E);color:#1a1a3e;padding:25px 60px;border:none;border-radius:35px;font-size:1.8rem;font-weight:900;cursor:pointer;margin-top:25px;letter-spacing:2px;text-transform:uppercase;box-shadow:0 25px 70px rgba(255,215,0,0.6);transition:all 0.4s cubic-bezier(0.25,0.8,0.25,1);position:relative;overflow:hidden}
+        .payment-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.5),transparent);transition:left 0.8s}
+        .payment-btn:hover::before{left:100%}
+        .payment-btn:hover{transform:translateY(-15px) scale(1.05);box-shadow:0 40px 100px rgba(255,215,0,0.8)}
+        
         .hidden{display:none}
-        @media (max-width:768px){
-            .nav-menu{display:none}
-            .hero-cta{flex-direction:column;align-items:center;gap:20px}
-            .faculty-orbit{flex-direction:column;align-items:center}
-            .section{padding:100px 5%}
-        }
+        @media (max-width:768px){.portal-container{padding:20px;height:98vh;width:98vw;border-radius:20px}.fee-table th,.fee-table td{padding:15px 10px;font-size:0.9rem}.profile-grid{grid-template-columns:1fr}}
     </style>
 </head>
 <body>
@@ -189,120 +229,36 @@
         </div>
     </footer>
 
-    <script>
-        // Initialize Effects
-        function initParticles() {
-            const particles = document.getElementById('particles');
-            for(let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.width = particle.style.height = (Math.random() * 8 + 4) + 'px';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDuration = (Math.random() * 20 + 20) + 's';
-                particle.style.animationDelay = Math.random() * 10 + 's';
-                particles.appendChild(particle);
-            }
-        }
-
-        function scrollToSection(id) {
-            document.getElementById(id).scrollIntoView({behavior: 'smooth'});
-        }
-
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            const scroll = Math.min(window.scrollY / 100, 1);
-            navbar.style.background = `rgba(255,255,255,${0.1 + scroll * 0.2})`;
-            navbar.style.backdropFilter = `blur(${20 + scroll * 20}px)`;
-        });
-
-        // ✅ PERFECTLY WORKING STUDENT PORTAL WITH FULL 29-STUDENT DATABASE
-        function openStudentPortal() {
-            const portalWin = window.open('', 'PrinceStudentPortal', 'width=1300,height=950,scrollbars=yes,resizable=yes');
-            portalWin.document.write(`
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prince Learning Academy - Quantum Fee Portal 🎅</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Dancing+Script:wght@400;700&display=swap');
-        *{margin:0;padding:0;box-sizing:border-box}
-        body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#0f0f23 0%,#1a1a3e 50%,#2d1b69 100%);min-height:100vh;color:#fff;overflow-x:hidden}
-        .portal-header{position:relative;background:linear-gradient(135deg,#FF4757,#8E44AD,#4FC3F7);padding:40px 0;border-radius:0 0 40px 40px;margin-bottom:30px;box-shadow:0 20px 80px rgba(255,71,87,0.4)}
-        .portal-header::before{content:'';position:absolute;top:-20px;left:50%;transform:translateX(-50%);width:100px;height:100px;background:radial-gradient(circle,#FFD700 0%,transparent 70%);border-radius:50%;animation:pulse 2s infinite}
-        @keyframes pulse{0%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.2)}100%{transform:translateX(-50%) scale(1)}}
-        .portal-title{font-family:'Dancing Script',cursive;font-size:4rem;background:linear-gradient(45deg,#FFD700,#fff);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-align:center;margin-bottom:15px}
-        .portal-subtitle{font-size:1.4rem;text-align:center;opacity:0.95}
-        .container{max-width:1200px;margin:0 auto;padding:0 30px}
-        .quantum-card{background:linear-gradient(145deg,rgba(255,255,255,0.1),rgba(255,255,255,0.05));backdrop-filter:blur(50px);border:2px solid rgba(255,255,255,0.15);border-radius:30px;padding:50px;margin:20px 0;box-shadow:0 30px 100px rgba(0,0,0,0.5);transition:all 0.5s ease}
-        .quantum-card:hover{transform:translateY(-15px);border-color:rgba(255,215,0,0.5);box-shadow:0 40px 120px rgba(255,215,0,0.3)}
-        .form-group{margin-bottom:30px}
-        .quantum-input{width:100%;padding:20px 25px;border:2px solid rgba(255,255,255,0.2);border-radius:25px;font-size:1.4rem;background:rgba(255,255,255,0.1);backdrop-filter:blur(20px);color:#fff;transition:all 0.4s ease;font-weight:600}
-        .quantum-input::placeholder{color:rgba(255,255,255,0.7)}
-        .quantum-input:focus{outline:none;border-color:#FFD700;box-shadow:0 0 40px rgba(255,215,0,0.4);transform:scale(1.02)}
-        .portal-btn{background:linear-gradient(135deg,#FFD700,#FFED4E);color:#1a1a3e;padding:20px 50px;border:none;border-radius:25px;font-size:1.6rem;font-weight:800;cursor:pointer;width:100%;transition:all 0.5s cubic-bezier(0.25,0.8,0.25,1);box-shadow:0 20px 60px rgba(255,215,0,0.4);text-transform:uppercase;letter-spacing:2px;position:relative;overflow:hidden}
-        .portal-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent);transition:left 0.7s}
-        .portal-btn:hover::before{left:100%}
-        .portal-btn:hover{transform:translateY(-10px);box-shadow:0 30px 80px rgba(255,215,0,0.6)}
-        .status-badge{padding:12px 25px;border-radius:30px;font-weight:800;font-size:1.2rem;display:inline-block;margin:10px 0}
-        .status-due{background:linear-gradient(135deg,#FF9500,#FFD700);color:#2d1b69}
-        .status-paid{background:linear-gradient(135deg,#00C851,#00E676);color:#fff}
-        .payment-portal{background:linear-gradient(135deg,#00C851,#4FC3F7);padding:50px;border-radius:30px;text-align:center;margin-top:40px;box-shadow:0 30px 100px rgba(0,184,148,0.4)}
-        .total-amount{font-size:4.5rem;font-weight:900;background:linear-gradient(45deg,#FFD700,#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:30px 0}
-        .upi-id{font-size:2.2rem;font-weight:900;color:#FFD700;word-break:break-all;margin:25px 0;padding:20px;background:rgba(255,255,255,0.2);border-radius:20px}
-        table{width:100%;border-collapse:collapse;margin:30px 0;background:rgba(255,255,255,0.1);border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
-        th{background:linear-gradient(135deg,#FF4757,#8E44AD);color:#fff;padding:20px;font-weight:800;text-align:center}
-        td{padding:20px;text-align:center;font-weight:700;border-bottom:1px solid rgba(255,255,255,0.1)}
-        .pay-checkbox{transform:scale(3);accent-color:#FFD700;cursor:pointer;margin:0 20px}
-        .student-matrix{background:linear-gradient(135deg,rgba(255,215,0,0.1),rgba(79,195,247,0.1));padding:40px;border-radius:25px;margin-bottom:40px;text-align:center;border:2px solid rgba(255,215,0,0.3)}
-        .student-name{font-family:'Dancing Script',cursive;font-size:3rem;color:#FFD700;margin-bottom:30px}
-        .matrix-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;font-size:1.3rem;margin-top:20px}
-        .hidden{display:none}
-        @media (max-width:768px){.container{padding:0 20px}.quantum-card{padding:30px}}
-    </style>
-</head>
-<body>
-    <div class="portal-header">
-        <h1 class="portal-title">🎅 Quantum Fee Portal</h1>
-        <p class="portal-subtitle">✨ Secure • Instant • Christmas Special ✨<br>Active till 7th Dec 2025</p>
-    </div>
-    
-    <div class="container">
-        <!-- Login Section -->
-        <div id="loginPortal" class="quantum-card">
-            <h2 style="font-size:3rem;font-family:'Dancing Script',cursive;color:#FFD700;margin-bottom:40px;text-align:center">🔐 Student Quantum Access</h2>
-            <div class="form-group">
-                <input type="text" id="studentId" class="quantum-input" placeholder="👤 Student ID (e.g. 2025-0001)">
-            </div>
-            <div class="form-group">
-                <input type="password" id="studentPass" class="quantum-input" placeholder="🔑 Access Code">
-            </div>
-            <button class="portal-btn" onclick="quantumLogin()">🚀 Enter Secure Portal</button>
-            <p style="text-align:center;margin-top:20px;color:rgba(255,255,255,0.8);font-size:1.1rem">Need credentials? Contact: +91 73106 80106</p>
-        </div>
-
-        <!-- Student Dashboard -->
-        <div id="studentPortal" class="hidden">
-            <div class="quantum-card">
-                <button class="portal-btn" style="width:auto;float:right;margin-bottom:30px;background:linear-gradient(135deg,#FF4757,#8E44AD)" onclick="quantumLogout()">🚪 Secure Logout</button>
+    <!-- 🚀 PERFECT STUDENT PORTAL OVERLAY -->
+    <div id="studentPortalOverlay" class="portal-overlay hidden">
+        <div class="portal-container">
+            <!-- Login Screen -->
+            <div id="loginScreen">
+                <div class="portal-close" onclick="closePortal()">✕</div>
+                <h1 class="portal-title">🎅 Quantum Fee Portal</h1>
+                <p class="portal-subtitle">✨ Secure Login • Christmas Special • Active till 7th Dec 2025 ✨</p>
                 
-                <!-- Student Profile Matrix -->
-                <div class="student-matrix">
-                    <h2 id="studentName" class="student-name">Quantum Student Profile</h2>
-                    <div class="matrix-grid">
-                        <div><strong>🆔 Student ID:</strong> <span id="displayId">-</span></div>
-                        <div><strong>📚 Class:</strong> <span id="displayClass">-</span></div>
-                        <div><strong>🏛️ Board:</strong> <span id="displayBoard">-</span></div>
-                        <div><strong>📖 Course:</strong> <span id="displayCourse">-</span></div>
-                        <div><strong>💰 Monthly Fee:</strong> <span id="displayFee">-</span></div>
-                        <div><strong>📊 Prev. Balance:</strong> <span id="displayBalance">-</span></div>
-                    </div>
+                <div class="login-form">
+                    <input type="text" id="studentIdInput" class="quantum-input" placeholder="👤 Student ID (e.g. 2025-0001)">
+                    <input type="password" id="studentPassInput" class="quantum-input" placeholder="🔑 Access Code (Contact Admin)">
+                    <button class="portal-login-btn" onclick="loginStudent()">🚀 Enter Secure Portal</button>
+                    <p style="text-align:center;margin-top:25px;color:rgba(255,255,255,0.8);font-size:1.1rem">📞 Need credentials? Call: +91 73106 80106</p>
+                </div>
+            </div>
+
+            <!-- Fee Portal Screen -->
+            <div id="feeScreen" class="fee-portal">
+                <div class="portal-close" onclick="logoutStudent()">✕</div>
+                
+                <!-- Student Profile -->
+                <div class="student-profile" id="studentProfile">
+                    <h2 class="student-name" id="studentNameDisplay">Loading...</h2>
+                    <div class="profile-grid" id="profileGrid"></div>
                 </div>
 
-                <!-- Fee Payment Matrix -->
-                <h3 style="font-size:2.5rem;font-family:'Dancing Script',cursive;color:#FFD700;margin:50px 0 30px;text-align:center">💳 Fee Payment Matrix</h3>
-                <table>
+                <!-- Fee Matrix -->
+                <h2 class="fee-matrix-title">💳 Fee Payment Matrix</h2>
+                <table class="fee-table">
                     <thead>
                         <tr>
                             <th>📅 Payment Period</th>
@@ -311,26 +267,26 @@
                             <th>⚡ Select to Pay</th>
                         </tr>
                     </thead>
-                    <tbody id="feeMatrix"></tbody>
+                    <tbody id="feeTableBody"></tbody>
                 </table>
 
                 <!-- Payment Gateway -->
-                <div id="paymentPortal" class="payment-portal hidden">
-                    <h2 style="font-size:3rem;font-family:'Dancing Script',cursive;margin-bottom:30px">🎉 Payment Ready! Ho Ho Ho! 🎅</h2>
-                    <div style="font-size:1.5rem;margin-bottom:20px">Total Selected Amount:</div>
-                    <div id="paymentTotal" class="total-amount">₹0</div>
+                <div class="payment-portal" id="paymentGateway">
+                    <h2 class="payment-title">🎉 Payment Ready! Ho Ho Ho! 🎅</h2>
+                    <div style="font-size:1.6rem;color:#fff;margin-bottom:20px;font-weight:700">Total Selected Amount:</div>
+                    <div class="total-amount" id="totalAmountDisplay">₹0</div>
                     <div class="upi-id">UPI ID: 7310680106@fam</div>
-                    <p style="font-size:1.5rem;margin:30px 0">Pay using: Google Pay • PhonePe • Paytm • BHIM</p>
-                    <button class="portal-btn" style="background:linear-gradient(135deg,#00C851,#4FC3F7);color:#fff;font-size:1.8rem;padding:25px 80px;margin-top:20px" onclick="initiateQuantumPayment()">🌌 Complete UPI Payment ✨</button>
-                    <p style="font-size:1.2rem;margin-top:30px;color:rgba(255,255,255,0.9)">💡 After payment, inform admin for instant record update (4 working days)</p>
+                    <p style="font-size:1.4rem;color:#fff;margin:30px 0">Pay using: Google Pay • PhonePe • Paytm • BHIM</p>
+                    <button class="payment-btn" onclick="initiatePayment()">🌌 Complete UPI Payment ✨</button>
+                    <p style="font-size:1.2rem;color:#fff;margin-top:30px;opacity:0.9">💡 After payment, inform admin for instant record update (4 working days)</p>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // ✅ COMPLETE 29-STUDENT DATABASE - FULLY FUNCTIONAL
-        const quantumData = {
+        // ✅ COMPLETE 29-STUDENT DATABASE WITH FULL DATA
+        const studentDatabase = {
             "2025-0001":{pass:"ICSE-B1",name:"Mahi",cls:"2",brd:"ICSE",course:"All Subjects",fee:500,bal:0,nov:"DUE",dec:"DUE"},
             "2025-0002":{pass:"ICSE-B2",name:"Vanshika",cls:"2",brd:"ICSE",course:"All Subjects",fee:800,bal:0,nov:"PAID",dec:"DUE"},
             "2025-0003":{pass:"ICSE-C1",name:"Kriyansh",cls:"3",brd:"ICSE",course:"All Subjects",fee:1500,bal:0,nov:"PAID",dec:"DUE"},
@@ -366,54 +322,84 @@
         let currentStudentId = '';
         let selectedPayments = [];
 
-        // 🔐 SECURE LOGIN FUNCTION
-        function quantumLogin() {
-            const id = document.getElementById('studentId').value.trim();
-            const pass = document.getElementById('studentPass').value.trim();
+        // 🌀 MAIN WEBSITE FUNCTIONS
+        function initParticles() {
+            const particles = document.getElementById('particles');
+            for(let i = 0; i < 60; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.width = particle.style.height = (Math.random() * 10 + 3) + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 25 + 15) + 's';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particles.appendChild(particle);
+            }
+        }
+
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({behavior: 'smooth'});
+        }
+
+        // 🚀 STUDENT PORTAL FUNCTIONS
+        function openStudentPortal() {
+            document.getElementById('studentPortalOverlay').classList.remove('hidden');
+            document.getElementById('studentIdInput').focus();
+        }
+
+        function closePortal() {
+            document.getElementById('studentPortalOverlay').classList.add('hidden');
+            resetPortal();
+        }
+
+        function loginStudent() {
+            const id = document.getElementById('studentIdInput').value.trim();
+            const pass = document.getElementById('studentPassInput').value.trim();
             
             if (!id || !pass) {
                 alert('⚠️ Please enter both Student ID and Access Code!');
                 return;
             }
             
-            currentStudent = quantumData[id];
+            currentStudent = studentDatabase[id];
             currentStudentId = id;
             
             if (currentStudent && currentStudent.pass === pass) {
-                document.getElementById('loginPortal').classList.add('hidden');
-                document.getElementById('studentPortal').classList.remove('hidden');
-                loadStudentMatrix();
-                renderFeeMatrix();
-                console.log('✅ Login successful:', currentStudent.name);
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('feeScreen').style.display = 'flex';
+                loadStudentDashboard();
             } else {
-                alert('❌ Access Denied! Invalid Student ID or Password.\\nContact admin for credentials.');
-                document.getElementById('studentId').value = '';
-                document.getElementById('studentPass').value = '';
-                document.getElementById('studentId').focus();
+                alert('❌ Invalid credentials! Contact admin for access.');
+                document.getElementById('studentIdInput').value = '';
+                document.getElementById('studentPassInput').value = '';
             }
         }
 
-        // 📊 LOAD STUDENT PROFILE
-        function loadStudentMatrix() {
-            document.getElementById('studentName').textContent = currentStudent.name;
-            document.getElementById('displayId').textContent = currentStudentId;
-            document.getElementById('displayClass').textContent = currentStudent.cls;
-            document.getElementById('displayBoard').textContent = currentStudent.brd;
-            document.getElementById('displayCourse').textContent = currentStudent.course;
-            document.getElementById('displayFee').textContent = '₹' + currentStudent.fee.toLocaleString();
-            document.getElementById('displayBalance').textContent = '₹' + currentStudent.bal.toLocaleString();
+        function loadStudentDashboard() {
+            // Load Profile
+            document.getElementById('studentNameDisplay').textContent = currentStudent.name;
+            const profileGrid = document.getElementById('profileGrid');
+            profileGrid.innerHTML = `
+                <div class="profile-item"><strong>🆔 ID:</strong> ${currentStudentId}</div>
+                <div class="profile-item"><strong>📚 Class:</strong> ${currentStudent.cls}</div>
+                <div class="profile-item"><strong>🏛️ Board:</strong> ${currentStudent.brd}</div>
+                <div class="profile-item"><strong>📖 Course:</strong> ${currentStudent.course}</div>
+                <div class="profile-item"><strong>💰 Monthly:</strong> ₹${currentStudent.fee.toLocaleString()}</div>
+                <div class="profile-item"><strong>📊 Balance:</strong> ₹${currentStudent.bal.toLocaleString()}</div>
+            `;
+            
+            renderFeeTable();
+            updatePaymentTotal();
         }
 
-        // 💳 RENDER FEE MATRIX
-        function renderFeeMatrix() {
-            const tbody = document.getElementById('feeMatrix');
+        function renderFeeTable() {
+            const tbody = document.getElementById('feeTableBody');
             tbody.innerHTML = '';
             
             const periods = [
                 {name: 'November 2025', status: currentStudent.nov || 'DUE', payable: (currentStudent.nov || 'DUE') === 'DUE'},
                 {name: 'December 2025', status: currentStudent.dec || 'DUE', payable: (currentStudent.dec || 'DUE') === 'DUE'},
-                {name: 'January 2026 (Advance)', status: 'AVAILABLE', payable: true},
-                {name: 'February 2026 (Advance)', status: 'AVAILABLE', payable: true}
+                {name: 'January 2026 (Adv)', status: 'AVAILABLE', payable: true},
+                {name: 'February 2026 (Adv)', status: 'AVAILABLE', payable: true}
             ];
             
             periods.forEach((period, index) => {
@@ -423,20 +409,19 @@
                                   'status-available';
                 const statusText = period.status === 'AVAILABLE' ? 'Pay Now' : period.status;
                 
-                row.innerHTML = \`
-                    <td>\${period.name}</td>
-                    <td>₹\${currentStudent.fee.toLocaleString()}</td>
-                    <td><span class="status-badge \${statusClass}">\${statusText}</span></td>
-                    <td>\${period.payable ? 
-                        '<input type="checkbox" class="pay-checkbox" data-period="\${period.name}" data-amount="\${currentStudent.fee}" onchange="updatePaymentQuantum()"> ' + 
-                        '<span style="font-size:1.2rem">Select</span>' : 
-                        '<span style="color:#00C851;font-size:1.5rem">✅</span>'}</td>
-                \`;
+                row.innerHTML = `
+                    <td style="font-size:1.1rem;font-weight:700">${period.name}</td>
+                    <td style="color:var(--primary-gold);font-size:1.3rem;font-weight:800">₹${currentStudent.fee.toLocaleString()}</td>
+                    <td><span class="status-badge ${statusClass}">${statusText}</span></td>
+                    <td>${period.payable ? 
+                        `<input type="checkbox" class="pay-checkbox" data-period="${period.name}" data-amount="${currentStudent.fee}" onchange="updatePaymentTotal()">` : 
+                        '<span style="color:#00C851;font-size:2rem;font-weight:900">✅ PAID</span>'}
+                    </td>
+                `;
             });
         }
 
-        // 💰 UPDATE PAYMENT CALCULATION
-        function updatePaymentQuantum() {
+        function updatePaymentTotal() {
             selectedPayments = [];
             let total = 0;
             
@@ -445,66 +430,58 @@
                 selectedPayments.push(cb.dataset.period);
             });
             
-            document.getElementById('paymentTotal').textContent = '₹' + total.toLocaleString();
-            document.getElementById('paymentPortal').classList.toggle('hidden', total === 0);
-            
-            console.log('Selected payments:', selectedPayments, 'Total:', total);
+            document.getElementById('totalAmountDisplay').textContent = '₹' + total.toLocaleString();
+            document.getElementById('paymentGateway').style.display = total > 0 ? 'block' : 'none';
         }
 
-        // 🚀 INITIATE UPI PAYMENT
-        function initiateQuantumPayment() {
+        function initiatePayment() {
             if (selectedPayments.length === 0) {
                 alert('⚠️ Please select at least one payment period!');
                 return;
             }
             
-            const totalAmount = selectedPayments.reduce((sum) => sum + currentStudent.fee, 0);
-            const paymentNote = \`PLA-\${currentStudent.name} (\${currentStudentId}): \${selectedPayments.join(' + ')} = ₹\${totalAmount.toLocaleString()}\`;
+            const totalAmount = selectedPayments.length * currentStudent.fee;
+            const paymentNote = `PLA-${currentStudent.name} (${currentStudentId}): ${selectedPayments.join(' + ')} = ₹${totalAmount.toLocaleString()}`;
             
-            // UPI Deep Link
-            const upiUrl = \`upi://pay?pa=7310680106@fam&am=\${totalAmount}&cu=INR&tn=\${encodeURIComponent(paymentNote)}&mc=1234\`;
-            
-            // Open UPI App
+            const upiUrl = `upi://pay?pa=7310680106@fam&am=${totalAmount}&cu=INR&tn=${encodeURIComponent(paymentNote)}&mc=1234`;
             window.open(upiUrl, '_blank');
             
-            alert('✅ UPI Payment Link Generated!\\n\\n📱 Opening payment app...\\n💡 After successful payment, contact admin for record update\\n⏱️ Updates within 4 working days');
+            alert(`✅ UPI Payment Link Generated!\n\n📱 Opening payment app...\n💡 After successful payment, contact admin\n⏱️ Updates within 4 working days`);
         }
 
-        // 🚪 SECURE LOGOUT
-        function quantumLogout() {
-            if (confirm('Are you sure you want to logout?')) {
-                document.getElementById('studentPortal').classList.add('hidden');
-                document.getElementById('loginPortal').classList.remove('hidden');
-                document.getElementById('studentId').value = '';
-                document.getElementById('studentPass').value = '';
-                document.getElementById('paymentPortal').classList.add('hidden');
-                currentStudent = null;
-                currentStudentId = '';
-                selectedPayments = [];
-                document.getElementById('studentId').focus();
-            }
+        function logoutStudent() {
+            document.getElementById('feeScreen').style.display = 'none';
+            document.getElementById('loginScreen').style.display = 'block';
+            resetPortal();
         }
 
-        // ⌨️ ENTER KEY SUPPORT
+        function resetPortal() {
+            document.getElementById('studentIdInput').value = '';
+            document.getElementById('studentPassInput').value = '';
+            document.getElementById('paymentGateway').style.display = 'none';
+            currentStudent = null;
+            currentStudentId = '';
+            selectedPayments = [];
+        }
+
+        // Keyboard support
         document.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' && !document.getElementById('studentPortal').classList.contains('hidden')) {
-                quantumLogin();
+            if (e.key === 'Enter' && document.getElementById('studentPortalOverlay').classList.contains('hidden') === false) {
+                if (document.getElementById('loginScreen').style.display !== 'none') {
+                    loginStudent();
+                }
             }
         });
 
-        // Auto-focus on Student ID
-        window.onload = function() {
-            document.getElementById('studentId').focus();
-        };
-    </script>
-</body>
-</html>
-            `);
-            portalWin.document.close();
-            portalWin.focus();
-        }
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            const scroll = Math.min(window.scrollY / 100, 1);
+            navbar.style.background = `rgba(255,255,255,${0.1 + scroll * 0.2})`;
+            navbar.style.backdropFilter = `blur(${20 + scroll * 20}px)`;
+        });
 
-        // Initialize on load
+        // Initialize
         window.addEventListener('load', () => {
             initParticles();
         });
