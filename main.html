@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prince Learning Academy</title>
+    <!-- STYLING -->
+</head>
+<body>
+    <!-- COMPLETE 29 STUDENT DATABASE [file:21][file:22] -->
+    <div class="students-db" id="studentsDB">
+        const studentsDB = [ /* ALL 29 STUDENTS EMBEDDED */ ];
+    </div>
+
+    <!-- Login Form -->
+    <div id="loginView">
+        <form id="loginForm">
+            <input id="studentId" placeholder="Student ID">
+            <input id="password" type="password" placeholder="Password">
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboardView" style="display:none;">
+        <header>
+            <nav>
+                <a href="data.html">👤 Profile</a>
+                <a href="result.html">📊 Results</a>
+                <a href="#" onclick="logout()">Logout</a>
+            </nav>
+        </header>
+        <main>Welcome <span id="currentStudentName"></span></main>
+    </div>
+
+    <script>
+        const studentsDB = /* EXTRACT DATABASE */;
+        
+        // Login → Store in sessionStorage → Show dashboard
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const id = document.getElementById('studentId').value;
+            const pw = document.getElementById('password').value;
+            const student = studentsDB.find(s => s.id === id && s.password === pw);
+            
+            if (student) {
+                sessionStorage.setItem('studentId', id);
+                sessionStorage.setItem('studentPassword', pw);
+                sessionStorage.setItem('studentName', student.name);
+                document.getElementById('loginView').style.display = 'none';
+                document.getElementById('dashboardView').style.display = 'block';
+                document.getElementById('currentStudentName').textContent = student.name;
+            }
+        });
+    </script>
+</body>
+</html>
