@@ -17,24 +17,27 @@
         .particle{position:absolute;background:radial-gradient(circle, var(--primary-gold) 0%, transparent 70%);border-radius:50%;animation:float 20s infinite linear;opacity:0.1}
         @keyframes float{0%{transform:translateY(100vh) rotate(0deg) scale(0.5);opacity:0}10%{opacity:0.3}90%{opacity:0.3}100%{transform:translateY(-100vh) rotate(360deg) scale(1.2);opacity:0}}
         
-        .navbar{position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:10000;background:var(--glass-bg);backdrop-filter:blur(40px);border:2px solid var(--glass-border);border-radius:50px;padding:15px 30px;display:flex;align-items:center;gap:30px;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
-        .logo{font-family:'Dancing Script',cursive;font-size:2.5rem;background:linear-gradient(45deg,var(--primary-gold),#fff,var(--secondary-blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:800;animation:pulse-glow 3s ease-in-out infinite alternate}
-        @keyframes pulse-glow{0%{filter:drop-shadow(0 0 10px var(--primary-gold))}100%{filter:drop-shadow(0 0 25px var(--secondary-blue))}}
-        .nav-menu{display:flex;gap:25px;list-style:none}
-        .nav-link{color:#fff;text-decoration:none;font-weight:600;font-size:1.1rem;padding:12px 24px;border-radius:25px;transition:all 0.4s cubic-bezier(0.25,0.8,0.25,1);position:relative;overflow:hidden}
+        .navbar{position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:10000;background:var(--glass-bg);backdrop-filter:blur(40px);border:2px solid var(--glass-border);border-radius:50px;padding:12px 25px;display:flex;align-items:center;gap:25px;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
+        
+        .nav-logos{display:flex;align-items:center;gap:10px}
+        .logo-main,.logo-icse{height:50px;width:50px;border-radius:50%;border:2px solid rgba(255,255,255,0.7);background:#fff;object-fit:cover}
+        .logo-text{font-family:'Dancing Script',cursive;font-size:2.1rem;font-weight:800;background:linear-gradient(45deg,var(--primary-gold),#fff,var(--secondary-blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;white-space:nowrap}
+        
+        .nav-menu{display:flex;gap:20px;list-style:none;margin-left:auto;margin-right:10px}
+        .nav-link{color:#fff;text-decoration:none;font-weight:600;font-size:1.05rem;padding:10px 20px;border-radius:25px;transition:all 0.4s cubic-bezier(0.25,0.8,0.25,1);position:relative;overflow:hidden}
         .nav-link::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);transition:left 0.6s}
         .nav-link:hover::before{left:100%}
         .nav-link:hover{color:var(--primary-gold);transform:translateY(-5px) scale(1.05);background:var(--glass-bg)}
         
-        .portal-btn{background:linear-gradient(135deg,var(--primary-red),var(--accent-purple));color:#fff;padding:18px 40px;border:none;border-radius:30px;font-size:1.25rem;font-weight:800;cursor:pointer;transition:all 0.5s cubic-bezier(0.25,0.8,0.25,1);box-shadow:0 15px 50px rgba(255,71,87,0.4);position:relative;overflow:hidden;text-transform:uppercase;letter-spacing:2px}
-        .portal-btn::after{content:'🚀';position:absolute;right:20px;transition:transform 0.3s}
+        .portal-btn{background:linear-gradient(135deg,var(--primary-red),var(--accent-purple));color:#fff;padding:14px 32px;border:none;border-radius:30px;font-size:1.1rem;font-weight:800;cursor:pointer;transition:all 0.5s cubic-bezier(0.25,0.8,0.25,1);box-shadow:0 15px 50px rgba(255,71,87,0.4);position:relative;overflow:hidden;text-transform:uppercase;letter-spacing:2px;white-space:nowrap}
+        .portal-btn::after{content:'🔐';position:absolute;right:18px;transition:transform 0.3s}
         .portal-btn:hover{transform:translateY(-10px) scale(1.05);box-shadow:0 25px 70px rgba(255,71,87,0.6)}
         .portal-btn:hover::after{transform:scale(1.2)}
         
         .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:150px 5% 100px;position:relative}
         .hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 30% 20%,rgba(255,215,0,0.1) 0%,transparent 50%),radial-gradient(circle at 70% 80%,rgba(79,195,247,0.1) 0%,transparent 50%);animation:portalPulse 8s ease-in-out infinite}
         @keyframes portalPulse{0%,100%{opacity:0.6;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}}
-        .hero-badge{position:relative;z-index:2;background:linear-gradient(45deg,var(--primary-gold),var(--secondary-blue));color:#1a1a3e;padding:15px 35px;border-radius:50px;font-size:1.2rem;font-weight:800;letter-spacing:3px;animation:slideInUp 1s ease-out;box-shadow:0 10px 40px rgba(255,215,0,0.4)}
+        .hero-badge{position:relative;z-index:2;background:linear-gradient(45deg,var(--primary-gold),var(--secondary-blue));color:#1a1a3e;padding:15px 35px;border-radius:50px;font-size:1.1rem;font-weight:800;letter-spacing:3px;animation:slideInUp 1s ease-out;box-shadow:0 10px 40px rgba(255,215,0,0.4)}
         @keyframes slideInUp{from{transform:translateY(50px);opacity:0}to{transform:translateY(0);opacity:1}}
         .hero-title{font-family:'Dancing Script',cursive;font-size:clamp(4.5rem,12vw,9rem);background:linear-gradient(45deg,#fff,var(--primary-gold),var(--secondary-blue),#fff);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradientFlow 4s ease infinite,heroGlow 6s ease-in-out infinite alternate;margin:0;text-align:center;position:relative;z-index:2}
         @keyframes gradientFlow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
@@ -43,7 +46,7 @@
         .hero-motto{font-size:clamp(1.5rem,3vw,2.2rem);font-family:'Playfair Display',serif;background:var(--glass-bg);backdrop-filter:blur(30px);padding:25px 50px;border-radius:40px;border:2px solid var(--glass-border);box-shadow:0 30px 80px rgba(0,0,0,0.4);animation:fadeIn 2s ease-out 0.5s both}
         @keyframes fadeIn{from{opacity:0;transform:scale(0.9)}to{opacity:1;transform:scale(1)}}
         .hero-cta{display:flex;gap:30px;flex-wrap:wrap;justify-content:center;animation:slideInUp 1s ease-out 1s both}
-        .cta-btn{padding:20px 50px;border:none;border-radius:40px;font-size:1.5rem;font-weight:800;cursor:pointer;transition:all 0.5s cubic-bezier(0.25,0.8,0.25,1);position:relative;overflow:hidden;text-transform:uppercase;letter-spacing:1px}
+        .cta-btn{padding:20px 50px;border:none;border-radius:40px;font-size:1.3rem;font-weight:800;cursor:pointer;transition:all 0.5s cubic-bezier(0.25,0.8,0.25,1);position:relative;overflow:hidden;text-transform:uppercase;letter-spacing:1px}
         .cta-primary{background:linear-gradient(135deg,var(--primary-red),var(--accent-purple));color:#fff;box-shadow:0 25px 70px rgba(255,71,87,0.5)}
         .cta-secondary{background:var(--glass-bg);backdrop-filter:blur(30px);color:#fff;border:3px solid var(--glass-border)}
         .cta-btn:hover{transform:translateY(-15px) scale(1.05)}
@@ -60,7 +63,7 @@
         .program-card:hover{transform:translateY(-30px) rotateX(10deg) rotateY(10deg) scale(1.05);box-shadow:0 50px 150px rgba(0,0,0,0.5)}
         .program-icon{font-size:6rem;margin-bottom:30px;display:block;text-align:center;background:linear-gradient(45deg,var(--primary-gold),var(--secondary-blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 10px 30px rgba(255,215,0,0.3))}
         .program-card h3{font-size:2.3rem;color:#fff;margin-bottom:20px;font-weight:800}
-        .program-card p{font-size:1.25rem;color:rgba(255,255,255,0.9);line-height:1.8}
+        .program-card p{font-size:1.2rem;color:rgba(255,255,255,0.9);line-height:1.8}
         
         .faculty-orbit{display:flex;justify-content:center;flex-wrap:wrap;gap:50px;margin-top:60px}
         .faculty-card{background:linear-gradient(135deg,rgba(142,68,173,0.2),rgba(79,195,247,0.2));backdrop-filter:blur(40px);padding:50px 40px;border-radius:25px;width:350px;text-align:center;transition:all 0.6s cubic-bezier(0.25,0.8,0.25,1);border:3px solid var(--glass-border);position:relative;overflow:hidden}
@@ -82,76 +85,90 @@
         .footer{background:linear-gradient(135deg,rgba(15,15,35,0.95),rgba(26,26,62,0.95));backdrop-filter:blur(40px);text-align:center;padding:60px 5%;border-top:6px solid var(--primary-gold)}
         .footer-content{font-size:1.4rem;font-weight:800;letter-spacing:2px}
         
-        /* PERFECT STUDENT PORTAL OVERLAY */
         .portal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);backdrop-filter:blur(20px);z-index:20000;display:flex;justify-content:center;align-items:center;padding:20px}
         .portal-container{max-width:1400px;max-height:95vh;width:95%;height:95%;overflow-y:auto;background:linear-gradient(145deg,rgba(255,255,255,0.15),rgba(255,255,255,0.05));backdrop-filter:blur(60px);border:3px solid rgba(255,255,255,0.3);border-radius:40px;padding:40px;box-shadow:0 50px 150px rgba(0,0,0,0.8);animation:portalSlideIn 0.6s cubic-bezier(0.25,0.8,0.25,1)}
         @keyframes portalSlideIn{from{opacity:0;transform:scale(0.7) rotateX(20deg)}to{opacity:1;transform:scale(1) rotateX(0deg)}}
         .portal-close{position:absolute;top:25px;right:35px;font-size:3rem;color:#fff;cursor:pointer;transition:all 0.4s;z-index:10;background:var(--glass-bg);backdrop-filter:blur(30px);width:70px;height:70px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid var(--glass-border)}
         .portal-close:hover{color:var(--primary-gold);transform:rotate(180deg) scale(1.1);box-shadow:0 10px 40px rgba(255,215,0,0.5)}
         
-        .portal-title{font-family:'Dancing Script',cursive;font-size:4rem;background:linear-gradient(45deg,#FFD700,#fff,var(--secondary-blue));background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradientFlow 3s ease infinite;text-align:center;margin-bottom:30px;position:relative}
-        .portal-subtitle{font-size:1.4rem;text-align:center;opacity:0.9;margin-bottom:40px}
+        .portal-title{font-family:'Dancing Script',cursive;font-size:3.4rem;background:linear-gradient(45deg,#FFD700,#fff,var(--secondary-blue));background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradientFlow 3s ease infinite;text-align:center;margin-bottom:10px}
+        .portal-subtitle{font-size:1.2rem;text-align:center;opacity:0.9;margin-bottom:30px}
         
-        /* Login Form */
         .login-form{max-width:500px;margin:0 auto}
-        .quantum-input{width:100%;padding:22px 30px;border:3px solid rgba(255,255,255,0.3);border-radius:30px;font-size:1.4rem;background:rgba(255,255,255,0.12);backdrop-filter:blur(25px);color:#fff;margin-bottom:25px;transition:all 0.4s cubic-bezier(0.25,0.8,0.25,1);font-weight:600;letter-spacing:1px}
+        .quantum-input{width:100%;padding:18px 26px;border:3px solid rgba(255,255,255,0.3);border-radius:30px;font-size:1.2rem;background:rgba(255,255,255,0.12);backdrop-filter:blur(25px);color:#fff;margin-bottom:20px;transition:all 0.4s cubic-bezier(0.25,0.8,0.25,1);font-weight:600;letter-spacing:1px}
         .quantum-input::placeholder{color:rgba(255,255,255,0.7)}
-        .quantum-input:focus{outline:none;border-color:var(--primary-gold);box-shadow:0 0 50px rgba(255,215,0,0.5);transform:scale(1.03);background:rgba(255,255,255,0.2)}
-        .portal-login-btn{width:100%;background:linear-gradient(135deg,var(--primary-gold),#FFED4E);color:#1a1a3e;padding:22px;border:none;border-radius:30px;font-size:1.6rem;font-weight:800;cursor:pointer;transition:all 0.5s cubic-bezier(0.25,0.8,0.25,1);box-shadow:0 25px 70px rgba(255,215,0,0.5);text-transform:uppercase;letter-spacing:2px;position:relative;overflow:hidden}
+        .quantum-input:focus{outline:none;border-color:var(--primary-gold);box-shadow:0 0 40px rgba(255,215,0,0.5);transform:scale(1.03);background:rgba(255,255,255,0.2)}
+        .portal-login-btn{width:100%;background:linear-gradient(135deg,var(--primary-gold),#FFED4E);color:#1a1a3e;padding:20px;border:none;border-radius:30px;font-size:1.3rem;font-weight:800;cursor:pointer;transition:all 0.5s cubic-bezier(0.25,0.8,0.25,1);box-shadow:0 25px 70px rgba(255,215,0,0.5);text-transform:uppercase;letter-spacing:2px;position:relative;overflow:hidden}
         .portal-login-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent);transition:left 0.8s}
         .portal-login-btn:hover::before{left:100%}
-        .portal-login-btn:hover{transform:translateY(-12px) scale(1.05);box-shadow:0 35px 90px rgba(255,215,0,0.7)}
+        .portal-login-btn:hover{transform:translateY(-10px) scale(1.05);box-shadow:0 35px 90px rgba(255,215,0,0.7)}
         
-        /* Fee Portal Styles */
         .fee-portal{display:none;flex-direction:column}
-        .student-profile{background:linear-gradient(135deg,rgba(255,215,0,0.2),rgba(79,195,247,0.2));padding:40px;border-radius:30px;margin-bottom:40px;border:3px solid rgba(255,215,0,0.4);text-align:center}
-        .student-name{font-family:'Dancing Script',cursive;font-size:3.5rem;color:var(--primary-gold);margin-bottom:25px}
-        .profile-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;font-size:1.3rem;margin-top:20px}
-        .profile-item{background:var(--glass-bg);backdrop-filter:blur(20px);padding:20px;border-radius:20px;border:2px solid var(--glass-border)}
+        .student-profile{background:linear-gradient(135deg,rgba(255,215,0,0.2),rgba(79,195,247,0.2));padding:30px;border-radius:30px;margin-bottom:30px;border:3px solid rgba(255,215,0,0.4);text-align:center}
+        .student-name{font-family:'Dancing Script',cursive;font-size:3rem;color:var(--primary-gold);margin-bottom:15px}
+        .profile-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;font-size:1.1rem;margin-top:15px}
+        .profile-item{background:var(--glass-bg);backdrop-filter:blur(20px);padding:15px;border-radius:18px;border:2px solid var(--glass-border)}
         
-        .fee-matrix-title{font-family:'Dancing Script',cursive;font-size:2.8rem;color:var(--primary-gold);text-align:center;margin:50px 0 30px}
-        .fee-table{width:100%;border-collapse:collapse;background:linear-gradient(145deg,rgba(255,255,255,0.15),rgba(255,255,255,0.05));border-radius:25px;overflow:hidden;box-shadow:0 30px 100px rgba(0,0,0,0.6);margin-bottom:40px}
-        .fee-table th{background:linear-gradient(135deg,var(--primary-red),var(--accent-purple));color:#fff;padding:25px 20px;font-weight:800;font-size:1.2rem;text-align:center}
-        .fee-table td{padding:25px 20px;text-align:center;font-weight:700;border-bottom:1px solid rgba(255,255,255,0.1);vertical-align:middle}
+        .fee-matrix-title{font-family:'Dancing Script',cursive;font-size:2.4rem;color:var(--primary-gold);text-align:center;margin:35px 0 20px}
+        .fee-table{width:100%;border-collapse:collapse;background:linear-gradient(145deg,rgba(255,255,255,0.15),rgba(255,255,255,0.05));border-radius:25px;overflow:hidden;box-shadow:0 30px 100px rgba(0,0,0,0.6);margin-bottom:30px}
+        .fee-table th{background:linear-gradient(135deg,var(--primary-red),var(--accent-purple));color:#fff;padding:18px 12px;font-weight:800;font-size:1rem;text-align:center}
+        .fee-table td{padding:18px 12px;text-align:center;font-weight:700;border-bottom:1px solid rgba(255,255,255,0.1);vertical-align:middle;font-size:0.95rem}
         .fee-table tbody tr:nth-child(even){background:rgba(255,255,255,0.08)}
-        .status-badge{padding:12px 25px;border-radius:30px;font-weight:800;font-size:1.1rem;display:inline-block;margin:0 auto}
+        .status-badge{padding:8px 18px;border-radius:25px;font-weight:800;font-size:0.95rem;display:inline-block;margin:0 auto}
         .status-paid{background:linear-gradient(135deg,#00C851,#00E676);color:#fff}
         .status-due{background:linear-gradient(135deg,#FF9500,#FFD700);color:#2d1b69}
         .status-available{background:linear-gradient(135deg,#4FC3F7,#81D4FA);color:#fff}
-        .pay-checkbox{transform:scale(2.5);accent-color:var(--primary-gold);cursor:pointer;margin-right:15px}
+        .pay-checkbox{transform:scale(1.7);accent-color:var(--primary-gold);cursor:pointer;margin-right:10px}
         
-        .payment-portal{background:linear-gradient(135deg,#00C851 0%,#4FC3F7 100%);padding:50px;border-radius:40px;text-align:center;margin:40px 0;box-shadow:0 40px 120px rgba(0,184,81,0.4);display:none;position:relative;overflow:hidden}
-        .payment-portal::before{content:'';position:absolute;top:-2px;left:-2px;right:-2px;bottom:-2px;background:linear-gradient(45deg,var(--primary-gold),transparent,transparent,var(--primary-gold));border-radius:40px;animation:borderRotate 3s linear infinite;z-index:0}
+        .payment-portal{background:linear-gradient(135deg,#00C851 0%,#4FC3F7 100%);padding:35px;border-radius:35px;text-align:center;margin:30px 0;box-shadow:0 40px 120px rgba(0,184,81,0.4);display:none;position:relative;overflow:hidden}
+        .payment-portal::before{content:'';position:absolute;top:-2px;left:-2px;right:-2px;bottom:-2px;background:linear-gradient(45deg,var(--primary-gold),transparent,transparent,var(--primary-gold));border-radius:35px;animation:borderRotate 3s linear infinite;z-index:0}
         .payment-portal>*{position:relative;z-index:2}
-        .payment-title{font-family:'Dancing Script',cursive;font-size:3rem;color:#fff;margin-bottom:20px}
-        .total-amount{font-size:5rem;font-weight:900;background:linear-gradient(45deg,var(--primary-gold),#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:30px 0}
-        .upi-id{font-size:2.2rem;font-weight:900;color:var(--primary-gold);word-break:break-all;margin:25px 0;padding:25px;background:rgba(255,255,255,0.25);border-radius:25px;border:2px solid rgba(255,255,255,0.3)}
-        .payment-btn{background:linear-gradient(135deg,var(--primary-gold),#FFED4E);color:#1a1a3e;padding:25px 60px;border:none;border-radius:35px;font-size:1.8rem;font-weight:900;cursor:pointer;margin-top:25px;letter-spacing:2px;text-transform:uppercase;box-shadow:0 25px 70px rgba(255,215,0,0.6);transition:all 0.4s cubic-bezier(0.25,0.8,0.25,1);position:relative;overflow:hidden}
+        .payment-title{font-family:'Dancing Script',cursive;font-size:2.6rem;color:#fff;margin-bottom:15px}
+        .total-amount{font-size:3.8rem;font-weight:900;background:linear-gradient(45deg,var(--primary-gold),#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:20px 0}
+        .upi-id{font-size:1.6rem;font-weight:900;color:var(--primary-gold);word-break:break-all;margin:18px 0;padding:18px;background:rgba(255,255,255,0.25);border-radius:22px;border:2px solid rgba(255,255,255,0.3)}
+        .payment-btn{background:linear-gradient(135deg,var(--primary-gold),#FFED4E);color:#1a1a3e;padding:18px 45px;border:none;border-radius:30px;font-size:1.3rem;font-weight:900;cursor:pointer;margin-top:20px;letter-spacing:2px;text-transform:uppercase;box-shadow:0 25px 70px rgba(255,215,0,0.6);transition:all 0.4s cubic-bezier(0.25,0.8,0.25,1);position:relative;overflow:hidden}
         .payment-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.5),transparent);transition:left 0.8s}
         .payment-btn:hover::before{left:100%}
-        .payment-btn:hover{transform:translateY(-15px) scale(1.05);box-shadow:0 40px 100px rgba(255,215,0,0.8)}
+        .payment-btn:hover{transform:translateY(-12px) scale(1.03);box-shadow:0 40px 100px rgba(255,215,0,0.8)}
         
         .hidden{display:none}
-        @media (max-width:768px){.portal-container{padding:20px;height:98vh;width:98vw;border-radius:20px}.fee-table th,.fee-table td{padding:15px 10px;font-size:0.9rem}.profile-grid{grid-template-columns:1fr}}
+        
+        @media (max-width:900px){
+          .navbar{padding:10px 18px;gap:12px}
+          .logo-main,.logo-icse{height:38px;width:38px}
+          .logo-text{font-size:1.5rem}
+          .nav-menu{display:none}
+          .portal-btn{font-size:0.9rem;padding:10px 22px}
+          .portal-btn::after{display:none}
+        }
+        @media (max-width:768px){
+            .hero-cta{flex-direction:column;align-items:center;gap:20px}
+            .faculty-orbit{flex-direction:column;align-items:center}
+            .section{padding:100px 5%}
+            .portal-container{padding:20px;height:98vh;width:98vw;border-radius:20px}
+            .fee-table th,.fee-table td{padding:12px 6px;font-size:0.8rem}
+            .profile-grid{grid-template-columns:1fr}
+        }
     </style>
 </head>
 <body>
-    <!-- Floating Particles -->
     <div class="particles" id="particles"></div>
     
-    <!-- Navigation -->
     <nav class="navbar">
-        <div class="logo">👑 Prince Academy</div>
+        <div class="nav-logos">
+            <img src="logo.jpg" alt="Prince Learning Academy Logo" class="logo-main">
+            <img src="1739784548_whatsapp-image-2025-02-06-at-10-08-17-jpeg-7.jpg" alt="ICSE Board Logo" class="logo-icse">
+        </div>
+        <div class="logo-text">Prince Academy</div>
         <ul class="nav-menu">
             <li><a href="#home" class="nav-link">Home</a></li>
             <li><a href="#programs" class="nav-link">Programs</a></li>
             <li><a href="#faculty" class="nav-link">Faculty</a></li>
             <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
-        <button class="portal-btn" onclick="openStudentPortal()">🎅 Student Portal</button>
+        <button class="portal-btn" onclick="openStudentPortal()">Student Portal</button>
     </nav>
 
-    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-badge">WORLD-CLASS EDUCATION EXCELLENCE</div>
         <h1 class="hero-title">Prince Learning Academy</h1>
@@ -163,7 +180,6 @@
         </div>
     </section>
 
-    <!-- Programs Section -->
     <section id="programs" class="section programs-wrapper">
         <div class="section-container">
             <h2 class="section-title">Academic Mastery Programs</h2>
@@ -171,23 +187,22 @@
                 <div class="program-card">
                     <div class="program-icon">👶</div>
                     <h3>Junior Foundation</h3>
-                    <p><strong>K.G. to Class 8</strong><br>Holistic foundation building across <strong>ICSE, CBSE & State Boards</strong> with personalized learning paths and conceptual mastery.</p>
+                    <p><strong>K.G. to Class 8</strong><br>Holistic foundation building across <strong>ICSE, CBSE &amp; State Boards</strong> with personalized learning paths and conceptual mastery.</p>
                 </div>
                 <div class="program-card">
                     <div class="program-icon">📚</div>
                     <h3>ICSE Excellence</h3>
-                    <p><strong>Classes 9th & 10th</strong><br>Board-cracking preparation in <strong>English, Computer Science, Physics, Chemistry, Biology</strong> with 100% results focus.</p>
+                    <p><strong>Classes 9th &amp; 10th</strong><br>Board-focused preparation in <strong>English, Computer Science, Physics, Chemistry, Biology</strong> with strong results orientation.</p>
                 </div>
                 <div class="program-card">
                     <div class="program-icon">🎓</div>
                     <h3>CBSE Champions</h3>
-                    <p><strong>Classes 9th & 10th</strong><br>Strategic preparation for <strong>English, Mathematics, Science, SST</strong> with exam intelligence and competitive advantage.</p>
+                    <p><strong>Classes 9th &amp; 10th</strong><br>Structured preparation for <strong>English, Mathematics, Science, SST</strong> with exam strategy and confidence building.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Faculty Section -->
     <section id="faculty" class="section">
         <div class="section-container">
             <h2 class="section-title">Elite Faculty Orbit</h2>
@@ -206,7 +221,6 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" class="contact-portal">
         <div class="section-container">
             <div class="contact-content">
@@ -222,70 +236,59 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <p>© 2025 Prince Learning Academy | Crafting Tomorrow's Leaders Today ✨👑</p>
         </div>
     </footer>
 
-    <!-- 🚀 PERFECT STUDENT PORTAL OVERLAY -->
     <div id="studentPortalOverlay" class="portal-overlay hidden">
         <div class="portal-container">
-            <!-- Login Screen -->
             <div id="loginScreen">
                 <div class="portal-close" onclick="closePortal()">✕</div>
-                <h1 class="portal-title">🎅 Quantum Fee Portal</h1>
-                <p class="portal-subtitle">✨ Secure Login • Christmas Special • Active till 7th Dec 2025 ✨</p>
-                
+                <h1 class="portal-title">Student Fee Portal</h1>
+                <p class="portal-subtitle">Secure access for enrolled students. Contact the institute office for your Student ID and Access Code.</p>
                 <div class="login-form">
-                    <input type="text" id="studentIdInput" class="quantum-input" placeholder="👤 Student ID (e.g. 2025-0001)">
-                    <input type="password" id="studentPassInput" class="quantum-input" placeholder="🔑 Access Code (Contact Admin)">
-                    <button class="portal-login-btn" onclick="loginStudent()">🚀 Enter Secure Portal</button>
-                    <p style="text-align:center;margin-top:25px;color:rgba(255,255,255,0.8);font-size:1.1rem">📞 Need credentials? Call: +91 73106 80106</p>
+                    <input type="text" id="studentIdInput" class="quantum-input" placeholder="Student ID (e.g. 2025-0001)">
+                    <input type="password" id="studentPassInput" class="quantum-input" placeholder="Access Code">
+                    <button class="portal-login-btn" onclick="loginStudent()">Login to Portal</button>
+                    <p style="text-align:center;margin-top:18px;color:rgba(255,255,255,0.8);font-size:1rem">For any help with login, please call +91 73106 80106.</p>
                 </div>
             </div>
 
-            <!-- Fee Portal Screen -->
             <div id="feeScreen" class="fee-portal">
                 <div class="portal-close" onclick="logoutStudent()">✕</div>
-                
-                <!-- Student Profile -->
                 <div class="student-profile" id="studentProfile">
-                    <h2 class="student-name" id="studentNameDisplay">Loading...</h2>
+                    <h2 class="student-name" id="studentNameDisplay">Student</h2>
                     <div class="profile-grid" id="profileGrid"></div>
                 </div>
 
-                <!-- Fee Matrix -->
-                <h2 class="fee-matrix-title">💳 Fee Payment Matrix</h2>
+                <h2 class="fee-matrix-title">Fee Details &amp; Online Payment</h2>
                 <table class="fee-table">
                     <thead>
                         <tr>
-                            <th>📅 Payment Period</th>
-                            <th>💰 Amount Due</th>
-                            <th>✅ Current Status</th>
-                            <th>⚡ Select to Pay</th>
+                            <th>Payment Period</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Select</th>
                         </tr>
                     </thead>
                     <tbody id="feeTableBody"></tbody>
                 </table>
 
-                <!-- Payment Gateway -->
                 <div class="payment-portal" id="paymentGateway">
-                    <h2 class="payment-title">🎉 Payment Ready! Ho Ho Ho! 🎅</h2>
-                    <div style="font-size:1.6rem;color:#fff;margin-bottom:20px;font-weight:700">Total Selected Amount:</div>
+                    <h2 class="payment-title">Payment Summary</h2>
                     <div class="total-amount" id="totalAmountDisplay">₹0</div>
                     <div class="upi-id">UPI ID: 7310680106@fam</div>
-                    <p style="font-size:1.4rem;color:#fff;margin:30px 0">Pay using: Google Pay • PhonePe • Paytm • BHIM</p>
-                    <button class="payment-btn" onclick="initiatePayment()">🌌 Complete UPI Payment ✨</button>
-                    <p style="font-size:1.2rem;color:#fff;margin-top:30px;opacity:0.9">💡 After payment, inform admin for instant record update (4 working days)</p>
+                    <p style="font-size:1.1rem;color:#fff;margin:18px 0">Use any UPI app (Google Pay, PhonePe, Paytm, BHIM) and complete payment to this UPI ID.</p>
+                    <button class="payment-btn" onclick="initiatePayment()">Pay Now via UPI</button>
+                    <p style="font-size:1rem;color:#fff;margin-top:16px;opacity:0.9">After successful payment, please inform the institute for record update within 4 working days.</p>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // ✅ COMPLETE 29-STUDENT DATABASE WITH FULL DATA
         const studentDatabase = {
             "2025-0001":{pass:"ICSE-B1",name:"Mahi",cls:"2",brd:"ICSE",course:"All Subjects",fee:500,bal:0,nov:"DUE",dec:"DUE"},
             "2025-0002":{pass:"ICSE-B2",name:"Vanshika",cls:"2",brd:"ICSE",course:"All Subjects",fee:800,bal:0,nov:"PAID",dec:"DUE"},
@@ -322,25 +325,23 @@
         let currentStudentId = '';
         let selectedPayments = [];
 
-        // 🌀 MAIN WEBSITE FUNCTIONS
         function initParticles() {
             const particles = document.getElementById('particles');
             for(let i = 0; i < 60; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.width = particle.style.height = (Math.random() * 10 + 3) + 'px';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDuration = (Math.random() * 25 + 15) + 's';
-                particle.style.animationDelay = Math.random() * 15 + 's';
-                particles.appendChild(particle);
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.style.width = p.style.height = (Math.random() * 10 + 3) + 'px';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.animationDuration = (Math.random() * 25 + 15) + 's';
+                p.style.animationDelay = Math.random() * 15 + 's';
+                particles.appendChild(p);
             }
         }
 
         function scrollToSection(id) {
-            document.getElementById(id).scrollIntoView({behavior: 'smooth'});
+            document.getElementById(id).scrollIntoView({behavior:'smooth'});
         }
 
-        // 🚀 STUDENT PORTAL FUNCTIONS
         function openStudentPortal() {
             document.getElementById('studentPortalOverlay').classList.remove('hidden');
             document.getElementById('studentIdInput').focus();
@@ -354,39 +355,34 @@
         function loginStudent() {
             const id = document.getElementById('studentIdInput').value.trim();
             const pass = document.getElementById('studentPassInput').value.trim();
-            
             if (!id || !pass) {
-                alert('⚠️ Please enter both Student ID and Access Code!');
+                alert('Please enter both Student ID and Access Code.');
                 return;
             }
-            
             currentStudent = studentDatabase[id];
             currentStudentId = id;
-            
             if (currentStudent && currentStudent.pass === pass) {
                 document.getElementById('loginScreen').style.display = 'none';
                 document.getElementById('feeScreen').style.display = 'flex';
                 loadStudentDashboard();
             } else {
-                alert('❌ Invalid credentials! Contact admin for access.');
+                alert('Invalid credentials. Please check your Student ID and Access Code.');
                 document.getElementById('studentIdInput').value = '';
                 document.getElementById('studentPassInput').value = '';
             }
         }
 
         function loadStudentDashboard() {
-            // Load Profile
             document.getElementById('studentNameDisplay').textContent = currentStudent.name;
             const profileGrid = document.getElementById('profileGrid');
             profileGrid.innerHTML = `
-                <div class="profile-item"><strong>🆔 ID:</strong> ${currentStudentId}</div>
-                <div class="profile-item"><strong>📚 Class:</strong> ${currentStudent.cls}</div>
-                <div class="profile-item"><strong>🏛️ Board:</strong> ${currentStudent.brd}</div>
-                <div class="profile-item"><strong>📖 Course:</strong> ${currentStudent.course}</div>
-                <div class="profile-item"><strong>💰 Monthly:</strong> ₹${currentStudent.fee.toLocaleString()}</div>
-                <div class="profile-item"><strong>📊 Balance:</strong> ₹${currentStudent.bal.toLocaleString()}</div>
+                <div class="profile-item"><strong>ID:</strong> ${currentStudentId}</div>
+                <div class="profile-item"><strong>Class:</strong> ${currentStudent.cls}</div>
+                <div class="profile-item"><strong>Board:</strong> ${currentStudent.brd}</div>
+                <div class="profile-item"><strong>Course:</strong> ${currentStudent.course}</div>
+                <div class="profile-item"><strong>Monthly Fee:</strong> ₹${currentStudent.fee.toLocaleString()}</div>
+                <div class="profile-item"><strong>Balance:</strong> ₹${currentStudent.bal.toLocaleString()}</div>
             `;
-            
             renderFeeTable();
             updatePaymentTotal();
         }
@@ -394,29 +390,22 @@
         function renderFeeTable() {
             const tbody = document.getElementById('feeTableBody');
             tbody.innerHTML = '';
-            
             const periods = [
-                {name: 'November 2025', status: currentStudent.nov || 'DUE', payable: (currentStudent.nov || 'DUE') === 'DUE'},
-                {name: 'December 2025', status: currentStudent.dec || 'DUE', payable: (currentStudent.dec || 'DUE') === 'DUE'},
-                {name: 'January 2026 (Adv)', status: 'AVAILABLE', payable: true},
-                {name: 'February 2026 (Adv)', status: 'AVAILABLE', payable: true}
+                {name:'November 2025', status:currentStudent.nov || 'DUE', payable:(currentStudent.nov || 'DUE') === 'DUE'},
+                {name:'December 2025', status:currentStudent.dec || 'DUE', payable:(currentStudent.dec || 'DUE') === 'DUE'},
+                {name:'January 2026 (Advance)', status:'AVAILABLE', payable:true},
+                {name:'February 2026 (Advance)', status:'AVAILABLE', payable:true}
             ];
-            
-            periods.forEach((period, index) => {
+            periods.forEach(p => {
                 const row = tbody.insertRow();
-                const statusClass = period.status === 'PAID' ? 'status-paid' : 
-                                  period.status === 'DUE' ? 'status-due' : 
-                                  'status-available';
-                const statusText = period.status === 'AVAILABLE' ? 'Pay Now' : period.status;
-                
+                const statusClass = p.status === 'PAID' ? 'status-paid' :
+                                    p.status === 'DUE' ? 'status-due' : 'status-available';
+                const statusText = p.status === 'AVAILABLE' ? 'Pay Now' : p.status;
                 row.innerHTML = `
-                    <td style="font-size:1.1rem;font-weight:700">${period.name}</td>
-                    <td style="color:var(--primary-gold);font-size:1.3rem;font-weight:800">₹${currentStudent.fee.toLocaleString()}</td>
+                    <td>${p.name}</td>
+                    <td>₹${currentStudent.fee.toLocaleString()}</td>
                     <td><span class="status-badge ${statusClass}">${statusText}</span></td>
-                    <td>${period.payable ? 
-                        `<input type="checkbox" class="pay-checkbox" data-period="${period.name}" data-amount="${currentStudent.fee}" onchange="updatePaymentTotal()">` : 
-                        '<span style="color:#00C851;font-size:2rem;font-weight:900">✅ PAID</span>'}
-                    </td>
+                    <td>${p.payable ? `<input type="checkbox" class="pay-checkbox" data-period="${p.name}" data-amount="${currentStudent.fee}" onchange="updatePaymentTotal()">` : '<span style="color:#00C851;font-weight:800">Paid</span>'}</td>
                 `;
             });
         }
@@ -424,29 +413,24 @@
         function updatePaymentTotal() {
             selectedPayments = [];
             let total = 0;
-            
             document.querySelectorAll('.pay-checkbox:checked').forEach(cb => {
                 total += parseInt(cb.dataset.amount);
                 selectedPayments.push(cb.dataset.period);
             });
-            
             document.getElementById('totalAmountDisplay').textContent = '₹' + total.toLocaleString();
             document.getElementById('paymentGateway').style.display = total > 0 ? 'block' : 'none';
         }
 
         function initiatePayment() {
             if (selectedPayments.length === 0) {
-                alert('⚠️ Please select at least one payment period!');
+                alert('Please select at least one period to pay.');
                 return;
             }
-            
             const totalAmount = selectedPayments.length * currentStudent.fee;
-            const paymentNote = `PLA-${currentStudent.name} (${currentStudentId}): ${selectedPayments.join(' + ')} = ₹${totalAmount.toLocaleString()}`;
-            
-            const upiUrl = `upi://pay?pa=7310680106@fam&am=${totalAmount}&cu=INR&tn=${encodeURIComponent(paymentNote)}&mc=1234`;
+            const note = `PLA ${currentStudent.name} (${currentStudentId}) - ${selectedPayments.join(', ')} - ₹${totalAmount}`;
+            const upiUrl = `upi://pay?pa=7310680106@fam&am=${totalAmount}&cu=INR&tn=${encodeURIComponent(note)}`;
             window.open(upiUrl, '_blank');
-            
-            alert(`✅ UPI Payment Link Generated!\n\n📱 Opening payment app...\n💡 After successful payment, contact admin\n⏱️ Updates within 4 working days`);
+            alert('UPI payment link opened. After completing payment, please inform the institute for fee update.');
         }
 
         function logoutStudent() {
@@ -459,21 +443,20 @@
             document.getElementById('studentIdInput').value = '';
             document.getElementById('studentPassInput').value = '';
             document.getElementById('paymentGateway').style.display = 'none';
+            document.getElementById('feeTableBody').innerHTML = '';
             currentStudent = null;
             currentStudentId = '';
             selectedPayments = [];
         }
 
-        // Keyboard support
-        document.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' && document.getElementById('studentPortalOverlay').classList.contains('hidden') === false) {
+        document.addEventListener('keypress', e => {
+            if (e.key === 'Enter' && !document.getElementById('studentPortalOverlay').classList.contains('hidden')) {
                 if (document.getElementById('loginScreen').style.display !== 'none') {
                     loginStudent();
                 }
             }
         });
 
-        // Navbar scroll effect
         window.addEventListener('scroll', () => {
             const navbar = document.querySelector('.navbar');
             const scroll = Math.min(window.scrollY / 100, 1);
@@ -481,10 +464,7 @@
             navbar.style.backdropFilter = `blur(${20 + scroll * 20}px)`;
         });
 
-        // Initialize
-        window.addEventListener('load', () => {
-            initParticles();
-        });
+        window.addEventListener('load', initParticles);
     </script>
 </body>
 </html>
