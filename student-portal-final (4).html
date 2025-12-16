@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prince Learning Academy - Student Portal</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-gold: #FFD700;
+      --primary-red: #FF4757;
+      --secondary-blue: #4FC3F7;
+      --accent-purple: #8E44AD;
+      --dark-bg: #0f0f23;
+    }
+
+    html, body {
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 25%, #2d1b69 50%, #4a0e8c 75%, #8b008b 100%);
+      background-size: 400% 400%;
+      animation: galaxyShift 20s ease infinite;
+      color: #fff;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    @keyframes galaxyShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    /* Particle Effect */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      background: radial-gradient(circle, var(--primary-gold) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: float 20s infinite linear;
+      opacity: 0.1;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg) scale(0.5); opacity: 0; }
+      10% { opacity: 0.3; }
+      90% { opacity: 0.3; }
+      100% { transform: translateY(-100vh) rotate(360deg) scale(1.2); opacity: 0; }
+    }
+
+    /* ===== TOP BANNER ===== */
+    .top-banner {
+      background: linear-gradient(145deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.08));
+      backdrop-filter: blur(30px);
+      border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+      padding: 12px;
+      text-align: center;
+      position: relative;
+      z-index: 50;
+    }
+
+    .banner-text {
+      font-size: 14px;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--primary-gold), var(--secondary-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin: 0;
+      letter-spacing: 0.5px;
+    }
+
+    .banner-tagline {
+      font-size: 10px;
+      opacity: 0.75;
+      margin-top: 2px;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      background: linear-gradient(145deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.05));
+      backdrop-filter: blur(40px);
+      border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+      color: white;
+      padding: 10px 12px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      display: none;
+    }
+
+    .header.show {
+      display: block;
+    }
+
+    .header-main {
+      max-width: 100%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-icon {
+      font-size: 20px;
+      background: linear-gradient(145deg, var(--primary-gold), var(--primary-red));
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+    }
+
+    .logo-text h1 {
+      font-size: 12px;
+      margin: 0;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--primary-gold), var(--secondary-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .logout-btn {
+      padding: 6px 12px;
+      background: linear-gradient(145deg, rgba(255, 71, 87, 0.8), rgba(255, 71, 87, 0.6));
+      color: white;
+      border: 1px solid rgba(255, 71, 87, 0.5);
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 10px;
+      transition: all 0.3s;
+      backdrop-filter: blur(10px);
+    }
+
+    .logout-btn:hover {
+      background: linear-gradient(145deg, rgba(255, 71, 87, 1), rgba(255, 71, 87, 0.8));
+      box-shadow: 0 0 15px rgba(255, 71, 87, 0.4);
+    }
+
+    /* ===== LOGIN PAGE ===== */
+    .login-page {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 60px 16px 100px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .login-page.hidden {
+      display: none;
+    }
+
+    .login-container {
+      max-width: 360px;
+      width: 100%;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+      backdrop-filter: blur(40px);
+      border: 3px solid rgba(255, 215, 0, 0.3);
+      border-radius: 18px;
+      padding: 32px 24px;
+      box-shadow: 0 40px 130px rgba(0, 0, 0, 0.8);
+      animation: portalSlideIn 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    @keyframes portalSlideIn {
+      from { transform: scale(0.8) translateY(20px); opacity: 0; }
+      to { transform: scale(1) translateY(0); opacity: 1; }
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .login-header h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, var(--primary-gold), var(--secondary-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+    }
+
+    .login-header p {
+      font-size: 12px;
+      opacity: 0.85;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      font-size: 11px;
+      opacity: 0.9;
+    }
+
+    input {
+      width: 100%;
+      padding: 11px 14px;
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      border-radius: 10px;
+      font-size: 12px;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(20px);
+      color: white;
+      transition: all 0.4s;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+    }
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--primary-gold);
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .auth-method {
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 10px;
+      margin-top: 4px;
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(145deg, var(--primary-gold), var(--secondary-blue));
+      color: #0f0f23;
+      border: none;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      margin-top: 12px;
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+    }
+
+    .login-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 35px rgba(255, 215, 0, 0.5);
+    }
+
+    .error {
+      background: rgba(255, 71, 87, 0.2);
+      color: #ff6b7a;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      font-size: 11px;
+      border-left: 3px solid rgba(255, 71, 87, 0.8);
+      display: none;
+    }
+
+    .error.show {
+      display: block;
+    }
+
+    /* ===== DASHBOARD PAGE ===== */
+    .dashboard-page {
+      display: none;
+      min-height: 100vh;
+      padding-top: 48px;
+      padding-bottom: 100px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .dashboard-page.show {
+      display: block;
+    }
+
+    .dashboard-wrapper {
+      padding: 14px;
+      max-width: 100%;
+    }
+
+    /* Welcome Card */
+    .welcome-card {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.05));
+      backdrop-filter: blur(25px);
+      border: 2px solid rgba(255, 215, 0, 0.25);
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 16px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      animation: slideUp 0.6s ease-out;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .welcome-greeting {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      background: linear-gradient(90deg, var(--primary-gold), var(--secondary-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .welcome-subtitle {
+      font-size: 11px;
+      opacity: 0.8;
+      margin-bottom: 12px;
+    }
+
+    .student-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 215, 0, 0.15);
+    }
+
+    .detail-item {
+      font-size: 11px;
+    }
+
+    .detail-label {
+      opacity: 0.65;
+      display: block;
+      margin-bottom: 2px;
+      font-size: 9px;
+    }
+
+    .detail-value {
+      font-weight: 600;
+      color: var(--primary-gold);
+      font-size: 12px;
+    }
+
+    /* Stats Section */
+    .stats-section {
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      margin-left: 3px;
+      color: var(--primary-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .stat-card {
+      background: linear-gradient(145deg, rgba(79, 195, 247, 0.18), rgba(79, 195, 247, 0.08));
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(79, 195, 247, 0.25);
+      padding: 12px;
+      border-radius: 10px;
+      text-align: center;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(79, 195, 247, 0.25);
+    }
+
+    .stat-card.accent {
+      background: linear-gradient(145deg, rgba(255, 71, 87, 0.18), rgba(255, 71, 87, 0.08));
+      border-color: rgba(255, 71, 87, 0.25);
+    }
+
+    .stat-card.accent:hover {
+      box-shadow: 0 6px 20px rgba(255, 71, 87, 0.25);
+    }
+
+    .stat-label {
+      font-size: 9px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      font-weight: 600;
+      opacity: 0.75;
+      letter-spacing: 0.4px;
+    }
+
+    .stat-value {
+      font-size: 20px;
+      font-weight: bold;
+      background: linear-gradient(90deg, var(--primary-gold), var(--secondary-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Subject Slideshow */
+    .slideshow-section {
+      margin-bottom: 16px;
+    }
+
+    .slideshow-container {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04));
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(255, 215, 0, 0.2);
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .subject-card {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.04));
+      backdrop-filter: blur(18px);
+      border: 2px solid rgba(255, 215, 0, 0.2);
+      border-radius: 12px;
+      overflow: hidden;
+      display: none;
+      animation: slideIn 0.4s ease-in;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .subject-card.active {
+      display: block;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(8px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .subject-header {
+      background: linear-gradient(145deg, rgba(255, 215, 0, 0.22), rgba(255, 215, 0, 0.12));
+      padding: 12px;
+      font-weight: 700;
+      font-size: 12px;
+      border-bottom: 1px solid rgba(255, 215, 0, 0.18);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .subject-icon {
+      font-size: 14px;
+    }
+
+    .subject-content {
+      padding: 12px;
+    }
+
+    .marks-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 11px;
+    }
+
+    .marks-row:last-child {
+      border-bottom: none;
+    }
+
+    .marks-info {
+      flex: 1;
+    }
+
+    .marks-label {
+      color: rgba(255, 255, 255, 0.95);
+      font-weight: 500;
+      font-size: 11px;
+    }
+
+    .marks-date {
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 9px;
+      margin-top: 1px;
+    }
+
+    .marks-value {
+      font-weight: 700;
+      color: white;
+      background: linear-gradient(145deg, rgba(79, 195, 247, 0.75), rgba(79, 195, 247, 0.55));
+      padding: 5px 9px;
+      border-radius: 5px;
+      font-size: 10px;
+      box-shadow: 0 3px 12px rgba(79, 195, 247, 0.25);
+    }
+
+    .marks-value.absent {
+      background: linear-gradient(145deg, rgba(255, 71, 87, 0.75), rgba(255, 71, 87, 0.55));
+      box-shadow: 0 3px 12px rgba(255, 71, 87, 0.25);
+    }
+
+    /* Slider Navigation */
+    .slider-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 12px;
+      gap: 8px;
+    }
+
+    .nav-btn {
+      padding: 7px 12px;
+      background: linear-gradient(145deg, rgba(255, 215, 0, 0.25), rgba(255, 215, 0, 0.15));
+      color: var(--primary-gold);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 10px;
+      transition: all 0.3s;
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-btn:hover:not(:disabled) {
+      background: linear-gradient(145deg, rgba(255, 215, 0, 0.4), rgba(255, 215, 0, 0.2));
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.25);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.25;
+      cursor: not-allowed;
+    }
+
+    .slide-counter {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.75);
+      font-weight: 600;
+      font-size: 10px;
+      flex: 1;
+    }
+
+    .dots-container {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255, 215, 0, 0.18);
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 1px solid rgba(255, 215, 0, 0.25);
+    }
+
+    .dot:hover {
+      background: rgba(255, 215, 0, 0.4);
+    }
+
+    .dot.active {
+      background: var(--primary-gold);
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+    }
+
+    /* Action Buttons */
+    .action-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 18px;
+      margin-bottom: 80px;
+    }
+
+    .print-btn, .logout-btn-main {
+      padding: 11px;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 11px;
+      transition: all 0.3s;
+      backdrop-filter: blur(8px);
+    }
+
+    .print-btn {
+      background: linear-gradient(145deg, rgba(39, 174, 96, 0.75), rgba(39, 174, 96, 0.55));
+      border: 1px solid rgba(39, 174, 96, 0.4);
+      box-shadow: 0 4px 15px rgba(39, 174, 96, 0.25);
+    }
+
+    .print-btn:hover {
+      background: linear-gradient(145deg, rgba(39, 174, 96, 0.95), rgba(39, 174, 96, 0.75));
+      box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .logout-btn-main {
+      background: linear-gradient(145deg, rgba(255, 71, 87, 0.75), rgba(255, 71, 87, 0.55));
+      border: 1px solid rgba(255, 71, 87, 0.4);
+      box-shadow: 0 4px 15px rgba(255, 71, 87, 0.25);
+    }
+
+    .logout-btn-main:hover {
+      background: linear-gradient(145deg, rgba(255, 71, 87, 0.95), rgba(255, 71, 87, 0.75));
+      box-shadow: 0 6px 20px rgba(255, 71, 87, 0.4);
+      transform: translateY(-1px);
+    }
+
+    /* Footer Contact Buttons */
+    .footer-contact {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(145deg, rgba(15, 15, 35, 0.95), rgba(15, 15, 35, 0.85));
+      backdrop-filter: blur(20px);
+      border-top: 2px solid rgba(255, 215, 0, 0.2);
+      padding: 10px;
+      display: flex;
+      gap: 8px;
+      z-index: 200;
+    }
+
+    .contact-btn {
+      flex: 1;
+      padding: 10px;
+      color: white;
+      border: 1px solid;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 12px;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+
+    .whatsapp-btn {
+      background: linear-gradient(145deg, rgba(37, 211, 102, 0.8), rgba(37, 211, 102, 0.6));
+      border-color: rgba(37, 211, 102, 0.5);
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
+    }
+
+    .whatsapp-btn:hover {
+      background: linear-gradient(145deg, rgba(37, 211, 102, 1), rgba(37, 211, 102, 0.8));
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .call-btn {
+      background: linear-gradient(145deg, rgba(79, 195, 247, 0.8), rgba(79, 195, 247, 0.6));
+      border-color: rgba(79, 195, 247, 0.5);
+      box-shadow: 0 4px 15px rgba(79, 195, 247, 0.2);
+    }
+
+    .call-btn:hover {
+      background: linear-gradient(145deg, rgba(79, 195, 247, 1), rgba(79, 195, 247, 0.8));
+      box-shadow: 0 6px 20px rgba(79, 195, 247, 0.4);
+      transform: translateY(-2px);
+    }
+
+    /* Print Styles */
+    @media print {
+      .header, .welcome-card, .action-buttons, .footer-contact, .top-banner {
+        display: none !important;
+      }
+      .report-card-print {
+        display: block !important;
+      }
+      body {
+        background: white;
+        padding: 0;
+      }
+    }
+
+    .report-card-print {
+      display: none;
+      background: white;
+      color: #333;
+      padding: 0;
+    }
+
+    .print-wrapper {
+      padding: 30px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .print-header {
+      text-align: center;
+      margin-bottom: 25px;
+      border-bottom: 3px solid #2c3e50;
+      padding-bottom: 18px;
+    }
+
+    .print-logo {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .school-name {
+      font-size: 22px;
+      font-weight: bold;
+      color: #2c3e50;
+      margin: 0;
+    }
+
+    .school-tagline {
+      font-size: 13px;
+      color: #e74c3c;
+      font-weight: 600;
+      margin: 3px 0 0 0;
+    }
+
+    .school-subtitle {
+      color: #7f8c8d;
+      font-size: 11px;
+      margin-top: 5px;
+    }
+
+    .print-student-section {
+      margin: 25px 0;
+      border-left: 4px solid #e74c3c;
+      padding-left: 15px;
+    }
+
+    .print-student-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 15px 0;
+      font-size: 13px;
+    }
+
+    .info-row {
+      padding: 8px 0;
+      border-bottom: 1px solid #ecf0f1;
+    }
+
+    .info-label {
+      font-weight: 700;
+      color: #2c3e50;
+      display: block;
+      margin-bottom: 2px;
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+
+    .info-value {
+      font-size: 14px;
+      color: #34495e;
+      font-weight: 500;
+    }
+
+    .print-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 25px 0;
+      font-size: 12px;
+    }
+
+    .print-table thead {
+      background: linear-gradient(135deg, #2c3e50, #34495e);
+      color: white;
+    }
+
+    .print-table th {
+      padding: 12px;
+      text-align: left;
+      font-weight: 700;
+      border: 1px solid #bdc3c7;
+    }
+
+    .print-table td {
+      padding: 11px 12px;
+      border: 1px solid #bdc3c7;
+    }
+
+    .print-table tbody tr:nth-child(odd) {
+      background: #f8f9fa;
+    }
+
+    .print-table tbody tr:nth-child(even) {
+      background: white;
+    }
+
+    .subject-total-row {
+      background: #e8f4f8 !important;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    .print-summary {
+      margin: 20px 0;
+      padding: 15px;
+      background: #ecf0f1;
+      border-left: 4px solid var(--primary-gold);
+      border-radius: 5px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      font-size: 13px;
+    }
+
+    .summary-label {
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    .summary-value {
+      font-weight: 700;
+      color: #e74c3c;
+      font-size: 14px;
+    }
+
+    .print-footer {
+      margin-top: 30px;
+      text-align: center;
+      color: #7f8c8d;
+      font-size: 10px;
+      border-top: 2px solid #bdc3c7;
+      padding-top: 15px;
+    }
+
+    .print-footer-text {
+      margin: 3px 0;
+    }
+
+    .print-stamp {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #bdc3c7;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .stamp-section {
+      color: #2c3e50;
+      font-weight: 600;
+    }
+
+    .stamp-line {
+      margin-top: 35px;
+      border-top: 1px solid #2c3e50;
+      padding-top: 3px;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 215, 0, 0.03);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 215, 0, 0.25);
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 215, 0, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <!-- Particles -->
+  <div class="particles" id="particles"></div>
+
+  <!-- TOP BANNER -->
+  <div class="top-banner">
+    <p class="banner-text">🎓 Prince Learning Academy</p>
+    <p class="banner-tagline">Believe. Achieve. Succeed.</p>
+  </div>
+
+  <!-- HEADER -->
+  <div class="header" id="header">
+    <div class="header-main">
+      <div class="logo-section">
+        <div class="logo-icon">🎓</div>
+        <div class="logo-text">
+          <h1>Student Portal</h1>
+        </div>
+      </div>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <!-- LOGIN PAGE -->
+  <div class="login-page" id="loginPage">
+    <div class="login-container">
+      <div class="login-header">
+        <h2>🔐 Login</h2>
+        <p>Access Your Results</p>
+      </div>
+      
+      <div id="errorMsg" class="error"></div>
+      
+      <form onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label for="studentId">Student ID</label>
+          <input type="text" id="studentId" placeholder="e.g., 2025-0009" required />
+        </div>
+
+        <div class="form-group">
+          <label for="authMethod">Password or Phone</label>
+          <input 
+            type="text" 
+            id="authMethod" 
+            placeholder="Enter password or phone" 
+            required 
+          />
+          <div class="auth-method">🔑 Password or phone number</div>
+        </div>
+
+        <button type="submit" class="login-btn">Enter Portal ✨</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- DASHBOARD PAGE -->
+  <div class="dashboard-page" id="dashboardPage">
+    <div class="dashboard-wrapper">
+      <!-- Welcome Card -->
+      <div class="welcome-card">
+        <div class="welcome-greeting">Welcome, <span id="greetingName"></span>! 👋</div>
+        <div class="welcome-subtitle">Your academic performance</div>
+        <div class="student-details">
+          <div class="detail-item">
+            <span class="detail-label">Student ID</span>
+            <span class="detail-value" id="displayId"></span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Class</span>
+            <span class="detail-value" id="displayClass"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats Section -->
+      <div class="stats-section">
+        <div class="section-title">📊 Performance</div>
+        <div class="stats-grid">
+          <div class="stat-card accent">
+            <div class="stat-label">Tests</div>
+            <div class="stat-value" id="testsCount">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Score %</div>
+            <div class="stat-value" id="percentage">0%</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Subjects</div>
+            <div class="stat-value" id="totalSubjects">0</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slideshow Section -->
+      <div class="slideshow-section">
+        <div class="section-title">📚 Subject Scores</div>
+        <div class="slideshow-container">
+          <div id="subjectSlides"></div>
+          
+          <div class="dots-container" id="dotsContainer"></div>
+
+          <div class="slider-nav">
+            <button class="nav-btn" id="prevBtn" onclick="prevSlide()">← Prev</button>
+            <div class="slide-counter">
+              <span id="currentSlide">1</span> / <span id="totalSlides">0</span>
+            </div>
+            <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Next →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button class="print-btn" onclick="printReportCard()">🖨️ Print Report</button>
+        <button class="logout-btn-main" onclick="logout()">👋 Logout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER CONTACT -->
+  <div class="footer-contact">
+    <a href="https://wa.me/7310680106?text=Hello%20Prince%20Learning%20Academy" target="_blank" class="contact-btn whatsapp-btn">
+      <span>💬 WhatsApp</span>
+    </a>
+    <a href="tel:7310680106" class="contact-btn call-btn">
+      <span>☎️ Call</span>
+    </a>
+  </div>
+
+  <!-- PRINT REPORT -->
+  <div id="printReportCard" class="report-card-print"></div>
+
+  <script>
+    // Generate particles
+    function generateParticles() {
+      const container = document.getElementById('particles');
+      for (let i = 0; i < 40; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.width = Math.random() * 2.5 + 0.5 + 'px';
+        particle.style.height = particle.style.width;
+        particle.style.animationDuration = Math.random() * 12 + 8 + 's';
+        particle.style.animationDelay = Math.random() * 4 + 's';
+        container.appendChild(particle);
+      }
+    }
+    generateParticles();
+
+    // Student Data
+    const studentsData = [
+      {
+        id: "2025-0009",
+        password: "ICSE-H1",
+        phone: "8920818077",
+        name: "Hanshika",
+        class: 8,
+        scores: {
+          Chemistry: { marks: [0, 1, 2], dates: ["22-Nov", "29-Nov", "29-Nov"], total: 3 },
+          English: { marks: [8, "5/15"], dates: ["24-Nov", "15-Dec"], total: 13 },
+          "History & Civics": { marks: [5, 5, 11], dates: ["29-Nov", "29-Nov", "08-Dec"], total: 21 },
+          Biology: { marks: [10, "8/10", 18], dates: ["10-Dec", "10-Dec", "11-Dec"], total: 36 },
+          Mathematics: { marks: ["6/6", "6/8"], dates: ["09-Dec", "16-Dec"], total: 12 }
+        }
+      },
+      {
+        id: "2025-0010",
+        password: "ICSEH-2",
+        phone: "782793129",
+        name: "Yash",
+        class: 8,
+        scores: {
+          Chemistry: { marks: [11, 8, 14], dates: ["22-Nov", "29-Nov", "29-Nov"], total: 33 },
+          English: { marks: [16, "Absent"], dates: ["24-Nov", "15-Dec"], total: 16 },
+          "History & Civics": { marks: [9, 0, 16], dates: ["29-Nov", "29-Nov", "08-Dec"], total: 25 },
+          Biology: { marks: [10, "10/10", 19], dates: ["10-Dec", "10-Dec", "11-Dec"], total: 39 },
+          Mathematics: { marks: ["6/6", "7/8"], dates: ["09-Dec", "16-Dec"], total: 13 }
+        }
+      },
+      {
+        id: "2025-0011",
+        password: "ICSE-H3",
+        phone: "9953118424",
+        name: "Bhumika",
+        class: 8,
+        scores: {
+          Chemistry: { marks: [7, 7, 15], dates: ["22-Nov", "29-Nov", "29-Nov"], total: 29 },
+          English: { marks: [15, "14/15"], dates: ["24-Nov", "15-Dec"], total: 29 },
+          "History & Civics": { marks: [6, 5, 14], dates: ["29-Nov", "29-Nov", "08-Dec"], total: 25 },
+          Biology: { marks: ["Absent", "Absent", 20], dates: ["10-Dec", "10-Dec", "11-Dec"], total: 20 },
+          Mathematics: { marks: ["6/6", "7/8"], dates: ["09-Dec", "16-Dec"], total: 13 }
+        }
+      },
+      {
+        id: "2025-0012",
+        password: "ICSE-H4",
+        phone: "9871623670",
+        name: "Radhika",
+        class: 8,
+        scores: {
+          Chemistry: { marks: [0, 0, 0], dates: ["22-Nov", "29-Nov", "29-Nov"], total: 0 },
+          English: { marks: [0, "Absent"], dates: ["24-Nov", "15-Dec"], total: 0 },
+          "History & Civics": { marks: [0, 0, 10], dates: ["29-Nov", "29-Nov", "08-Dec"], total: 10 },
+          Biology: { marks: [10, "9/10", "Absent"], dates: ["10-Dec", "10-Dec", "11-Dec"], total: 19 },
+          Mathematics: { marks: ["5/6", "7/8"], dates: ["09-Dec", "16-Dec"], total: 12 }
+        }
+      },
+      {
+        id: "2025-0013",
+        password: "ICSE-H5",
+        phone: "9315408487",
+        name: "Pratham",
+        class: 8,
+        scores: {
+          Chemistry: { marks: [12, 4, 12], dates: ["22-Nov", "29-Nov", "29-Nov"], total: 28 },
+          English: { marks: [15, "9/15"], dates: ["24-Nov", "15-Dec"], total: 24 },
+          "History & Civics": { marks: [8, 0, 16], dates: ["29-Nov", "29-Nov", "08-Dec"], total: 24 },
+          Biology: { marks: [10, "10/10", 17], dates: ["10-Dec", "10-Dec", "11-Dec"], total: 37 },
+          Mathematics: { marks: ["6/6", "7/8"], dates: ["09-Dec", "16-Dec"], total: 13 }
+        }
+      },
+      {
+        id: "2025-0014",
+        password: "ICSE-I1",
+        phone: "9876543210",
+        name: "Aanvi",
+        class: 9,
+        scores: {
+          "Computer Applications": { marks: ["10/30", "40/40", "35/40"], dates: ["22-Nov", "29-Nov", "29-Nov"], total: 85 }
+        }
+      },
+      {
+        id: "2025-0015",
+        password: "ICSE-I2",
+        phone: "9876543211",
+        name: "Aaryan",
+        class: 9,
+        scores: {
+          "Computer Applications": { marks: ["23/30", "40/40", "0/40"], dates: ["22-Nov", "29-Nov", "29-Nov"], total: 63 },
+          "English Language": { marks: ["6/20"], dates: ["23-Nov"], total: 6 }
+        }
+      },
+      {
+        id: "2025-0016",
+        password: "ICSE-I3",
+        phone: "9876543212",
+        name: "Dev Chaudhary",
+        class: 9,
+        scores: {
+          "Computer Applications": { marks: ["0/30", "40/40", "0/40"], dates: ["22-Nov", "29-Nov", "29-Nov"], total: 40 },
+          "English Language": { marks: ["12/20"], dates: ["23-Nov"], total: 12 },
+          Science: { marks: ["9/10"], dates: ["23-Nov"], total: 9 }
+        }
+      },
+      {
+        id: "2025-0017",
+        password: "ICSE-I4",
+        phone: "9876543213",
+        name: "Vansh Khatri",
+        class: 9,
+        scores: {
+          "Computer Applications": { marks: ["0/30", "20/40", "20/40"], dates: ["22-Nov", "29-Nov", "29-Nov"], total: 40 },
+          "English Language": { marks: ["14/20"], dates: ["23-Nov"], total: 14 }
+        }
+      },
+      {
+        id: "2025-0018",
+        password: "ICSE-I5",
+        phone: "9876543214",
+        name: "Vanshika Sharma",
+        class: 9,
+        scores: {
+          "Computer Applications": { marks: ["0/30", "40/40", "25/40"], dates: ["22-Nov", "29-Nov", "29-Nov"], total: 65 }
+        }
+      },
+      {
+        id: "2025-0019",
+        password: "ICSE-I6",
+        phone: "9876543215",
+        name: "Vinnet Raj Singh",
+        class: 9,
+        scores: {
+          "Computer Applications": { marks: ["16/30", "40/40", "20/40"], dates: ["22-Nov", "29-Nov", "29-Nov"], total: 76 },
+          "English Language": { marks: ["0/20"], dates: ["23-Nov"], total: 0 }
+        }
+      },
+      {
+        id: "2025-0020",
+        password: "ICSE-I7",
+        phone: "9876543216",
+        name: "Angila Rohila",
+        class: 9,
+        scores: {
+          "Computer Applications": { marks: ["8/30", "40/40", "0/40"], dates: ["22-Nov", "29-Nov", "29-Nov"], total: 48 },
+          "English Language": { marks: ["0/20"], dates: ["23-Nov"], total: 0 },
+          Science: { marks: ["10/10"], dates: ["23-Nov"], total: 10 }
+        }
+      },
+      {
+        id: "2025-0021",
+        password: "ICSE-I8",
+        phone: "9876543217",
+        name: "Avyan Pal",
+        class: 9,
+        scores: {
+          "Computer Applications": { marks: ["4/30", "40/40", "0/40"], dates: ["22-Nov", "29-Nov", "29-Nov"], total: 44 },
+          "English Language": { marks: ["12/20"], dates: ["23-Nov"], total: 12 },
+          Science: { marks: ["9/10"], dates: ["23-Nov"], total: 9 }
+        }
+      }
+    ];
+
+    let currentStudent = null;
+    let currentSlide = 0;
+    let subjectList = [];
+
+    function handleLogin(event) {
+      event.preventDefault();
+      const studentId = document.getElementById("studentId").value.trim();
+      const authMethod = document.getElementById("authMethod").value.trim();
+      const errorMsg = document.getElementById("errorMsg");
+
+      const student = studentsData.find((s) => s.id === studentId);
+
+      if (!student) {
+        showError("❌ Student ID not found!");
+        return;
+      }
+
+      if (student.password !== authMethod && student.phone !== authMethod) {
+        showError("❌ Invalid credentials!");
+        return;
+      }
+
+      currentStudent = student;
+      transitionToDashboard();
+      errorMsg.classList.remove('show');
+    }
+
+    function showError(message) {
+      const errorMsg = document.getElementById("errorMsg");
+      errorMsg.textContent = message;
+      errorMsg.classList.add('show');
+    }
+
+    function transitionToDashboard() {
+      document.getElementById("loginPage").classList.add("hidden");
+      document.getElementById("dashboardPage").classList.add("show");
+      document.getElementById("header").classList.add("show");
+      displayDashboard();
+    }
+
+    function displayDashboard() {
+      document.getElementById("greetingName").textContent = currentStudent.name;
+      document.getElementById("displayId").textContent = currentStudent.id;
+      document.getElementById("displayClass").textContent = `Class ${currentStudent.class}`;
+
+      displayReportCard();
+      displaySubjectSlideshow();
+    }
+
+    function displayReportCard() {
+      const subjects = Object.keys(currentStudent.scores);
+      let testsCount = 0;
+      let totalScore = 0;
+      let totalPossible = 0;
+
+      subjects.forEach((subject) => {
+        const subjectData = currentStudent.scores[subject];
+        const marks = subjectData.marks;
+        totalScore += subjectData.total;
+        
+        marks.forEach((mark) => {
+          if (mark !== "-" && mark !== "Absent") {
+            testsCount++;
+            const numValue = parseFloat(mark.toString().split('/')[0]);
+            if (numValue > 0) {
+              const denominator = parseFloat(mark.toString().split('/')[1]) || 20;
+              totalPossible += denominator;
+            }
+          }
+        });
+      });
+
+      const percentage = totalPossible > 0 ? Math.round((totalScore / totalPossible) * 100) : 0;
+
+      document.getElementById("testsCount").textContent = testsCount;
+      document.getElementById("percentage").textContent = percentage + "%";
+      document.getElementById("totalSubjects").textContent = subjects.length;
+    }
+
+    function displaySubjectSlideshow() {
+      subjectList = Object.keys(currentStudent.scores);
+      const slidesContainer = document.getElementById("subjectSlides");
+      const dotsContainer = document.getElementById("dotsContainer");
+      
+      slidesContainer.innerHTML = "";
+      dotsContainer.innerHTML = "";
+      currentSlide = 0;
+
+      const subjectIcons = {
+        Chemistry: "🧪",
+        English: "📖",
+        "English Language": "📖",
+        "History & Civics": "📚",
+        Biology: "🔬",
+        Mathematics: "🔢",
+        "Computer Applications": "💻",
+        Science: "🔭"
+      };
+
+      subjectList.forEach((subject, index) => {
+        const subjectData = currentStudent.scores[subject];
+        const marks = subjectData.marks;
+        const dates = subjectData.dates;
+        const icon = subjectIcons[subject] || "📝";
+
+        let marksHtml = "";
+        marks.forEach((mark, idx) => {
+          const isAbsent = mark === "Absent";
+          const date = dates[idx] || "-";
+          marksHtml += `
+            <div class="marks-row">
+              <div class="marks-info">
+                <div class="marks-label">Assessment ${idx + 1}</div>
+                <div class="marks-date">${date}</div>
+              </div>
+              <span class="marks-value ${isAbsent ? 'absent' : ''}">${mark}</span>
+            </div>
+          `;
+        });
+
+        const card = `
+          <div class="subject-card ${index === 0 ? 'active' : ''}">
+            <div class="subject-header">
+              <span><span class="subject-icon">${icon}</span> ${subject}</span>
+              <span style="font-weight: 700; color: var(--primary-gold);">${subjectData.total}</span>
+            </div>
+            <div class="subject-content">
+              ${marksHtml}
+            </div>
+          </div>
+        `;
+        slidesContainer.innerHTML += card;
+
+        const dot = `<div class="dot ${index === 0 ? 'active' : ''}" onclick="goToSlide(${index})"></div>`;
+        dotsContainer.innerHTML += dot;
+      });
+
+      document.getElementById("totalSlides").textContent = subjectList.length;
+      updateNavButtons();
+    }
+
+    function nextSlide() {
+      if (currentSlide < subjectList.length - 1) {
+        currentSlide++;
+        updateSlide();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateSlide();
+      }
+    }
+
+    function goToSlide(index) {
+      currentSlide = index;
+      updateSlide();
+    }
+
+    function updateSlide() {
+      const cards = document.querySelectorAll(".subject-card");
+      const dots = document.querySelectorAll(".dot");
+
+      cards.forEach((card) => card.classList.remove("active"));
+      dots.forEach((dot) => dot.classList.remove("active"));
+
+      cards[currentSlide].classList.add("active");
+      dots[currentSlide].classList.add("active");
+
+      document.getElementById("currentSlide").textContent = currentSlide + 1;
+      updateNavButtons();
+    }
+
+    function updateNavButtons() {
+      document.getElementById("prevBtn").disabled = currentSlide === 0;
+      document.getElementById("nextBtn").disabled = currentSlide === subjectList.length - 1;
+    }
+
+    function printReportCard() {
+      const printDiv = document.getElementById("printReportCard");
+      const subjects = Object.keys(currentStudent.scores);
+
+      let tableRows = "";
+      subjects.forEach((subject) => {
+        const subjectData = currentStudent.scores[subject];
+        const marks = subjectData.marks;
+        const dates = subjectData.dates;
+        const total = subjectData.total;
+
+        marks.forEach((mark, idx) => {
+          const date = dates[idx] || "-";
+          tableRows += `
+            <tr>
+              <td>${subject}</td>
+              <td>Assessment ${idx + 1}</td>
+              <td>${date}</td>
+              <td style="text-align: center; font-weight: 600;">${mark}</td>
+            </tr>
+          `;
+        });
+
+        tableRows += `
+          <tr class="subject-total-row">
+            <td colspan="3" style="text-align: right;">Subject Total:</td>
+            <td style="text-align: center;">${total}</td>
+          </tr>
+        `;
+      });
+
+      let totalMarks = 0;
+      subjects.forEach((subject) => {
+        totalMarks += currentStudent.scores[subject].total;
+      });
+
+      printDiv.innerHTML = `
+        <div class="print-wrapper">
+          <div class="print-header">
+            <div class="print-logo">🎓</div>
+            <h1 class="school-name">Prince Learning Academy</h1>
+            <p class="school-tagline">Believe. Achieve. Succeed.</p>
+            <p class="school-subtitle">Academic Performance Report Card</p>
+          </div>
+
+          <div class="print-student-section">
+            <div class="print-student-info">
+              <div class="info-row">
+                <span class="info-label">Student Name</span>
+                <span class="info-value">${currentStudent.name}</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Student ID</span>
+                <span class="info-value">${currentStudent.id}</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Class</span>
+                <span class="info-value">Class ${currentStudent.class}</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Report Date</span>
+                <span class="info-value">${new Date().toLocaleDateString('en-IN')}</span>
+              </div>
+            </div>
+          </div>
+
+          <table class="print-table">
+            <thead>
+              <tr>
+                <th>Subject</th>
+                <th>Assessment</th>
+                <th>Date</th>
+                <th>Marks</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${tableRows}
+            </tbody>
+          </table>
+
+          <div class="print-summary">
+            <div class="summary-row">
+              <span class="summary-label">Total Marks Obtained:</span>
+              <span class="summary-value">${totalMarks}</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-label">Generated On:</span>
+              <span class="summary-value">${new Date().toLocaleString('en-IN')}</span>
+            </div>
+          </div>
+
+          <div class="print-stamp">
+            <div class="stamp-section">
+              Principal<span class="stamp-line"></span>
+            </div>
+            <div class="stamp-section">
+              Parent/Guardian<span class="stamp-line"></span>
+            </div>
+          </div>
+
+          <div class="print-footer">
+            <p class="print-footer-text">House No. 282, Sector-12, Sarvodaya Nagar, Ghaziabad</p>
+            <p class="print-footer-text">📞 +91 73106 80106 | 📧 princelearningacademygzb@gmail.com</p>
+            <p class="print-footer-text" style="margin-top: 8px; padding-top: 8px; border-top: 1px solid #bdc3c7;">
+              © Prince Learning Academy. All rights reserved. | Document generated by Student Portal
+            </p>
+          </div>
+        </div>
+      `;
+
+      setTimeout(() => {
+        window.print();
+      }, 100);
+    }
+
+    function logout() {
+      currentStudent = null;
+      currentSlide = 0;
+      subjectList = [];
+      document.getElementById("loginPage").classList.remove("hidden");
+      document.getElementById("dashboardPage").classList.remove("show");
+      document.getElementById("header").classList.remove("show");
+      document.getElementById("studentId").value = "";
+      document.getElementById("authMethod").value = "";
+    }
+  </script>
+</body>
+</html>
