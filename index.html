@@ -119,7 +119,7 @@
   .faculty-card{background:linear-gradient(135deg,rgba(142,68,173,0.2),rgba(79,195,247,0.2));backdrop-filter:blur(30px);padding:30px 22px;border-radius:22px;width:min(320px,100%);text-align:center;transition:all 0.6s cubic-bezier(0.25,0.8,0.25,1);border:2px solid rgba(255,255,255,0.2);position:relative;overflow:hidden}
   .faculty-card:hover{transform:translateY(-14px)scale(1.04);box-shadow:0 30px 100px rgba(142,68,173,0.4)}
   .faculty-avatar{font-size:4rem;margin-bottom:16px;background:linear-gradient(45deg,var(--primary-red),var(--primary-gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 10px 30px rgba(255,71,87,0.4))}
-  .faculty-card h4{font-size:1.5rem;color:var(--primary-red);margin-bottom:10px;font-weight:800;font-family:'Dancing_Script',cursive}
+  .faculty-card h4{font-size:1.5rem;color:var(--primary-red);margin-bottom:10px;font-weight:800;font-family:'Dancing Script',cursive}
   .faculty-card p{font-size:0.95rem;color:#fff;font-weight:700;line-height:1.4}
 
   .contact-portal{background:linear-gradient(135deg,#FF4757 0%,#8E44AD 50%,#4FC3F7 100%);padding:90px 5%;border-radius:32px;margin:50px 0;box-shadow:0 40px 130px rgba(255,71,87,0.35);position:relative;overflow:hidden}
@@ -130,100 +130,20 @@
   .contact-link{color:var(--primary-gold);font-weight:800;font-size:1.3rem;display:inline-flex;align-items:center;gap:10px;margin:18px 0;padding:10px 20px;background:rgba(255,255,255,0.1);backdrop-filter:blur(20px);border-radius:24px;border:2px solid rgba(255,255,255,0.2);text-decoration:none;transition:all 0.4s cubic-bezier(0.25,0.8,0.25,1)}
   .contact-link:hover{transform:scale(1.08)translateY(-6px);box-shadow:0 20px 70px rgba(255,215,0,0.6);background:rgba(255,255,255,0.2)}
 
+  /* YouTube button */
+  .yt-btn{display:inline-flex;align-items:center;gap:10px;margin:18px 0;padding:12px 28px;background:linear-gradient(135deg,#FF0000,#cc0000);border-radius:24px;border:2px solid rgba(255,255,255,0.25);text-decoration:none;color:#fff;font-weight:800;font-size:1.1rem;transition:all 0.4s cubic-bezier(0.25,0.8,0.25,1);box-shadow:0 15px 50px rgba(255,0,0,0.4)}
+  .yt-btn:hover{transform:scale(1.08)translateY(-6px);box-shadow:0 25px 70px rgba(255,0,0,0.65);background:linear-gradient(135deg,#cc0000,#990000)}
+  .yt-icon{width:28px;height:28px;flex-shrink:0}
+
   .footer{background:linear-gradient(135deg,rgba(15,15,35,0.95),rgba(26,26,62,0.95));backdrop-filter:blur(40px);text-align:center;padding:26px 5% 18px;border-top:4px solid var(--primary-gold);position:relative}
   .footer-content{font-size:0.95rem;font-weight:600;letter-spacing:0.5px;margin-bottom:6px}
   .footer-clock{font-size:0.85rem;opacity:0.85}
-
-  .portal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);backdrop-filter:blur(20px);z-index:20000;display:none;justify-content:center;align-items:center;padding:10px}
-  .portal-container{max-width:1100px;max-height:95vh;width:100%;height:95%;overflow-y:auto;background:linear-gradient(145deg,rgba(255,255,255,0.15),rgba(255,255,255,0.05));backdrop-filter:blur(40px);border:3px solid rgba(255,255,255,0.3);border-radius:24px;padding:20px;box-shadow:0 40px 130px rgba(0,0,0,0.8);animation:portalSlideIn 0.6s cubic-bezier(0.25,0.8,0.25,1)}
-  @keyframes portalSlideIn{from{opacity:0;transform:scale(0.9)translateY(20px)}to{opacity:1;transform:scale(1)translateY(0)}}
-  .portal-close{position:fixed;top:16px;right:20px;font-size:2.1rem;color:#fff;cursor:pointer;transition:all 0.4s;z-index:30;background:rgba(255,255,255,0.12);backdrop-filter:blur(24px);width:52px;height:52px;border-radius:999px;display:flex;align-items:center;justify-content:center;border:2px solid rgba(255,255,255,0.25)}
-  .portal-close:hover{color:var(--primary-gold);transform:rotate(180deg)scale(1.03);box-shadow:0 10px 36px rgba(255,215,0,0.5)}
-
-  .portal-title{font-family:'Dancing Script',cursive;font-size:2.4rem;background:linear-gradient(45deg,#FFD700,#fff,var(--secondary-blue));background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradientFlow 3s ease infinite;text-align:center;margin-bottom:4px}
-  .portal-subtitle{font-size:0.95rem;text-align:center;opacity:0.9;margin-bottom:18px}
-
-  .login-form{max-width:420px;margin:0 auto}
-  .quantum-input{width:100%;padding:12px 18px;border:2px solid rgba(255,255,255,0.3);border-radius:22px;font-size:0.95rem;background:rgba(255,255,255,0.12);backdrop-filter:blur(20px);color:#fff;margin-bottom:12px;transition:all 0.4s cubic-bezier(0.25,0.8,0.25,1);font-weight:500;letter-spacing:0.5px}
-  .quantum-input::placeholder{color:rgba(255,255,255,0.7)}
-  .quantum-input:focus{outline:none;border-color:var(--primary-gold);box-shadow:0 0 26px rgba(255,215,0,0.5);transform:scale(1.02);background:rgba(255,255,255,0.2)}
-  .portal-login-btn{width:100%;background:linear-gradient(135deg,var(--primary-gold),#FFED4E);color:#1a1a3e;padding:14px;border:none;border-radius:24px;font-size:1rem;font-weight:800;cursor:pointer;transition:all 0.5s cubic-bezier(0.25,0.8,0.25,1);box-shadow:0 20px 60px rgba(255,215,0,0.55);text-transform:uppercase;letter-spacing:1.5px;position:relative;overflow:hidden}
-  .portal-login-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent);transition:left 0.8s}
-  .portal-login-btn:hover::before{left:100%}
-  .portal-login-btn:hover{transform:translateY(-8px)scale(1.02);box-shadow:0 28px 80px rgba(255,215,0,0.7)}
-
-  .dashboard{display:none;flex-direction:column;gap:18px}
-  .dashboard-cards{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-bottom:6px}
-  .dashboard-card{flex:1 1 200px;max-width:260px;padding:18px;border-radius:20px;background:linear-gradient(135deg,rgba(255,255,255,0.15),rgba(255,255,255,0.05));border:2px solid rgba(255,255,255,0.2);cursor:pointer;transition:all 0.4s;display:flex;flex-direction:column;align-items:flex-start;gap:6px}
-  .dashboard-card:hover{transform:translateY(-6px)scale(1.02);box-shadow:0 16px 50px rgba(0,0,0,0.6)}
-  .dashboard-card span.icon{font-size:1.8rem}
-  .dashboard-card h3{font-size:1.05rem}
-  .dashboard-card p{font-size:0.85rem;opacity:0.9}
-
-  .fee-portal{display:none;flex-direction:column;margin-top:8px}
-  .student-profile{background:linear-gradient(135deg,rgba(255,215,0,0.2),rgba(79,195,247,0.2));padding:18px;border-radius:20px;margin-bottom:18px;border:2px solid rgba(255,215,0,0.5);text-align:center}
-  .student-name{font-family:'Dancing Script',cursive;font-size:2rem;color:var(--primary-gold);margin-bottom:8px}
-  .profile-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;font-size:0.9rem;margin-top:8px}
-  .profile-item{background:rgba(255,255,255,0.1);backdrop-filter:blur(18px);padding:8px;border-radius:14px;border:1px solid rgba(255,255,255,0.2)}
-
-  .fee-matrix-title{font-family:'Dancing Script',cursive;font-size:1.7rem;color:var(--primary-gold);text-align:center;margin:14px 0 10px}
-  .table-wrapper{width:100%;overflow-x:auto}
-  .fee-table{width:100%;min-width:480px;border-collapse:collapse;background:linear-gradient(145deg,rgba(255,255,255,0.15),rgba(255,255,255,0.05));border-radius:20px;overflow:hidden;box-shadow:0 22px 80px rgba(0,0,0,0.6);margin-bottom:18px}
-  .fee-table th{background:linear-gradient(135deg,var(--primary-red),var(--accent-purple));color:#fff;padding:10px 8px;font-weight:800;font-size:0.8rem;text-align:center}
-  .fee-table td{padding:10px 8px;text-align:center;font-weight:600;border-bottom:1px solid rgba(255,255,255,0.1);vertical-align:middle;font-size:0.8rem}
-  .fee-table tbody tr:nth-child(even){background:rgba(255,255,255,0.08)}
-  .status-badge{padding:5px 10px;border-radius:20px;font-weight:800;font-size:0.75rem;display:inline-block;margin:0 auto}
-  .status-paid{background:linear-gradient(135deg,#00C851,#00E676);color:#fff}
-  .status-due{background:linear-gradient(135deg,#FF9500,#FFD700);color:#2d1b69}
-  .status-available{background:linear-gradient(135deg,#4FC3F7,#81D4FA);color:#fff}
-  .pay-checkbox{transform:scale(1.4);accent-color:var(--primary-gold);cursor:pointer;margin-right:6px}
-
-  .payment-portal{background:linear-gradient(135deg,#00C851 0%,#4FC3F7 100%);padding:20px;border-radius:22px;text-align:center;margin:16px 0;box-shadow:0 32px 100px rgba(0,184,81,0.4);display:none;position:relative;overflow:hidden}
-  .payment-portal::before{content:'';position:absolute;top:-2px;left:-2px;right:-2px;bottom:-2px;background:linear-gradient(45deg,var(--primary-gold),transparent,transparent,var(--primary-gold));border-radius:22px;animation:borderRotate 3s linear infinite;z-index:0}
-  .payment-portal>*{position:relative;z-index:2}
-  .payment-title{font-family:'Dancing Script',cursive;font-size:1.8rem;color:#fff;margin-bottom:8px}
-  .total-amount{font-size:2rem;font-weight:900;background:linear-gradient(45deg,var(--primary-gold),#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:10px 0}
-  .upi-id{font-size:1.05rem;font-weight:800;color:var(--primary-gold);word-break:break-all;margin:12px 0;padding:10px;background:rgba(255,255,255,0.25);border-radius:16px;border:1px solid rgba(255,255,255,0.3)}
-  .payment-btn{background:linear-gradient(135deg,var(--primary-gold),#FFED4E);color:#1a1a3e;padding:10px 28px;border:none;border-radius:20px;font-size:1rem;font-weight:800;cursor:pointer;margin-top:10px;letter-spacing:1.5px;text-transform:uppercase;box-shadow:0 20px 60px rgba(255,215,0,0.6);transition:all 0.4s cubic-bezier(0.25,0.8,0.25,1);position:relative;overflow:hidden}
-  .payment-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.5),transparent);transition:left 0.8s}
-  .payment-btn:hover::before{left:100%}
-  .payment-btn:hover{transform:translateY(-8px)scale(1.02);box-shadow:0 30px 80px rgba(255,215,0,0.8)}
-
-  .results-section{display:none;margin-top:14px}
-  .table-wrapper-results{width:100%;overflow-x:auto}
-  .report-card{background:linear-gradient(135deg,rgba(15,15,35,0.95),rgba(26,26,62,0.98));border-radius:20px;border:2px solid rgba(255,255,255,0.25);box-shadow:0 24px 100px rgba(0,0,0,0.8);overflow:hidden}
-  .report-header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:12px 14px;background:linear-gradient(135deg,#1a1a3e,#2d1b69);border-bottom:1px solid rgba(255,255,255,0.2);gap:10px}
-  .report-header-left{display:flex;align-items:center;gap:10px}
-  .report-logo{height:40px;width:40px;border-radius:50%;background:#fff;padding:2px;object-fit:cover}
-  .report-title{font-family:'Dancing Script',cursive;font-size:1.4rem}
-  .report-subtitle{font-size:0.8rem;opacity:0.8}
-  .report-header-right{text-align:right;font-size:0.75rem}
-  .report-student-row{display:flex;flex-wrap:wrap;gap:8px 16px;padding:10px 14px;background:rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.15);font-size:0.8rem}
-  .report-summary{padding:8px 14px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;border-bottom:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.03);font-size:0.8rem}
-  .summary-chip{padding:5px 10px;border-radius:16px;background:rgba(255,255,255,0.08)}
-  .summary-chip.highlight{background:linear-gradient(135deg,#00C851,#4FC3F7);color:#fff;font-weight:700}
-
-  .results-table{width:100%;min-width:520px;border-collapse:collapse;background:transparent}
-  .results-table th,.results-table td{padding:8px 6px;text-align:center;font-size:0.75rem}
-  .results-table thead th{background:linear-gradient(135deg,#4FC3F7,#8E44AD);color:#fff;font-weight:800}
-  .results-table tbody tr:nth-child(even){background:rgba(255,255,255,0.05)}
-  .results-table tbody tr:nth-child(odd){background:rgba(255,255,255,0.02)}
-  .results-table td.subject-cell{text-align:left;padding-left:10px}
-  .results-table td.date-cell{font-size:0.7rem;opacity:0.8}
-  .report-footer{padding:8px 10px 10px;font-size:0.7rem;opacity:0.8;text-align:right;border-top:1px dashed rgba(255,255,255,0.25)}
-
-  @media (max-width:900px){
-    body{padding-top:72px}
-  }
-  @media (max-width:640px){
-    .hero{padding-top:70px}
-    .portal-container{border-radius:18px}
-  }
   </style>
 </head>
 <body>
 <div id="particles" class="particles"></div>
 
+<!-- ═══════════════════════════════ NAVBAR ═══════════════════════════════ -->
 <header class="fixed top-3 left-1/2 -translate-x-1/2 z-[10000] w-[96%] max-w-4xl">
   <nav class="flex items-center gap-3 px-3 py-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-2xl shadow-2xl">
     <div class="flex items-center gap-2">
@@ -239,14 +159,16 @@
       <li><a href="#grooming" class="px-3 py-1 rounded-full hover:bg-white/15 transition-colors">Grooming</a></li>
       <li><a href="#contact" class="px-3 py-1 rounded-full hover:bg-white/15 transition-colors">Contact</a></li>
     </ul>
-    <button id="portalBtn"
-      class="ml-auto sm:ml-0 inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-[#FF4757] to-[#8E44AD] px-3 md:px-4 py-1.5 text-[0.65rem] md:text-xs font-extrabold uppercase tracking-[0.18em] shadow-[0_10px_30px_rgba(255,71,87,0.6)] hover:-translate-y-0.5 hover:scale-[1.02] transition-all">
-      <span>Portal</span>
-      <span class="text-sm md:text-base">🔐</span>
-    </button>
+    <!-- YouTube icon in navbar -->
+    <a href="https://youtube.com/@princelearningacademy?si=h3gd9WoJ9ZfsjTux" target="_blank" rel="noopener"
+      class="ml-auto sm:ml-0 inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-red-600 to-red-700 px-3 md:px-4 py-1.5 text-[0.65rem] md:text-xs font-extrabold uppercase tracking-[0.18em] shadow-[0_10px_30px_rgba(255,0,0,0.5)] hover:-translate-y-0.5 hover:scale-[1.02] transition-all text-white">
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      <span>YouTube</span>
+    </a>
   </nav>
 </header>
 
+<!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
 <section id="home" class="hero">
   <div class="hero-badge">WORLD-CLASS EDUCATION EXCELLENCE</div>
   <h1 class="hero-title">Prince Learning Academy</h1>
@@ -258,18 +180,22 @@
     <div class="live-week-text" id="liveWeekText"></div>
   </div>
 
+  <!-- ── NOTICE BOARD – April 2026 ── -->
   <div class="notice-board" aria-label="Monthly Notice Board">
     <div class="notice-inner">
       <div class="notice-heading">
         <span style="font-size:1.1rem">📋</span>
-        <span class="title">Upcoming Monthly Events</span>
+        <span class="title">Upcoming Events – April 2026</span>
       </div>
       <ul class="notice-list">
-        <li><span class="notice-list-date">30 November:</span><span>Monthly PTM</span></li>
-        <li><span class="notice-list-date">6 December:</span><span>Dance Competition &amp; Speech Competition</span></li>
-        <li><span class="notice-list-date">13 December:</span><span>Singing Competition &amp; Quiz Competition</span></li>
-        <li><span class="notice-list-date">20 December:</span><span>Class Decoration &amp; Christmas Tree Decoration</span></li>
-        <li><span class="notice-list-date">25 December:</span><span>Christmas &amp; New Year Party</span></li>
+        <li><span class="notice-list-date">1 April:</span><span>April Fool's Day Fun Activity &amp; Class Game</span></li>
+        <li><span class="notice-list-date">5 April:</span><span>Monthly PTM – Parent–Teacher Meeting</span></li>
+        <li><span class="notice-list-date">10 April:</span><span>Science Quiz &amp; General Knowledge Competition</span></li>
+        <li><span class="notice-list-date">14 April:</span><span>Dr. B.R. Ambedkar Jayanti – Special Assembly</span></li>
+        <li><span class="notice-list-date">18 April:</span><span>Debate &amp; Extempore Speaking Competition</span></li>
+        <li><span class="notice-list-date">22 April:</span><span>Earth Day – Poster Making &amp; Awareness Drive</span></li>
+        <li><span class="notice-list-date">26 April:</span><span>Sessional Exam Preparation – Revision Sessions Begin</span></li>
+        <li><span class="notice-list-date">30 April:</span><span>Monthly Progress Report Distribution &amp; Feedback</span></li>
       </ul>
     </div>
   </div>
@@ -280,6 +206,7 @@
   </div>
 </section>
 
+<!-- ═══════════════════════════════ PROGRAMS ═══════════════════════════════ -->
 <section id="programs" class="section programs-wrapper">
   <div class="section-container">
     <h2 class="section-title">Academic Mastery Programs</h2>
@@ -307,15 +234,16 @@
   </div>
 </section>
 
+<!-- ═══════════════════════════════ ACTIVITIES ═══════════════════════════════ -->
 <section id="activities" class="activities-section">
   <div class="activities-wrapper">
     <div class="activities-header">
       <div>
         <div class="activities-title">Life at Prince Learning Academy</div>
-        <div style="font-size:0.9rem;opacity:0.85;">Co‑curricular and mentoring experiences that nurture confidence, creativity and future readiness.[web:247][web:249]</div>
+        <div style="font-size:0.9rem;opacity:0.85;">Co‑curricular and mentoring experiences that nurture confidence, creativity and future readiness.</div>
       </div>
       <div class="activities-subtitle">
-        Slides change automatically; use the dots to jump to any activity.[web:245][web:255]
+        Slides change automatically; use the dots to jump to any activity.
       </div>
     </div>
     <div class="activities-slider">
@@ -433,12 +361,13 @@
   </div>
 </section>
 
+<!-- ═══════════════════════════════ GROOMING ═══════════════════════════════ -->
 <section id="grooming" class="section">
   <div class="section-container">
     <h2 class="section-title">Grooming Skills Development</h2>
     <div class="grooming-wrapper">
       <p style="font-size:0.95rem;opacity:0.95;text-align:center;margin-bottom:14px">
-        Real classroom grooming sessions that build posture, communication etiquette and overall personality development at Prince Learning Academy.[web:264]
+        Real classroom grooming sessions that build posture, communication etiquette and overall personality development at Prince Learning Academy.
       </p>
       <div class="grooming-grid">
         <article class="video-card">
@@ -466,30 +395,31 @@
   </div>
 </section>
 
+<!-- ═══════════════════════════════ TESTIMONIALS ═══════════════════════════════ -->
 <section id="testimonials" class="testimonials-section">
   <div class="testimonials-wrapper">
     <div class="testimonials-header">
       <div class="testimonials-title">Student & Parent Voice</div>
-      <div class="testimonials-subtitle">Real words from learners and families about their journey at Prince Learning Academy.[web:248][web:261]</div>
+      <div class="testimonials-subtitle">Real words from learners and families about their journey at Prince Learning Academy.</div>
     </div>
     <div id="testimonialSlides">
       <div class="testimonial-slide testimonial-active">
-        <p class="testimonial-quote">“I like Sir's encouragement to children in every field.”</p>
+        <p class="testimonial-quote">"I like Sir's encouragement to children in every field."</p>
         <div class="testimonial-name">Bhumika Tripathi</div>
         <div class="testimonial-meta">ICSE Class 8</div>
       </div>
       <div class="testimonial-slide">
-        <p class="testimonial-quote">“Our mentors' way of teaching is fantabulous.”</p>
+        <p class="testimonial-quote">"Our mentors' way of teaching is fantabulous."</p>
         <div class="testimonial-name">Vanshika Sharma</div>
         <div class="testimonial-meta">ICSE Class 9</div>
       </div>
       <div class="testimonial-slide">
-        <p class="testimonial-quote">“Teachers' interaction with students and parents is marvellous.”</p>
+        <p class="testimonial-quote">"Teachers' interaction with students and parents is marvellous."</p>
         <div class="testimonial-name">Parents of Rachit Kumar</div>
         <div class="testimonial-meta">CBSE Class 3</div>
       </div>
       <div class="testimonial-slide">
-        <p class="testimonial-quote">“Teachers' in‑depth knowledge and explanation is praise‑worthy.”</p>
+        <p class="testimonial-quote">"Teachers' in‑depth knowledge and explanation is praise‑worthy."</p>
         <div class="testimonial-name">Vineet Raj Singh</div>
         <div class="testimonial-meta">ICSE Class 9</div>
       </div>
@@ -503,6 +433,7 @@
   </div>
 </section>
 
+<!-- ═══════════════════════════════ FACULTY ═══════════════════════════════ -->
 <section id="faculty" class="section">
   <div class="section-container">
     <h2 class="section-title">Elite Faculty Orbit</h2>
@@ -521,6 +452,7 @@
   </div>
 </section>
 
+<!-- ═══════════════════════════════ CONTACT ═══════════════════════════════ -->
 <section id="contact" class="contact-portal">
   <div class="section-container">
     <div class="contact-content">
@@ -528,6 +460,17 @@
       <div class="contact-details">
         <div>📞 <a href="tel:+917310680106" class="contact-link">+91 73106 80106</a></div>
         <div>✉️ <a href="mailto:princelearningacademygzb@gmail.com" class="contact-link">princelearningacademygzb@gmail.com</a></div>
+
+        <!-- YouTube channel link -->
+        <div style="margin-top:10px">
+          <a href="https://youtube.com/@princelearningacademy?si=h3gd9WoJ9ZfsjTux" target="_blank" rel="noopener" class="yt-btn">
+            <svg class="yt-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+            Subscribe on YouTube — @PrinceLearningAcademy
+          </a>
+        </div>
+
         <div style="font-size:1rem;margin-top:26px;padding:20px;background:rgba(255,255,255,0.1);backdrop-filter:blur(24px);border-radius:22px;border:2px solid rgba(255,255,255,0.2)">
           🏛️ House No. 282, Sector-12<br>Near Saint Teresa's Convent School<br>Sarvodaya Nagar, Ghaziabad (GZB)
         </div>
@@ -536,180 +479,23 @@
   </div>
 </section>
 
+<!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
 <footer class="footer">
+  <div style="margin-bottom:10px">
+    <a href="https://youtube.com/@princelearningacademy?si=h3gd9WoJ9ZfsjTux" target="_blank" rel="noopener"
+      style="display:inline-flex;align-items:center;gap:6px;color:#FF4444;font-weight:700;font-size:0.9rem;text-decoration:none;padding:6px 14px;border-radius:999px;border:1px solid rgba(255,68,68,0.4);transition:all 0.3s"
+      onmouseover="this.style.background='rgba(255,68,68,0.15)'" onmouseout="this.style.background='transparent'">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#FF4444"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      @PrinceLearningAcademy
+    </a>
+  </div>
   <div class="footer-content">
-    © 2025 Prince Learning Academy | Crafting Tomorrow's Leaders Today ✨👑
+    © 2026 Prince Learning Academy | Crafting Tomorrow's Leaders Today ✨👑
   </div>
   <div class="footer-clock" id="footerClock"></div>
 </footer>
 
-<div id="studentPortalOverlay" class="portal-overlay">
-  <div class="portal-container">
-    <div id="loginScreen">
-      <div class="portal-close" id="portalCloseLogin">✕</div>
-      <h1 class="portal-title">Student Fee &amp; Result Portal</h1>
-      <p class="portal-subtitle">Secure access for enrolled students. Use your Student ID and Access Code provided by the institute.</p>
-      <div class="login-form">
-        <input type="text" id="studentIdInput" class="quantum-input" placeholder="Student ID (e.g. 2025-0009)">
-        <input type="password" id="studentPassInput" class="quantum-input" placeholder="Access Code">
-        <button class="portal-login-btn" id="loginBtn">Login</button>
-        <p style="text-align:center;margin-top:10px;color:rgba(255,255,255,0.8);font-size:0.85rem">For any help with login, please call +91 73106 80106.</p>
-      </div>
-    </div>
-
-    <div id="dashboardScreen" class="dashboard">
-      <div class="portal-close" id="portalCloseDash">✕</div>
-      <h1 class="portal-title" id="dashStudentName">Welcome</h1>
-      <p class="portal-subtitle" id="dashStudentInfo"></p>
-
-      <div class="dashboard-cards">
-        <div class="dashboard-card" id="feeCard">
-          <span class="icon">💳</span>
-          <h3>Fee Ledger</h3>
-          <p>View monthly fee status, pending dues and pay using UPI.</p>
-        </div>
-        <div class="dashboard-card" id="resultCard">
-          <span class="icon">📊</span>
-          <h3>Results</h3>
-          <p>Check recent unit test scores and notebook/viva marks (if available).</p>
-        </div>
-      </div>
-
-      <div id="feeScreen" class="fee-portal">
-        <div class="student-profile" id="studentProfile">
-          <h2 class="student-name" id="studentNameDisplay">Student</h2>
-          <div class="profile-grid" id="profileGrid"></div>
-        </div>
-
-        <h2 class="fee-matrix-title">Fee Details &amp; Online Payment</h2>
-        <div class="table-wrapper">
-          <table class="fee-table">
-            <thead>
-              <tr>
-                <th>Payment Period</th>
-                <th>Amount</th>
-                <th>Status</th>
-                <th>Select</th>
-              </tr>
-            </thead>
-            <tbody id="feeTableBody"></tbody>
-          </table>
-        </div>
-
-        <div class="payment-portal" id="paymentGateway">
-          <h2 class="payment-title">Payment Summary</h2>
-          <div class="total-amount" id="totalAmountDisplay">₹0</div>
-          <div class="upi-id">UPI ID: 7310680106@fam</div>
-          <p style="font-size:0.9rem;color:#fff;margin:10px 0">Use any UPI app and complete payment to this UPI ID.</p>
-          <button class="payment-btn" id="payBtn">Pay Now via UPI</button>
-          <p style="font-size:0.85rem;color:#fff;margin-top:10px;opacity:0.9">After successful payment, please inform the institute for record update within 4 working days.</p>
-        </div>
-      </div>
-
-      <div id="resultsScreen" class="results-section">
-        <div class="report-card">
-          <div class="report-header">
-            <div class="report-header-left">
-              <img src="logo.jpg" alt="Academy Logo" class="report-logo">
-              <div>
-                <div class="report-title">Prince Learning Academy</div>
-                <div class="report-subtitle">Unit Test Progress Report</div>
-              </div>
-            </div>
-            <div class="report-header-right" id="reportHeaderRight"></div>
-          </div>
-
-          <div class="report-student-row" id="reportStudentRow"></div>
-
-          <div class="report-summary">
-            <span class="summary-chip highlight" id="overallPercentChip">Overall: –</span>
-            <span class="summary-chip" id="testsCountChip">Tests: –</span>
-            <span class="summary-chip">Session: 2025–26</span>
-          </div>
-
-          <div class="table-wrapper-results">
-            <table class="results-table">
-              <thead>
-                <tr>
-                  <th>Subject</th>
-                  <th>Component</th>
-                  <th>Date</th>
-                  <th>Marks</th>
-                  <th>Percentage</th>
-                </tr>
-              </thead>
-              <tbody id="resultsTableBody"></tbody>
-            </table>
-          </div>
-
-          <div class="report-footer">
-            All unit test marks are for internal academic monitoring only.[attached_file:205]
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <script>
-const studentDatabase={
- "2025-0001":{pass:"ICSE-B1",name:"Mahi",cls:"2",brd:"ICSE",course:"All Subjects",fee:500,bal:0,nov:"DUE",dec:"DUE"},
- "2025-0002":{pass:"ICSE-B2",name:"Vanshika",cls:"2",brd:"ICSE",course:"All Subjects",fee:800,bal:0,nov:"PAID",dec:"DUE"},
- "2025-0003":{pass:"ICSE-C1",name:"Kriyansh",cls:"3",brd:"ICSE",course:"All Subjects",fee:1500,bal:0,nov:"PAID",dec:"DUE"},
- "2025-0004":{pass:"ICSE-C2",name:"Nipurn",cls:"3",brd:"ICSE",course:"All Subjects",fee:0,bal:0,nov:"PAID",dec:"DUE"},
- "2025-0005":{pass:"ICSE-E1",name:"Soumiya Verma",cls:"5",brd:"ICSE",course:"All Subjects",fee:1000,bal:0,nov:"PAID",dec:"DUE"},
- "2025-0006":{pass:"ICSE-E2",name:"Aastha",cls:"5",brd:"ICSE",course:"All Subjects",fee:500,bal:0,nov:"DUE",dec:"DUE"},
- "2025-0007":{pass:"ICSE-F1",name:"Devansh",cls:"6",brd:"ICSE",course:"All Subjects",fee:1500,bal:0,nov:"PAID",dec:"DUE"},
- "2025-0008":{pass:"ICSE-F2",name:"Mayank",cls:"6",brd:"ICSE",course:"All Subjects",fee:1500,bal:0,nov:"PAID",dec:"DUE"},
- "2025-0009":{pass:"ICSE-H1",name:"Hanshika",cls:"8",brd:"ICSE",course:"All Subjects",fee:2200,bal:733,nov:"PAID",dec:"DUE"},
- "2025-0010":{pass:"ICSEH-2",name:"Yash",cls:"8",brd:"ICSE",course:"All Subjects",fee:2200,bal:733,nov:"PAID",dec:"DUE"},
- "2025-0011":{pass:"ICSE-H3",name:"Bhumika",cls:"8",brd:"ICSE",course:"All Subjects",fee:3000,bal:0,nov:"PAID",dec:"DUE"},
- "2025-0012":{pass:"ICSE-H4",name:"Radhika",cls:"8",brd:"ICSE",course:"All Subjects",fee:3000,bal:3600,nov:"DUE",dec:"DUE"},
- "2025-0013":{pass:"ICSE-H5",name:"Pratham",cls:"8",brd:"ICSE",course:"All Subjects",fee:2200,bal:733,nov:"PAID",dec:"DUE"},
- "2025-0014":{pass:"ICSE-I1",name:"Aanvi",cls:"9",brd:"ICSE",course:"Computer Applications",fee:600,bal:0,nov:"PAID",dec:"DUE"},
- "2025-0015":{pass:"ICSE-I2",name:"Aaryan",cls:"9",brd:"ICSE",course:"English Computer Applications",fee:1300,bal:100,nov:"PAID",dec:"DUE"},
- "2025-0016":{pass:"ICSE-I3",name:"Dev Chaudhary",cls:"9",brd:"ICSE",course:"All Subjects",fee:0,bal:0,nov:"PAID",dec:"DUE"},
- "2025-0017":{pass:"ICSE-I4",name:"Vansh Khatri",cls:"9",brd:"ICSE",course:"English Computer Applications",fee:1350,bal:0,nov:"PAID",dec:"DUE"},
- "2025-0018":{pass:"ICSE-I5",name:"Vanshika Sharma",cls:"9",brd:"ICSE",course:"English Computer Applications",fee:500,bal:0,nov:"PAID",dec:"DUE"},
- "2025-0019":{pass:"ICSE-I6",name:"Vinnet Raj Singh",cls:"9",brd:"ICSE",course:"English Computer Applications",fee:1350,bal:100,nov:"PAID",dec:"DUE"},
- "2025-0020":{pass:"ICSE-I7",name:"Angila Rohila",cls:"9",brd:"ICSE",course:"All Subjects",fee:2000,bal:0,nov:"PAID",dec:"DUE"},
- "2025-0021":{pass:"ICSE-I8",name:"Avyan Pal",cls:"9",brd:"ICSE",course:"All Subjects",fee:2000,bal:0,nov:"PAID",dec:"DUE"},
- "2025-0022":{pass:"ICSE-01",name:"Yashi",cls:"K.G",brd:"ICSE",course:"All Subjects",fee:500,bal:0,nov:"PAID",dec:"DUE"},
- "2025-0023":{pass:"CBSE-01",name:"Devansh",cls:"K.G",brd:"CBSE",course:"All Subjects",fee:0,bal:0,nov:"PAID",dec:"DUE"},
- "2025-0024":{pass:"CBSE-02",name:"Rudransh",cls:"K.G",brd:"CBSE",course:"All Subjects",fee:0,bal:0,nov:"PAID",dec:"DUE"},
- "2025-0025":{pass:"CBSE-B2",name:"Rachit",cls:"2",brd:"CBSE",course:"All Subjects",fee:800,bal:0,nov:"PAID",dec:"DUE"},
- "2025-0026":{pass:"CBSE-C1",name:"Shristi",cls:"3",brd:"CBSE",course:"All Subjects",fee:0,bal:0,nov:"PAID",dec:"DUE"},
- "2025-0027":{pass:"CBSE-D1",name:"Diksha",cls:"4",brd:"CBSE",course:"All Subjects",fee:1100,bal:0,nov:"PAID",dec:"DUE"},
- "2025-0028":{pass:"CBSE-G1",name:"Ruhansh",cls:"7",brd:"CBSE",course:"All Subjects",fee:1500,bal:0,nov:"PAID",dec:"DUE"},
- "2025-0029":{pass:"CBSE-H1",name:"Garvit",cls:"8",brd:"CBSE",course:"All Subjects",fee:1000,bal:0,nov:"PAID",dec:"DUE"}
-};
-
-const resultDatabase={
- "2025-0009":{name:"Hanshika",chem:{t1:0,t2:1,viva:2},eng:{t1:8},hist:{t1:"5 /10",viva:"5 /10"}},
- "2025-0010":{name:"Yash",chem:{t1:11,t2:8,viva:14},eng:{t1:16},hist:{t1:"9 /10",viva:"0 /10"}},
- "2025-0011":{name:"Bhumika",chem:{t1:7,t2:7,viva:15},eng:{t1:15},hist:{t1:"6 /10",viva:"5 /10"}},
- "2025-0012":{name:"Radhika",chem:{t1:0,t2:0,viva:0},eng:{t1:0},hist:{t1:"0 /10",viva:"0 /10"}},
- "2025-0013":{name:"Pratham",chem:{t1:12,t2:4,viva:12},eng:{t1:15},hist:{t1:"8 /10",viva:"0 /10"}},
- "2025-0014":{name:"Aanvi",ca:{t1:"10 /30",t2:"40 /40",viva:"35 /40"}},
- "2025-0015":{name:"Aaryan",ca:{t1:"23/30",t2:"40 /40",viva:"0/40"},engLang:{t1:"23/20"}},
- "2025-0016":{name:"Dev Chaudhary",ca:{t1:"0/30",t2:"40 /40",viva:"0/40"},engLang:{t1:"12 /20"},sci:{t1:"9/10"}},
- "2025-0017":{name:"Vansh Khatri",ca:{t1:"0 /30",t2:"20/40",viva:"20/40"},engLang:{t1:"14 /20"}},
- "2025-0018":{name:"Vanshika Sharma",ca:{t1:"0/30",t2:"40 /40",viva:"25 /40"}},
- "2025-0019":{name:"Vinnet Raj Singh",ca:{t1:"16 /30",t2:"40 /40",viva:"20 /40"},engLang:{t1:"0 /20"}},
- "2025-0020":{name:"Angila Rohila",ca:{t1:"8 /30",t2:"40 /40",viva:"0 /40"},engLang:{t1:"0 /20"},sci:{t1:"10/10"}},
- "2025-0021":{name:"Avyan Pal",ca:{t1:"4/30",t2:"40 /40",viva:"0 /40"},engLang:{t1:"12 /20"},sci:{t1:"9/10"}}
-};
-
-const liveEventsByDate={
- "11-30":"Monthly PTM",
- "12-06":"Dance Competition & Speech Competition",
- "12-13":"Singing Competition & Quiz Competition",
- "12-20":"Class Decoration & Christmas Tree Decoration",
- "12-25":"Christmas & New Year Party"
-};
-
-let currentStudent=null,currentStudentId='',selectedPayments=[];
-
 function initParticles(){
  const particles=document.getElementById('particles');
  for(let i=0;i<50;i++){
@@ -722,230 +508,8 @@ function initParticles(){
   particles.appendChild(p);
  }
 }
+
 function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
-
-function showPortal(){
- document.getElementById('studentPortalOverlay').style.display='flex';
- document.getElementById('loginScreen').style.display='block';
- document.getElementById('dashboardScreen').style.display='none';
- document.getElementById('studentIdInput').focus();
-}
-function hidePortal(){
- document.getElementById('studentPortalOverlay').style.display='none';
- resetPortal();
-}
-function resetPortal(){
- document.getElementById('studentIdInput').value='';
- document.getElementById('studentPassInput').value='';
- closeAllSubScreens();
- currentStudent=null;currentStudentId='';selectedPayments=[];
-}
-
-function loginStudent(){
- const id=document.getElementById('studentIdInput').value.trim();
- const pass=document.getElementById('studentPassInput').value.trim();
- if(!id||!pass){alert('Please enter both Student ID and Access Code.');return;}
- const s=studentDatabase[id];
- if(s && s.pass===pass){
-   currentStudent=s;currentStudentId=id;
-   document.getElementById('loginScreen').style.display='none';
-   document.getElementById('dashboardScreen').style.display='flex';
-   document.getElementById('dashStudentName').textContent=`Welcome, ${s.name}`;
-   document.getElementById('dashStudentInfo').textContent=`ID: ${id} • Class ${s.cls} • ${s.brd}`;
-   closeAllSubScreens();
- }else{
-   alert('Invalid credentials. Please check your Student ID and Access Code.');
-   document.getElementById('studentIdInput').value='';
-   document.getElementById('studentPassInput').value='';
- }
-}
-
-function closeAllSubScreens(){
- document.getElementById('feeScreen').style.display='none';
- document.getElementById('resultsScreen').style.display='none';
- document.getElementById('paymentGateway').style.display='none';
-}
-
-function openFeeLedger(){
- if(!currentStudent){alert('Please login first.');return;}
- closeAllSubScreens();
- document.getElementById('feeScreen').style.display='flex';
- loadStudentFee();
-}
-function openResults(){
- if(!currentStudent){alert('Please login first.');return;}
- closeAllSubScreens();
- document.getElementById('resultsScreen').style.display='block';
- loadStudentResults();
-}
-
-function loadStudentFee(){
- document.getElementById('studentNameDisplay').textContent=currentStudent.name;
- const profileGrid=document.getElementById('profileGrid');
- profileGrid.innerHTML=`
-  <div class="profile-item"><strong>ID:</strong> ${currentStudentId}</div>
-  <div class="profile-item"><strong>Class:</strong> ${currentStudent.cls}</div>
-  <div class="profile-item"><strong>Board:</strong> ${currentStudent.brd}</div>
-  <div class="profile-item"><strong>Course:</strong> ${currentStudent.course}</div>
-  <div class="profile-item"><strong>Monthly Fee:</strong> ₹${currentStudent.fee.toLocaleString()}</div>
-  <div class="profile-item"><strong>Balance:</strong> ₹${(currentStudent.bal||0).toLocaleString()}</div>`;
- renderFeeTable();
- updatePaymentTotal();
-}
-
-function renderFeeTable(){
- const tbody=document.getElementById('feeTableBody');
- tbody.innerHTML='';
- const pds=[
-  {name:'November 2025',status:currentStudent.nov||'DUE',payable:(currentStudent.nov||'DUE')==='DUE'},
-  {name:'December 2025',status:currentStudent.dec||'DUE',payable:(currentStudent.dec||'DUE')==='DUE'},
-  {name:'January 2026 (Advance)',status:'AVAILABLE',payable:true},
-  {name:'February 2026 (Advance)',status:'AVAILABLE',payable:true}
- ];
- pds.forEach(p=>{
-  const row=tbody.insertRow();
-  const statusClass=p.status==='PAID'?'status-paid':p.status==='DUE'?'status-due':'status-available';
-  const text=p.status==='AVAILABLE'?'Pay Now':p.status;
-  row.innerHTML=`
-   <td>${p.name}</td>
-   <td>₹${currentStudent.fee.toLocaleString()}</td>
-   <td><span class="status-badge ${statusClass}">${text}</span></td>
-   <td>${p.payable?`<input type="checkbox" class="pay-checkbox" data-period="${p.name}" data-amount="${currentStudent.fee}" onchange="updatePaymentTotal()">`:'<span style="color:#00C851;font-weight:800">Paid</span>'}</td>`;
- });
-}
-
-function updatePaymentTotal(){
- selectedPayments=[];let feeTotal=0;
- document.querySelectorAll('.pay-checkbox:checked').forEach(cb=>{
-  feeTotal+=parseInt(cb.dataset.amount);
-  selectedPayments.push(cb.dataset.period);
- });
- const balance=currentStudent?currentStudent.bal||0:0;
- const grandTotal=feeTotal+balance;
- const label=balance>0
-   ? `₹${grandTotal.toLocaleString()} (Incl. balance ₹${balance.toLocaleString()})`
-   : `₹${grandTotal.toLocaleString()}`;
- document.getElementById('totalAmountDisplay').textContent=label;
- document.getElementById('paymentGateway').style.display=grandTotal>0?'block':'none';
-}
-
-function initiatePayment(){
- if(!currentStudent){alert('Please login first.');return;}
- const feeTotal=selectedPayments.length*currentStudent.fee;
- const balance=currentStudent.bal||0;
- const grandTotal=feeTotal+balance;
- if(grandTotal<=0){alert('No amount selected to pay.');return;}
- const periodsText=selectedPayments.length?selectedPayments.join(', '):'Only Balance';
- const note=`PLA ${currentStudent.name} (${currentStudentId}) - ${periodsText} - Total ₹${grandTotal.toLocaleString()} (incl. balance ₹${balance.toLocaleString()})`;
- const url=`upi://pay?pa=7310680106@fam&am=${grandTotal}&cu=INR&tn=${encodeURIComponent(note)}`;
- window.open(url,'_blank');
- alert('UPI payment link opened. After completing payment, please inform the institute for update.');
-}
-
-function loadStudentResults(){
- const tbody=document.getElementById('resultsTableBody');
- const headerRight=document.getElementById('reportHeaderRight');
- const studentRow=document.getElementById('reportStudentRow');
- const overallChip=document.getElementById('overallPercentChip');
- const testsChip=document.getElementById('testsCountChip');
-
- tbody.innerHTML='';
- const res=resultDatabase[currentStudentId];
-
- headerRight.innerHTML=`
-   <div><strong>Date:</strong> ${new Date().toLocaleDateString('en-IN')}</div>
-   <div><strong>ID:</strong> ${currentStudentId}</div>
-   <div><strong>Class:</strong> ${currentStudent.cls} (${currentStudent.brd})</div>`;
- studentRow.innerHTML=`
-   <span><strong>Name:</strong> ${currentStudent.name}</span>
-   <span><strong>Course:</strong> ${currentStudent.course}</span>`;
-
- if(!res){
-  tbody.innerHTML=`<tr><td colspan="5" style="padding:16px;font-weight:700;text-align:center">
-    Result data is not yet uploaded for this student. Please contact the institute.
-  </td></tr>`;
-  overallChip.textContent='Overall: –';
-  testsChip.textContent='Tests: –';
-  return;
- }
-
- let totalGot=0,totalMax=0,testsCount=0;
-
- const addRow=(subject,component,dateStr,got,max)=>{
-  const isNum=typeof got==='number';
-  const gotText=isNum?`${got} / ${max}`:got;
-  const percent=isNum?((got/max)*100).toFixed(1)+'%':'–';
-  if(isNum){totalGot+=got;totalMax+=max;testsCount++;}
-  tbody.innerHTML+=`
-   <tr>
-    <td class="subject-cell">${subject}</td>
-    <td>${component}</td>
-    <td class="date-cell">${dateStr}</td>
-    <td>${gotText}</td>
-    <td>${percent}</td>
-   </tr>`;
- };
-
- if(res.chem){
-  addRow('Chemistry','Test 1','22 Nov',res.chem.t1,20);
-  addRow('Chemistry','Test 2','29 Nov',res.chem.t2,20);
-  addRow('Chemistry','Viva + Notebook 1','29 Nov',res.chem.viva,20);
- }
- if(res.eng){
-  addRow('English','Test 1','24 Nov',res.eng.t1,20);
- }
- if(res.hist){
-  const parseTen=v=>{
-   if(typeof v!=='string')return{got:0,max:10};
-   const parts=v.split('/');
-   const got=parseFloat(parts[0])||0;
-   const max=parseFloat(parts[1])||10;
-   return{got,max};
-  };
-  const w=parseTen(res.hist.t1);
-  const nv=parseTen(res.hist.viva);
-  addRow('History & Civics','Test 1','29 Nov',w.got,w.max);
-  addRow('History & Civics','Notebook + Viva 1','29 Nov',nv.got,nv.max);
- }
-
- if(res.ca){
-  const parseFrac=v=>{
-   if(typeof v!=='string')return{got:0,max:0};
-   const parts=v.split('/');
-   const got=parseFloat(parts[0])||0;
-   const max=parseFloat(parts[1])||0;
-   return{got,max};
-  };
-  const t1=parseFrac(res.ca.t1);
-  const t2=parseFrac(res.ca.t2);
-  const vv=parseFrac(res.ca.viva);
-  if(t1.max>0)addRow('Computer Applications','Test 1','22 Nov',t1.got,t1.max);
-  if(t2.max>0)addRow('Computer Applications','Test 2','29 Nov',t2.got,t2.max);
-  if(vv.max>0)addRow('Computer Applications','Viva + File','29 Nov',vv.got,vv.max);
- }
-
- if(res.engLang){
-  const parts=(res.engLang.t1||'0/20').split('/');
-  const g=parseFloat(parts[0])||0;
-  const m=parseFloat(parts[1])||20;
-  addRow('English Language','Test 1','23 Nov',g,m);
- }
-
- if(res.sci){
-  const parts=(res.sci.t1||'0/10').split('/');
-  const g=parseFloat(parts[0])||0;
-  const m=parseFloat(parts[1])||10;
-  addRow('Science','Test 1','23 Nov',g,m);
- }
-
- if(totalMax>0){
-  const overall=((totalGot/totalMax)*100).toFixed(1);
-  overallChip.textContent=`Overall: ${overall}%`;
- }else{
-  overallChip.textContent='Overall: –';
- }
- testsChip.textContent=`Tests: ${testsCount}`;
-}
 
 function startClock(){
  const el=document.getElementById('footerClock');
@@ -1002,14 +566,25 @@ function initTestimonialsSlider(){
  timer=setInterval(next,7000);
 }
 
+/* Live Today – April 2026 events */
+const liveEventsByDate={
+ "04-01":"April Fool's Day Fun Activity & Class Game",
+ "04-05":"Monthly PTM – Parent–Teacher Meeting",
+ "04-10":"Science Quiz & General Knowledge Competition",
+ "04-14":"Dr. B.R. Ambedkar Jayanti – Special Assembly",
+ "04-18":"Debate & Extempore Speaking Competition",
+ "04-22":"Earth Day – Poster Making & Awareness Drive",
+ "04-26":"Sessional Exam Preparation – Revision Sessions Begin",
+ "04-30":"Monthly Progress Report Distribution & Feedback"
+};
+
 function initLiveToday(){
  const el=document.getElementById('liveWeekText');
  const today=new Date();
- const mm=today.getMonth()+1;
- const dd=today.getDate();
- const key=(mm<10?'0'+mm:mm)+'-'+(dd<10?'0'+dd:dd);
- const eventText=liveEventsByDate[key]||'No scheduled event today. Please check the Notice Board.';
- el.textContent=eventText;
+ const mm=String(today.getMonth()+1).padStart(2,'0');
+ const dd=String(today.getDate()).padStart(2,'0');
+ const key=mm+'-'+dd;
+ el.textContent=liveEventsByDate[key]||'No scheduled event today. Please check the Notice Board.';
 }
 
 window.addEventListener('load',()=>{
@@ -1018,21 +593,6 @@ window.addEventListener('load',()=>{
  initActivitiesSlider();
  initTestimonialsSlider();
  initLiveToday();
-
- document.getElementById('studentPortalOverlay').style.display='none';
- document.getElementById('portalBtn').addEventListener('click',showPortal);
- document.getElementById('portalCloseLogin').addEventListener('click',hidePortal);
- document.getElementById('portalCloseDash').addEventListener('click',hidePortal);
- document.getElementById('loginBtn').addEventListener('click',loginStudent);
- document.getElementById('feeCard').addEventListener('click',openFeeLedger);
- document.getElementById('resultCard').addEventListener('click',openResults);
- document.getElementById('payBtn').addEventListener('click',initiatePayment);
-
- document.addEventListener('keypress',e=>{
-  if(e.key==='Enter' && document.getElementById('studentPortalOverlay').style.display==='flex'){
-    if(document.getElementById('loginScreen').style.display!=='none'){loginStudent();}
-  }
- });
 
  window.addEventListener('scroll',()=>{
   const navbar=document.querySelector('header nav');
